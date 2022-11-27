@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
 use App\Models\PrintedDesign;
+use Illuminate\Http\JsonResponse;
 
 class PrintedDesignController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
+        return response()->json(PrintedDesign::all());
     }
 
     /**
