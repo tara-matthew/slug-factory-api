@@ -17,7 +17,7 @@ class PrintedDesignControllerTest extends TestCase
      * @covers \App\Http\Controllers\PrintedDesignController::index
      * @return void
      */
-    public function it_returns_print_list(): void
+    public function it_returns_a_list_of_prints(): void
     {
         /**
          * @var User $user
@@ -36,6 +36,31 @@ class PrintedDesignControllerTest extends TestCase
                     'title' => $print->title,
                     'description' => $print->description
                 ]
+            ]);
+    }
+
+    /**
+     * @test
+     * @covers \App\Http\Controllers\PrintedDesignController::index
+     * @return void
+     */
+    public function it_returns_a_specific_print(): void
+    {
+        /**
+         * @var User $user
+         * @var PrintedDesign $print
+         */
+        $user = User::factory()->create();
+        $print = PrintedDesign::factory()->for($user)->create();
+        $response = $this->getJson("/api/prints/$print->id");
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'id' => $print->id,
+                'user_id' => $user->id,
+                'title' => $print->title,
+                'description' => $print->description
             ]);
     }
 }

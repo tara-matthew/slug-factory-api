@@ -43,18 +43,18 @@ class PrintedDesignController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PrintedDesign  $printedDesign
-     * @return \Illuminate\Http\Response
+     * @param PrintedDesign $printedDesign
+     * @return JsonResponse
      */
-    public function show(PrintedDesign $printedDesign)
+    public function show(PrintedDesign $printedDesign): JsonResponse
     {
-        //
+        return response()->json($printedDesign);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PrintedDesign  $printedDesign
+     * @param PrintedDesign $printedDesign
      * @return \Illuminate\Http\Response
      */
     public function edit(PrintedDesign $printedDesign)
@@ -66,7 +66,7 @@ class PrintedDesignController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdatePrintedDesignRequest  $request
-     * @param  \App\Models\PrintedDesign  $printedDesign
+     * @param PrintedDesign $printedDesign
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePrintedDesignRequest $request, PrintedDesign $printedDesign)
@@ -77,7 +77,7 @@ class PrintedDesignController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PrintedDesign  $printedDesign
+     * @param PrintedDesign $printedDesign
      * @return \Illuminate\Http\Response
      */
     public function destroy(PrintedDesign $printedDesign)
