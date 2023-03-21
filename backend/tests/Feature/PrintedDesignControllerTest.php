@@ -30,11 +30,13 @@ class PrintedDesignControllerTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                [
-                    'id' => $print->id,
-                    'user_id' => $user->id,
-                    'title' => $print->title,
-                    'description' => $print->description
+                'data' => [
+                    [
+                        'id' => $print->id,
+                        'user_id' => $user->id,
+                        'title' => $print->title,
+                        'description' => $print->description
+                    ]
                 ]
             ]);
     }
@@ -57,10 +59,12 @@ class PrintedDesignControllerTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'id' => $print->id,
-                'user_id' => $user->id,
-                'title' => $print->title,
-                'description' => $print->description
+                'data' => [
+                    'id' => $print->id,
+                    'user_id' => $user->id,
+                    'title' => $print->title,
+                    'description' => $print->description
+                ]
             ]);
     }
 }

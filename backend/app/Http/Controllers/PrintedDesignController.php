@@ -4,19 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
+use App\Http\Resources\PrintedDesignResource;
 use App\Models\PrintedDesign;
 use Illuminate\Http\JsonResponse;
 
 class PrintedDesignController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
+    public function index(): PrintedDesignResource
     {
-        return response()->json(PrintedDesign::all());
+        return new PrintedDesignResource(PrintedDesign::all());
     }
 
     /**
@@ -40,15 +36,9 @@ class PrintedDesignController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param PrintedDesign $printedDesign
-     * @return JsonResponse
-     */
-    public function show(PrintedDesign $printedDesign): JsonResponse
+    public function show(PrintedDesign $printedDesign): PrintedDesignResource
     {
-        return response()->json($printedDesign);
+        return new PrintedDesignResource($printedDesign);
     }
 
     /**
