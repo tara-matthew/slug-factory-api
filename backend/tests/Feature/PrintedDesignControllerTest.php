@@ -2,15 +2,19 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\PrintedDesignController;
+use App\Http\Requests\StorePrintedDesignRequest;
 use App\Models\PrintedDesign;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
 class PrintedDesignControllerTest extends TestCase
 {
     use RefreshDatabase;
+    use AdditionalAssertions;
 
     /**
      * @test
@@ -44,7 +48,6 @@ class PrintedDesignControllerTest extends TestCase
     /**
      * @test
      * @covers \App\Http\Controllers\PrintedDesignController::index
-     * @return void
      */
     public function it_returns_a_specific_print(): void
     {
@@ -66,5 +69,18 @@ class PrintedDesignControllerTest extends TestCase
                     'description' => $print->description
                 ]
             ]);
+    }
+
+    /**
+     * @test
+     * @covers \App\Http\Controllers\PrintedDesignController::store
+     */
+    public function store_validates_using_a_form_request(): void
+    {
+        $this->assertActionUsesFormRequest(
+            PrintedDesignController::class,
+            'store',
+            StorePrintedDesignRequest::class
+        );
     }
 }
