@@ -29,7 +29,8 @@ class StorePrintedDesignRequestTest extends TestCase
         $this->assertEquals(
             [
             'title' => 'required|max:255',
-            'description' => 'required'
+            'description' => 'required',
+            'user_id' => 'required|exists:users,id'
         ],
             $this->printedDesignRequest->rules()
         );

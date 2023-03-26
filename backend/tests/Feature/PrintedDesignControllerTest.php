@@ -75,6 +75,30 @@ class PrintedDesignControllerTest extends TestCase
      * @test
      * @covers \App\Http\Controllers\PrintedDesignController::store
      */
+    public function it_stores_a_print(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->postJson("/api/prints", [
+            'title' => 'My title',
+            'description' => 'My description',
+            'user_id' => $user->id
+        ]);
+
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'data' => [
+                    'title' => 'My title',
+                    'description' => 'My description',
+                    'user_id' => $user->id
+                ]
+            ]);
+    }
+
+    /**
+     * @test
+     * @covers \App\Http\Controllers\PrintedDesignController::store
+     */
     public function store_validates_using_a_form_request(): void
     {
         $this->assertActionUsesFormRequest(

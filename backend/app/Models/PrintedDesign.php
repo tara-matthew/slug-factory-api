@@ -26,17 +26,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereUserId($value)
+ * @method static PrintedDesign create($array = [])
+
  * @mixin Builder
  */
 class PrintedDesign extends Model
 {
-//    protected $fillable = [
-//        'user_id',
-//        'title',
-//        'description'
-//    ];
-
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'user_id'
+    ];
 
     public function user(): BelongsTo
     {

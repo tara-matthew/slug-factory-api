@@ -12,11 +12,13 @@ class StorePrintedDesignRequest extends FormRequest
         return true;
     }
 
-    #[ArrayShape(['title' => "string", 'description' => "string"])] public function rules(): array
+    #[ArrayShape(['title' => "string", 'description' => "string", 'user_id' => "string"])] public function rules(): array
     {
         return [
             'title' => 'required|max:255',
-            'description' => 'required'
+            'description' => 'required',
+            'user_id' => 'required|exists:users,id'
+
         ];
     }
 }

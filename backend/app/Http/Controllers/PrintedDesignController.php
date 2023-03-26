@@ -6,7 +6,7 @@ use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
 use App\Http\Resources\PrintedDesignResource;
 use App\Models\PrintedDesign;
-use Illuminate\Http\JsonResponse;
+use JetBrains\PhpStorm\Pure;
 
 class PrintedDesignController extends Controller
 {
@@ -25,18 +25,16 @@ class PrintedDesignController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePrintedDesignRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePrintedDesignRequest $request)
+    public function store(StorePrintedDesignRequest $request): PrintedDesignResource
     {
-        //
+        $printedDesign = PrintedDesign::create(
+            $request->safe()->all()
+        );
+
+        return new PrintedDesignResource($printedDesign);
     }
 
-    public function show(PrintedDesign $printedDesign): PrintedDesignResource
+    #[Pure] public function show(PrintedDesign $printedDesign): PrintedDesignResource
     {
         return new PrintedDesignResource($printedDesign);
     }
