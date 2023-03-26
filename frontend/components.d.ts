@@ -7,8 +7,24 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AtomAtomTitle: typeof import('./components/atom/AtomTitle.vue')['default']
+    AtomBaseButton: typeof import('./components/atom/BaseButton.vue')['default']
+    AtomBaseInput: typeof import('./components/atom/BaseInput.vue')['default']
+    AtomBaseLabel: typeof import('./components/atom/BaseLabel.vue')['default']
+    AtomBaseTitle: typeof import('./components/atom/BaseTitle.vue')['default']
+    AtomFormInput: typeof import('./components/atom/FormInput.vue')['default']
+    FormInput: typeof import('./components/FormInput.vue')['default']
+    MoleculeFormInput: typeof import('./components/molecule/FormInput.vue')['default']
+    MoleculeInputGroup: typeof import('./components/molecule/InputGroup.vue')['default']
     MyComponent: typeof import('./components/MyComponent.vue')['default']
+    OrganismForm: typeof import('./components/organism/Form.vue')['default']
+    OrganismInputGroup: typeof import('./components/organism/InputGroup.vue')['default']
+    PageLogin: typeof import('./components/page/Login.vue')['default']
+    PageRegister: typeof import('./components/page/Register.vue')['default']
+    PageSignUp: typeof import('./components/page/SignUp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TemplateLogin: typeof import('./components/template/Login.vue')['default']
+    TemplateWelcome: typeof import('./components/template/Welcome.vue')['default']
   }
 }
