@@ -1,3 +1,4 @@
+import '~/assets/css/main.css';
 export const parameters = {
   backgrounds: {
     default: 'light',
