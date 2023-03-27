@@ -9,13 +9,24 @@ const loginData = ref({
   buttonText: 'Become a member and get printing',
   inputs: [
     {
+      text: "Your name",
+      elementId: "test"
+    },
+    {
       text: "Email",
+      elementId: "test"
     },
     {
-      text: "Choose a username"
+      text: "Choose a username",
+      elementId: "test"
     },
     {
-      text: "Password"
+      text: "Password",
+      elementId: "test"
+    },
+    {
+      text: "Confirm your password",
+      elementId: "test"
     }
   ],
 })

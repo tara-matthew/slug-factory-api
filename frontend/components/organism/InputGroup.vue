@@ -3,7 +3,7 @@
     <MoleculeFormInput v-for="input in inputs"
        :text="input.text"
        :element-id="input.elementId"
-       class="mb-3"
+       class="mb-7"
     />
   </div>
 </template>
