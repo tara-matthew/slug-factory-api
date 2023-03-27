@@ -10,9 +10,11 @@ const loginData = ref({
   inputs: [
     {
       text: "Username",
+      elementId: "Test"
     },
     {
-      text: "Password"
+      text: "Password",
+      elementId: "Test"
     }
   ],
 })
