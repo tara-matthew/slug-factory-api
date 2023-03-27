@@ -6,9 +6,16 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
+import { PropType } from "@vue/runtime-core";
+
+interface IFormInput {
+  text: string,
+  elementId: string
+}
+
+const props = defineProps({
   headerContent: String,
-  inputs: Array, // use the interface
+  inputs: Array as PropType<IFormInput[]>, // use the interface
   buttonText: String
 })
 

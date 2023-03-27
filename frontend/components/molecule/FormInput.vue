@@ -6,9 +6,6 @@
 </template>
 
 <script setup lang="ts">
-onMounted(() => {
-  console.log('here');
-})
 const props = defineProps({
   elementId: String,
   text: String

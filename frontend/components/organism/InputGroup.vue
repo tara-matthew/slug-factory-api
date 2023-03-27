@@ -18,6 +18,6 @@
   //
   const props = defineProps({
     // inputs: Array
-    inputs: Array as PropType<Array<IFormInput>>
+    inputs: Array as PropType<IFormInput[]>
   })
 </script>
