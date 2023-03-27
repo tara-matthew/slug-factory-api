@@ -1,12 +1,12 @@
 import BaseLabel from "~/components/atom/BaseLabel.vue";
-import {Meta, Story} from "@storybook/vue3";
+import {Meta, Story, StoryFn} from "@storybook/vue3";
 
 export default {
     title: "BaseLabel",
     component: { BaseLabel }
 } as Meta;
 
-const Template: Story = args => ({
+const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
     components: { BaseLabel },
     // The story's `args` need to be mapped into the template through the `setup()` method

@@ -1,12 +1,12 @@
 import BaseInput from "./BaseInput.vue";
-import {Story} from "@storybook/vue3";
+import {Story, StoryFn} from "@storybook/vue3";
 
 export default {
     title: "BaseInput",
     component: { BaseInput }
 };
 
-const Template: Story = args => ({
+const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
     components: { BaseInput },
     // The story's `args` need to be mapped into the template through the `setup()` method

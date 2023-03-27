@@ -1,12 +1,12 @@
 import BaseButton from "./BaseButton.vue"
-import {Meta, Story} from "@storybook/vue3";
+import {Meta, Story, StoryFn} from "@storybook/vue3";
 
 export default {
     title: "BaseButton",
     component: { BaseButton }
 } as Meta;
 
-const Template: Story = args => ({
+const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
     components: { BaseButton },
     // The story's `args` need to be mapped into the template through the `setup()` method

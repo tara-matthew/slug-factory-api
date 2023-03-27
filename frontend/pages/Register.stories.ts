@@ -1,10 +1,11 @@
 import Register from "~/components/page/Register.vue";
+import {StoryFn} from "@storybook/vue3";
 export default {
     title: "Register",
     component: { Register }
 };
 
-const Template = args => ({
+const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
     components: { Register },
     // The story's `args` need to be mapped into the template through the `setup()` method

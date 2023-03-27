@@ -1,10 +1,11 @@
 import Welcome from "~/components/template/Welcome.vue";
+import {StoryFn} from "@storybook/vue3";
 export default {
     title: "Welcome",
     component: { Welcome }
 };
 
-const Template = args => ({
+const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
     components: { Welcome },
     // The story's `args` need to be mapped into the template through the `setup()` method

@@ -1,11 +1,12 @@
 import FormInput from "./FormInput.vue";
+import {StoryFn} from "@storybook/vue3";
 
 export default {
     title: "FormInput",
     component: { FormInput }
 };
 
-const Template = args => ({
+const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
     components: { FormInput },
     // The story's `args` need to be mapped into the template through the `setup()` method
