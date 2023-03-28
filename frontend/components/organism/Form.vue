@@ -6,15 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from "@vue/runtime-core";
+import {FormInput} from "~/types/FormInput";
+import {PropType} from "@vue/runtime-core";
 
-interface IFormInput {
-  text: string,
-  elementId: string
-}
-//
-const props = defineProps({
-  inputs: Array as PropType<Array<IFormInput>>,
+defineProps({
+  inputs: Array as PropType<FormInput[]>,
   buttonText: String
 })
 </script>

@@ -10,15 +10,11 @@
 
 <script setup lang="ts">
 import { PropType } from "@vue/runtime-core";
+import {FormInput} from "~/types/FormInput";
 
-interface IFormInput {
-  text: string,
-  elementId: string
-}
-
-const props = defineProps({
+defineProps({
   headerContent: String,
-  inputs: Array as PropType<IFormInput[]>, // use the interface
+  inputs: Array as PropType<FormInput[]>, // use the interface
   buttonText: String
 })
 
