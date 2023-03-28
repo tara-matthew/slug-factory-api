@@ -3,9 +3,10 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+import {LoginData} from "~/types/LoginData";
 
-const loginData = ref({
-  headerContent: 'Welcome back to Slug Factory',
+const loginData = ref<LoginData>({
+  headerContent: 'Welcome back!',
   buttonText: 'Login',
   inputs: [
     {
