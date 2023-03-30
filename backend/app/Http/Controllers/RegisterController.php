@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RegisterUserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
+use JetBrains\PhpStorm\NoReturn;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class RegisterController extends Controller
 {
-    public function __invoke()
+    public function __construct(private readonly Hash $hash)
     {
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password'))
-        ]);
+    }
+
+    #[NoReturn] public function __invoke(RegisterUserRequest $request): JsonResponse
+    {
+        $validated = $request->safe()->all();
+        $validated['password'] = $this->hash->make($validated['password']);
+
+        $user = User::create($validated);
 
         $token = $user->createToken('authToken')->plainTextToken;
 
@@ -21,6 +30,6 @@ class RegisterController extends Controller
                 'token' => $token,
                 'user' => new UserResource($user)
             ]
-        ], 201);
+        ], ResponseAlias::HTTP_CREATED);
     }
 }
