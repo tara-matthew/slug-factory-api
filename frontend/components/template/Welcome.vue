@@ -3,7 +3,7 @@
     <div class="w-1/2">
 
     <AtomBaseTitle tag="h1" :content="headerContent" class="text-center mb-4"/>
-      <OrganismForm @button-clicked=buttonClicked :inputs="inputs" :button-text="buttonText" />
+      <OrganismForm @button-clicked=buttonClicked @form-submit="formSubmit" :inputs="inputs" :button-text="buttonText" />
     </div>
   </div>
 </template>
@@ -18,12 +18,18 @@ defineProps({
   buttonText: String
 })
 
-const emit = defineEmits(['button-clicked']);
+const emit = defineEmits(['button-clicked', 'form-submit']);
 
 function buttonClicked()
 {
   console.log('form clicked');
   emit('button-clicked');
+}
+
+function formSubmit(): void
+{
+  console.log('form submit');
+  emit('form-submit');
 }
 
 </script>

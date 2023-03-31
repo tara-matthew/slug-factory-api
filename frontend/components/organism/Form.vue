@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <form action="#" @submit.prevent="submitForm">
     <OrganismInputGroup class="mb-5" :inputs="inputs" />
     <AtomBaseButton @button-clicked=buttonClicked :text="buttonText" class="w-full" />
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,13 @@ defineProps({
   buttonText: String
 })
 
-const emit = defineEmits(['button-clicked']);
+const emit = defineEmits(['button-clicked', 'form-submit']);
+
+function submitForm(): void
+{
+  console.log('submit');
+  emit('form-submit');
+}
 
 function buttonClicked()
 {

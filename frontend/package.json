@@ -27,6 +27,7 @@
     "tailwindcss": "^3.2.7"
   },
   "dependencies": {
+    "js-cookie": "^3.0.1",
     "unplugin-auto-import": "^0.14.2",
     "unplugin-vue-components": "^0.23.0"
   }
