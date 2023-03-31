@@ -1,7 +1,7 @@
 <template>
   <div>
     <OrganismInputGroup class="mb-5" :inputs="inputs" />
-    <AtomBaseButton :text="buttonText" class="w-full" />
+    <AtomBaseButton @button-clicked=buttonClicked :text="buttonText" class="w-full" />
   </div>
 </template>
 
@@ -13,4 +13,12 @@ defineProps({
   inputs: Array as PropType<FormInput[]>,
   buttonText: String
 })
+
+const emit = defineEmits(['button-clicked']);
+
+function buttonClicked()
+{
+  console.log('clicked');
+  emit('button-clicked');
+}
 </script>

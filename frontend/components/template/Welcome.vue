@@ -3,7 +3,7 @@
     <div class="w-1/2">
 
     <AtomBaseTitle tag="h1" :content="headerContent" class="text-center mb-4"/>
-      <OrganismForm :inputs="inputs" :button-text="buttonText" />
+      <OrganismForm @button-clicked=buttonClicked :inputs="inputs" :button-text="buttonText" />
     </div>
   </div>
 </template>
@@ -17,5 +17,13 @@ defineProps({
   inputs: Array as PropType<FormInput[]>, // use the interface
   buttonText: String
 })
+
+const emit = defineEmits(['button-clicked']);
+
+function buttonClicked()
+{
+  console.log('form clicked');
+  emit('button-clicked');
+}
 
 </script>
