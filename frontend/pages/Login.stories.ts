@@ -1,5 +1,5 @@
+import { StoryFn } from "@storybook/vue3";
 import Login from "~/components/page/Login.vue";
-import {StoryFn} from "@storybook/vue3";
 export default {
     title: "Login",
     component: { Login }

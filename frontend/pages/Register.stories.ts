@@ -1,5 +1,5 @@
+import { StoryFn } from "@storybook/vue3";
 import Register from "~/components/page/Register.vue";
-import {StoryFn} from "@storybook/vue3";
 export default {
     title: "Register",
     component: { Register }
