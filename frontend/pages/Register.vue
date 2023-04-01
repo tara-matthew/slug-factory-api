@@ -1,36 +1,47 @@
 <template>
-  <TemplateWelcome @form-submit="register" :header-content=loginData.headerContent :button-text="loginData.buttonText" :inputs="loginData.inputs" />
+  <TemplateWelcome @form-submit="register" @form-input=formInput :header-content=loginData.headerContent :button-text="loginData.buttonText" :inputs="loginData.inputs" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import Cookies from 'js-cookie';
 
-const name = ref('')
-const email = ref('')
-const password = ref('')
-const passwordConfirm = ref('')
+const input = ref('')
+const name = ref('dawd')
+const email = ref('dqwd@gmail.com')
+const password = ref('Password123!')
+const passwordConfirm = ref('Password123!')
 const { $apiFetch } = useNuxtApp()
+const { $listen } = useNuxtApp()
+
+// $listen('input-updated', (value) => {
+//   console.log('Input changed', value)
+//   const element = value.target.id;
+//   console.log(element);
+//   name.value = value;
+//   console.log(name.value);
+// })
+
+function formInput(value, element) {
+  console.log('register', value, element)
+  // ref(element).value = value;
+  // const refValue = ref(element).value;
+  // console.log(ref(refValue), name)
+}
 
 async function csrf()
 {
   await $apiFetch('/sanctum/csrf-cookie');
-  console.log(Cookies.get('XSRF-TOKEN'))
+
 }
 
-async function register()
+async function register(event)
 {
-  await csrf();
-  // console.log(Cookies.get('XSRF-TOKEN'))
-  // const { data: count } = await useFetch('http://localhost/auth/register', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-  //   },
-  //   body: {
-  //
-  //   }
-  // })
+  const token = await csrf();
+  console.log(token);
+  const formData = new FormData(event.target);
+  const { data: count } = await $apiFetch('/auth/register', {
+    method: 'POST',
+    body: formData
+  })
 }
 
 const loginData = ref({
@@ -51,10 +62,12 @@ const loginData = ref({
     },
     {
       text: "Password",
+      type: "password",
       elementId: "password"
     },
     {
       text: "Confirm your password",
+      type: "password",
       elementId: "password_confirmation"
     }
   ],

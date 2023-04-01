@@ -8,5 +8,6 @@
 defineProps({
   text: String
 });
+// const emit = defineEmits(['clicked'])
 
 </script>
