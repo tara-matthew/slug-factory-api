@@ -1,5 +1,4 @@
-import { defineNuxtPlugin } from '#app'
-import Cookies from "js-cookie";
+import { defineNuxtPlugin } from "#app"
 
 export default defineNuxtPlugin(nuxtApp => {
     const config = useRuntimeConfig()

@@ -1,5 +1,5 @@
+import { StoryFn } from "@storybook/vue3";
 import FormInput from "./FormInput.vue";
-import {StoryFn} from "@storybook/vue3";
 
 export default {
     title: "FormInput",

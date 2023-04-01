@@ -1,5 +1,5 @@
+import { StoryFn } from "@storybook/vue3";
 import Welcome from "~/components/template/Welcome.vue";
-import {StoryFn} from "@storybook/vue3";
 export default {
     title: "Welcome",
     component: { Welcome }
@@ -21,7 +21,7 @@ export const Primary = Template.bind({});
 Primary.args = {
     inputs: [
         {
-            text: "Input 1",
+            text: "Input 1"
         },
         {
             text: "Input 2"
@@ -35,4 +35,4 @@ Primary.args = {
     ],
     buttonText: "Button text",
     headerContent: "Welcome"
-}
+};

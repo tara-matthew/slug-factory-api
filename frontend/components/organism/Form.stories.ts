@@ -1,5 +1,5 @@
+import { Story, StoryFn } from "@storybook/vue3";
 import Form from "~/components/organism/Form.vue";
-import {Story, StoryFn} from "@storybook/vue3";
 
 export default {
     title: "Form",
@@ -22,11 +22,11 @@ export const Primary = Template.bind({});
 Primary.args = {
     inputs: [
         {
-            text: "Input 1",
+            text: "Input 1"
         },
         {
             text: "Input 2"
         }
     ],
     buttonText: "Sign up"
-}
+};
