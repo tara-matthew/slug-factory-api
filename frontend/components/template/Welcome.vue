@@ -1,13 +1,13 @@
 <template>
-  <div class="w-1/2 m-auto min-h-screen flex flex-col items-center mt-7">
-    <div class="w-1/2">
-      <!--      <h1>{{errors.email}}</h1>-->
-      <!--      <h1>{{errors.name}}</h1>-->
+    <div class="w-1/2 m-auto min-h-screen flex flex-col items-center mt-7">
+        <div class="w-1/2">
+            <!--      <h1>{{errors.email}}</h1>-->
+            <!--      <h1>{{errors.name}}</h1>-->
 
-      <AtomBaseTitle tag="h1" :content="headerContent" class="text-center mb-4" />
-      <OrganismForm :errors="errors" :inputs="inputs" :button-text="buttonText" @button-clicked="buttonClicked" @form-submit="formSubmit" />
+            <AtomBaseTitle tag="h1" :content="headerContent" class="text-center mb-4" />
+            <OrganismForm :errors="errors" :inputs="inputs" :button-text="buttonText" @button-clicked="buttonClicked" @form-submit="formSubmit" />
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">

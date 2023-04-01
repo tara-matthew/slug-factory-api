@@ -1,8 +1,8 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <OrganismInputGroup class="mb-5" :inputs="inputs" :errors="errors" @input="formInput" />
-    <AtomBaseButton :text="buttonText" class="w-full" @button-clicked="buttonClicked" />
-  </form>
+    <form @submit.prevent="submitForm">
+        <OrganismInputGroup class="mb-5" :inputs="inputs" :errors="errors" @input="formInput" />
+        <AtomBaseButton :text="buttonText" class="w-full" @button-clicked="buttonClicked" />
+    </form>
 </template>
 
 <script setup lang="ts">

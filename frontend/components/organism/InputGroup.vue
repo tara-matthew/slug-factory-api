@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <MoleculeFormInput
-      v-for="input in inputs"
-      :key="input.elementId"
-      :text="input.text"
-      :element-id="input.elementId"
-      :type="input.type"
-      :errors="errors[input.elementId]"
-      class="mb-7"
-      @input="formInput"
-    />
-  </div>
+    <div>
+        <MoleculeFormInput
+            v-for="input in inputs"
+            :key="input.elementId"
+            :text="input.text"
+            :element-id="input.elementId"
+            :type="input.type"
+            :errors="errors[input.elementId]"
+            class="mb-7"
+            @input="formInput"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">

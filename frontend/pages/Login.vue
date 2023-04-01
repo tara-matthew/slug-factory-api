@@ -1,5 +1,5 @@
 <template>
-  <TemplateWelcome header-content="loginData.headerContent" :button-text="loginData.buttonText" :inputs="loginData.inputs" />
+    <TemplateWelcome header-content="loginData.headerContent" :button-text="loginData.buttonText" :inputs="loginData.inputs" />
 </template>
 <script setup lang="ts">
 import { ref } from "vue";

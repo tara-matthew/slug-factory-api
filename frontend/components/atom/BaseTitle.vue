@@ -1,7 +1,7 @@
 <template>
-  <component :is="tag">
-    {{ content }}
-  </component>
+    <component :is="tag">
+        {{ content }}
+    </component>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <input :id="id" v-model="value" :type="type" class="border rounded-md border-purple-800 focus:outline-purple-900">
+    <input :id="id" v-model="value" :type="type" class="border rounded-md border-purple-800 focus:outline-purple-900">
 </template>
 
 <script setup>
