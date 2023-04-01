@@ -4,12 +4,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const input = ref('')
-let name = ref('')
-const email = ref('')
-const password = ref('')
 let errors = ref([]);
-const passwordConfirm = ref('')
 const { $apiFetch } = useNuxtApp()
 
 function csrf()
@@ -17,7 +12,7 @@ function csrf()
   return $apiFetch('/sanctum/csrf-cookie')
 }
 
-async function register(event)
+async function register(event: { target: HTMLFormElement | undefined; })
 {
   await csrf();
 
@@ -34,7 +29,8 @@ async function register(event)
       })
 
       window.location.pathname = '/home'
-    } catch (error) {
+    } catch (error: any) {
+      console.log(typeof error);
       errors.value = error.data.errors;
     }
   // }
