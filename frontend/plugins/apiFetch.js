@@ -1,8 +1,12 @@
 import { defineNuxtPlugin } from '#app'
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 
 export default defineNuxtPlugin(nuxtApp => {
     const config = useRuntimeConfig()
+    console.log(useCookie('XSRF-TOKEN').value)
+    const cookie = useCookie('XSRF-TOKEN').value
+    // console.log(Cookies.get('XSRF-TOKEN'))
+    console.log('api fetch loaded', useCookie('XSRF-TOKEN').value);
 
     nuxtApp.provide(
         'apiFetch',
@@ -11,8 +15,9 @@ export default defineNuxtPlugin(nuxtApp => {
             credentials: 'include',
             headers: {
                 Accept: 'application/json',
-                'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+                'X-XSRF-TOKEN': useCookie('XSRF-TOKEN').value,
             },
+
         })
     )
 })

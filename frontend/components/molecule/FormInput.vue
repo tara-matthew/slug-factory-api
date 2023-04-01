@@ -1,7 +1,8 @@
 <template>
   <div>
     <AtomBaseLabel class="block mb-1" :element-id="elementId" :text="text" />
-    <AtomBaseInput v-on:update:modelValue="formInput" @input="input" class="px-1 py-1 w-full" :id="elementId" :type="type" :v-model="elementId" :name="elementId" />
+    <AtomBaseInput v-on:update:modelValue="formInput" @input="input" class="px-1 py-1 w-full" :id="elementId" :type="type" :name="elementId" :errors="errors" />
+    <p class="text-red-800" v-if="errors">{{errors[0]}}</p>
   </div>
 </template>
 
@@ -10,7 +11,8 @@ const props = defineProps({
   elementId: String,
   text: String,
   modelValue: String,
-  type: String
+  type: String,
+  errors: Object
 });
 
 const emit = defineEmits(['input', 'update:modelValue'])

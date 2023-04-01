@@ -1,6 +1,6 @@
 <template>
-  <form action="#" @submit.prevent="submitForm">
-    <OrganismInputGroup class="mb-5" :inputs="inputs" @input="formInput"/>
+  <form @submit.prevent="submitForm">
+    <OrganismInputGroup class="mb-5" :inputs="inputs" @input="formInput" :errors="errors"/>
     <AtomBaseButton @button-clicked=buttonClicked :text="buttonText" class="w-full" />
   </form>
 </template>
@@ -11,7 +11,8 @@ import {PropType} from "@vue/runtime-core";
 
 defineProps({
   inputs: Array as PropType<FormInput[]>,
-  buttonText: String
+  buttonText: String,
+  errors: Object
 })
 
 const emit = defineEmits(['button-clicked', 'form-submit','input']);

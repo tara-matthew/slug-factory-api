@@ -1,12 +1,14 @@
 <template>
   <div>
+<!--    <h1>Input group {{errors.email}}</h1>-->
+
     <MoleculeFormInput v-for="input in inputs"
        :key="input.elementId"
        :text="input.text"
        :element-id="input.elementId"
        :type="input.type"
+        :errors="errors[input.elementId]"
        @input="formInput"
-       v-on:update:modelValue="test"
        class="mb-7"
     />
   </div>
@@ -20,13 +22,9 @@
     inputs: {
       type: Array as PropType<FormInput[]>,
       required: true
-    }
+    },
+    errors: Object
   })
-
-  function test(varOne)
-  {
-    console.log('here', varOne);
-  }
 
   const emit = defineEmits(['input', 'update:modelValue'])
 

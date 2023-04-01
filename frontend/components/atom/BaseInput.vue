@@ -1,15 +1,18 @@
 <template>
-    <input :type="type" :value="modelValue" :id="id" class="border rounded-md border-purple-800 focus:outline-purple-900" />
+    <input :type="type" v-model="value" :id="id" class="border rounded-md border-purple-800 focus:outline-purple-900" />
 </template>
 
 <script setup>
 const emit = defineEmits(['input', 'update:modelValue'])
 const { $event } = useNuxtApp()
 
+const value = ref('');
+
 const props = defineProps({
   id: String,
   modelValue: String,
-  type: String
+  type: String,
+  errors: Object,
 });
 // function updateValue(value, id) {
 //   // console.log('base input', value, id);

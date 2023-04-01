@@ -1,9 +1,11 @@
 <template>
   <div class="w-1/2 m-auto min-h-screen flex flex-col items-center mt-7">
     <div class="w-1/2">
+<!--      <h1>{{errors.email}}</h1>-->
+<!--      <h1>{{errors.name}}</h1>-->
 
     <AtomBaseTitle tag="h1" :content="headerContent" class="text-center mb-4"/>
-      <OrganismForm @button-clicked=buttonClicked @form-submit="formSubmit" @input="formInput" :inputs="inputs" :button-text="buttonText" />
+      <OrganismForm @button-clicked=buttonClicked @form-submit="formSubmit" :errors="errors" :inputs="inputs" :button-text="buttonText" />
     </div>
   </div>
 </template>
@@ -15,7 +17,8 @@ import {FormInput} from "~/types/FormInput";
 defineProps({
   headerContent: String,
   inputs: Array as PropType<FormInput[]>, // use the interface
-  buttonText: String
+  buttonText: String,
+  errors: Object
 })
 
 const emit = defineEmits(['button-clicked', 'form-submit', 'form-input']);
