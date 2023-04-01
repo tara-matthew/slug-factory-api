@@ -1,5 +1,5 @@
+import { Meta, Story, StoryFn } from "@storybook/vue3";
 import BaseLabel from "~/components/atom/BaseLabel.vue";
-import {Meta, Story, StoryFn} from "@storybook/vue3";
 
 export default {
     title: "BaseLabel",

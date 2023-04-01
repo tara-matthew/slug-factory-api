@@ -1,5 +1,5 @@
-import BaseButton from "./BaseButton.vue"
-import {Meta, Story, StoryFn} from "@storybook/vue3";
+import { Meta, Story, StoryFn } from "@storybook/vue3";
+import BaseButton from "./BaseButton.vue";
 
 export default {
     title: "BaseButton",

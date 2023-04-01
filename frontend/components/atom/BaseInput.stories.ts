@@ -1,5 +1,5 @@
+import { Story, StoryFn } from "@storybook/vue3";
 import BaseInput from "./BaseInput.vue";
-import {Story, StoryFn} from "@storybook/vue3";
 
 export default {
     title: "BaseInput",

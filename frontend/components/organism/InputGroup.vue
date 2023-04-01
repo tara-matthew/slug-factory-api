@@ -1,39 +1,35 @@
 <template>
   <div>
-<!--    <h1>Input group {{errors.email}}</h1>-->
-
-    <MoleculeFormInput v-for="input in inputs"
-       :key="input.elementId"
-       :text="input.text"
-       :element-id="input.elementId"
-       :type="input.type"
-        :errors="errors[input.elementId]"
-       @input="formInput"
-       class="mb-7"
+    <MoleculeFormInput
+      v-for="input in inputs"
+      :key="input.elementId"
+      :text="input.text"
+      :element-id="input.elementId"
+      :type="input.type"
+      :errors="errors[input.elementId]"
+      class="mb-7"
+      @input="formInput"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { PropType } from "@vue/runtime-core";
-  import {FormInput} from "~/types/FormInput";
+import { PropType } from "vue";
+import { FormInput } from "~/types/FormInput";
 
-  defineProps({
+defineProps({
     inputs: {
-      type: Array as PropType<FormInput[]>,
-      required: true
+        type: Array as PropType<FormInput[]>,
+        required: true
     },
     errors: Object
-  })
+});
 
-  const emit = defineEmits(['input', 'update:modelValue'])
+const emit = defineEmits(["input", "update:modelValue"]);
 
-
-  function formInput(value, element)
-  {
+function formInput (value, element) {
     // console.log('inputGroup', value, element)
-    emit('input', value, element)
-  }
-
+    emit("input", value, element);
+}
 
 </script>
