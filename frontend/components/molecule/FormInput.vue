@@ -30,7 +30,8 @@ defineProps({
     },
     errors: {
         type: Array,
-        required: true
+        required: false,
+        default: undefined
     }
 });
 </script>

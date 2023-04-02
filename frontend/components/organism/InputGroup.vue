@@ -8,7 +8,6 @@
             :type="input.type"
             :errors="errors[input.elementId]"
             class="mb-7"
-            @input="formInput"
         />
     </div>
 </template>
@@ -24,14 +23,11 @@ defineProps({
     },
     errors: {
         type: Array,
-        required: true
+        required: false,
+        default: undefined
     }
 });
 
 const emit = defineEmits(["input", "update:modelValue"]);
-
-function formInput (value, element) {
-    emit("input", value, element);
-}
 
 </script>

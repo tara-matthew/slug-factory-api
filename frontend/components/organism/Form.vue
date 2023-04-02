@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submitForm">
-        <OrganismInputGroup class="mb-5" :inputs="inputs" :errors="errors" @input="formInput" />
+        <OrganismInputGroup class="mb-5" :inputs="inputs" :errors="errors" />
         <AtomBaseButton :text="buttonText" class="w-full" />
     </form>
 </template>
@@ -20,7 +20,8 @@ defineProps({
     },
     errors: {
         type: Array,
-        required: true
+        required: false,
+        default: undefined
     }
 });
 
