@@ -16,7 +16,7 @@ defineProps({
     },
     errors: {
         type: Array,
-        default: []
+        required: true
     }
 });
 

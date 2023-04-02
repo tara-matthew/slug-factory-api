@@ -22,13 +22,15 @@ defineProps({
         type: Array as PropType<FormInput[]>,
         required: true
     },
-    errors: Object
+    errors: {
+        type: Array,
+        required: true
+    }
 });
 
 const emit = defineEmits(["input", "update:modelValue"]);
 
 function formInput (value, element) {
-    // console.log('inputGroup', value, element)
     emit("input", value, element);
 }
 

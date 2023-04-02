@@ -1,4 +1,5 @@
 export interface FormInput {
     text: string,
-    elementId: string
+    elementId: string,
+    type: string
 }

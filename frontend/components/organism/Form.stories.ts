@@ -1,4 +1,4 @@
-import { Story, StoryFn } from "@storybook/vue3";
+import { StoryFn } from "@storybook/vue3";
 import Form from "~/components/organism/Form.vue";
 
 export default {

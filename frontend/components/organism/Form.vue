@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submitForm">
         <OrganismInputGroup class="mb-5" :inputs="inputs" :errors="errors" @input="formInput" />
-        <AtomBaseButton :text="buttonText" class="w-full" @button-clicked="buttonClicked" />
+        <AtomBaseButton :text="buttonText" class="w-full" />
     </form>
 </template>
 
@@ -10,29 +10,23 @@ import { PropType } from "vue";
 import { FormInput } from "~/types/FormInput";
 
 defineProps({
-    inputs: Array as PropType<FormInput[]>,
-    buttonText: String,
-    errors: Object
+    inputs: {
+        type: Array as PropType<FormInput[]>,
+        required: true
+    },
+    buttonText: {
+        type: String,
+        required: true
+    },
+    errors: {
+        type: Array,
+        required: true
+    }
 });
 
-const emit = defineEmits(["button-clicked", "form-submit", "input"]);
+const emit = defineEmits(["form-submit"]);
 
-function test (varOne) {
-    console.log("here", varOne);
-}
-
-function submitForm (event): void {
-    console.log("submit", event);
+function submitForm (event: object): void {
     emit("form-submit", event);
-}
-
-function formInput (value: any, element) {
-    // console.log('form', value, element);
-    emit("input", value, element);
-}
-
-function buttonClicked () {
-    console.log("clicked");
-    emit("button-clicked");
 }
 </script>

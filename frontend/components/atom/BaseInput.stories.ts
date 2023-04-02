@@ -1,4 +1,4 @@
-import { Story, StoryFn } from "@storybook/vue3";
+import { StoryFn } from "@storybook/vue3";
 import BaseInput from "./BaseInput.vue";
 
 export default {
@@ -15,8 +15,7 @@ const Template: StoryFn = args => ({
         return { args };
     },
     // Then, the spread values can be accessed directly in the template
-    template: "<BaseInput type='text'>Text</BaseInput>"
+    template: "<BaseInput type='text' v-bind='args' id='email'>Text</BaseInput>"
 });
 
 export const Text = Template.bind({});
-Text.args = {};

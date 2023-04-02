@@ -1,4 +1,4 @@
-import { Meta, Story, StoryFn } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import BaseButton from "./BaseButton.vue";
 
 export default {

@@ -6,8 +6,14 @@
 
 <script setup lang="ts">
 defineProps({
-    tag: String, // Make this an enum
-    content: String
+    tag: {
+        type: String, // Make this an enum
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    }
 
 });
 

@@ -4,7 +4,13 @@
 
 <script setup lang="ts">
 defineProps({
-    elementId: String,
-    text: String
+    elementId: {
+        type: String,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    }
 });
 </script>

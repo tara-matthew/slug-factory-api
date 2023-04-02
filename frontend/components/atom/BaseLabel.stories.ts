@@ -1,4 +1,4 @@
-import { Meta, Story, StoryFn } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import BaseLabel from "~/components/atom/BaseLabel.vue";
 
 export default {
@@ -17,7 +17,6 @@ const Template: StoryFn = args => ({
     // Then, the spread values can be accessed directly in the template
     template: "<BaseLabel v-bind='args'> </BaseLabel>"
 });
-
 export const Default = Template.bind({});
 Default.args = {
     text: "Password"
