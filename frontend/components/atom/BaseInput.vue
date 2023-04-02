@@ -3,25 +3,21 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["input", "update:modelValue"]);
-const { $event } = useNuxtApp();
-
 const value = ref("");
 
-const props = defineProps({
-    id: String,
-    modelValue: String,
-    type: String,
-    errors: Object
+defineProps({
+    id: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        default: "text"
+    },
+    errors: {
+        type: Array,
+        default: []
+    }
 });
 
-// function updateValue(value, id) {
-//   // console.log('base input', value, id);
-//   emit('input', value, id)
-// }
-
-// function inputUpdated(value, element) {
-//   console.log('event bus', element, value)
-//   $event('input-updated', value, element)
-// }
 </script>
