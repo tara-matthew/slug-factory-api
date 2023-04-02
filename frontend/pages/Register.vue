@@ -3,21 +3,23 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+import { FetchError } from "ofetch";
 
 const errors = ref([]);
 const { $apiFetch } = useNuxtApp();
 
 function csrf () {
-    return $apiFetch("/sanctum/csrf-cookie");
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    return ($apiFetch as Function)("/sanctum/csrf-cookie");
 }
 
 async function register (event: { target: HTMLFormElement | undefined; }) {
     await csrf();
 
     const formData = new FormData(event.target);
-    console.log(useCookie("XSRF-TOKEN").value);
     try {
-        await $apiFetch("/auth/register", {
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        await ($apiFetch as Function)("/auth/register", {
             headers: {
                 Accept: "application/json",
                 "X-XSRF-TOKEN": useCookie("XSRF-TOKEN").value
@@ -27,11 +29,11 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
         });
 
         window.location.pathname = "/home";
-    } catch (error: any) {
-        console.log(typeof error);
-        errors.value = error.data.errors;
+    } catch (error) {
+        // console.dir(error);
+        // console.log("Error Message!", error.message);
+        errors.value = (error as FetchError).data.errors;
     }
-    // }
 }
 
 const loginData = ref({
