@@ -28,6 +28,7 @@ class PrintedDesignControllerTest extends TestCase
          * @var PrintedDesign $print
          */
         $user = User::factory()->create();
+        $this->actingAs($user);
         $print = PrintedDesign::factory()->for($user)->create();
         $response = $this->getJson('/api/prints');
 
@@ -56,6 +57,7 @@ class PrintedDesignControllerTest extends TestCase
          * @var PrintedDesign $print
          */
         $user = User::factory()->create();
+        $this->actingAs($user);
         $print = PrintedDesign::factory()->for($user)->create();
         $response = $this->getJson("/api/prints/$print->id");
 
@@ -78,6 +80,7 @@ class PrintedDesignControllerTest extends TestCase
     public function it_stores_a_print(): void
     {
         $user = User::factory()->create();
+        $this->actingAs($user);
         $response = $this->postJson("/api/prints", [
             'title' => 'My title',
             'description' => 'My description',
