@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit\FormRequest;
 
 use App\Http\Requests\StorePrintedDesignRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
 class StorePrintedDesignRequestTest extends TestCase
 {
     use AdditionalAssertions;
+    use RefreshDatabase;
 
     private StorePrintedDesignRequest $printedDesignRequest;
 
