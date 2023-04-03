@@ -17,7 +17,7 @@ declare module '@vue/runtime-core' {
     MoleculeFormInput: typeof import('./components/molecule/FormInput.vue')['default']
     MoleculeInputGroup: typeof import('./components/molecule/InputGroup.vue')['default']
     MyComponent: typeof import('./components/MyComponent.vue')['default']
-    OrganismForm: typeof import('./components/organism/Form.vue')['default']
+    OrganismBaseForm: typeof import('./components/organism/BaseForm.vue')['default']
     OrganismInputGroup: typeof import('./components/organism/InputGroup.vue')['default']
     PageLogin: typeof import('./components/page/Login.vue')['default']
     PageRegister: typeof import('./components/page/Register.vue')['default']

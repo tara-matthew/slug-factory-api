@@ -1,21 +1,21 @@
 import { StoryFn } from "@storybook/vue3";
-import Form from "~/components/organism/Form.vue";
+import BaseForm from "~/components/organism/BaseForm.vue";
 
 export default {
-    title: "Form",
-    component: { Form }
+    title: "BaseForm",
+    component: { BaseForm }
 };
 
 const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
-    components: { Form },
+    components: { BaseForm },
     // The story's `args` need to be mapped into the template through the `setup()` method
     setup () {
         // Story args can be spread into the returned object
         return { args };
     },
     // Then, the spread values can be accessed directly in the template
-    template: "<Form v-bind='args'> </Form>"
+    template: "<BaseForm v-bind='args'> </BaseForm>"
 });
 
 export const Primary = Template.bind({});
