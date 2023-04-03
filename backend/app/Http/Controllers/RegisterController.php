@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use JetBrains\PhpStorm\NoReturn;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class RegisterController extends Controller
 {
@@ -16,7 +15,7 @@ class RegisterController extends Controller
     {
     }
 
-    #[NoReturn] public function __invoke(RegisterUserRequest $request): UserResource
+    #[NoReturn] public function __invoke(RegisterUserRequest $request): UserResource | JsonResponse
     {
         $validated = $request->validated();
         $validated['password'] = $this->hash::make($validated['password']);

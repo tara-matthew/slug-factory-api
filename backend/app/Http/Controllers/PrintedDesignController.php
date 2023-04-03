@@ -28,7 +28,7 @@ class PrintedDesignController extends Controller
     public function store(StorePrintedDesignRequest $request): PrintedDesignResource
     {
         $printedDesign = PrintedDesign::create(
-            $request->safe()->all()
+            $request->validated()
         );
 
         return new PrintedDesignResource($printedDesign);
