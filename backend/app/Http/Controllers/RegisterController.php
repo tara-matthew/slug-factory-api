@@ -19,15 +19,12 @@ class RegisterController extends Controller
     #[NoReturn] public function __invoke(RegisterUserRequest $request): JsonResponse
     {
         $validated = $request->safe()->all();
-        $validated['password'] = $this->hash->make($validated['password']);
+        $validated['password'] = $this->hash::make($validated['password']);
 
         $user = User::create($validated);
 
-        $token = $user->createToken('authToken')->plainTextToken;
-
         return response()->json([
             'data' => [
-                'token' => $token,
                 'user' => new UserResource($user)
             ]
         ], ResponseAlias::HTTP_CREATED);

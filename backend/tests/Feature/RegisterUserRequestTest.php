@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\RegisterUserRequest;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Validation\Rules\Password;
 use Tests\TestCase;
 use JMac\Testing\Traits\AdditionalAssertions;
