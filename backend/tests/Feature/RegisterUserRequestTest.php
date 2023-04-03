@@ -29,11 +29,11 @@ class RegisterUserRequestTest extends TestCase
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users|max:255',
                 'username' => 'required|unique:users|max:255',
-                'password' => ['required','confirmed',Password::min(8)
+                'password' => [Password::min(8)
                     ->letters()
                     ->mixedCase()
                     ->numbers()
-                    ->symbols()]
+                    ->symbols(),'required','confirmed'],
             ],
             $this->registerUserRequest->rules()
         );

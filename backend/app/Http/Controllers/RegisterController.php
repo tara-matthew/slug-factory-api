@@ -18,7 +18,7 @@ class RegisterController extends Controller
 
     #[NoReturn] public function __invoke(RegisterUserRequest $request): JsonResponse
     {
-        $validated = $request->safe()->all();
+        $validated = $request->validated();
         $validated['password'] = $this->hash::make($validated['password']);
 
         $user = User::create($validated);
