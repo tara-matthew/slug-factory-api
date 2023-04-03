@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function __invoke(LoginUserRequest $request): JsonResponse
+    public function __invoke(LoginUserRequest $request): UserResource | JsonResponse
     {
         $validated = $request->validated();
         if (!Auth::attempt($validated)) {
@@ -20,6 +20,6 @@ class LoginController extends Controller
 
         $user = $request->user();
 
-        return response()->json(new UserResource($user));
+        return new UserResource($user);
     }
 }

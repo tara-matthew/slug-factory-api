@@ -16,17 +16,13 @@ class RegisterController extends Controller
     {
     }
 
-    #[NoReturn] public function __invoke(RegisterUserRequest $request): JsonResponse
+    #[NoReturn] public function __invoke(RegisterUserRequest $request): UserResource
     {
         $validated = $request->validated();
         $validated['password'] = $this->hash::make($validated['password']);
 
         $user = User::create($validated);
 
-        return response()->json([
-            'data' => [
-                'user' => new UserResource($user)
-            ]
-        ], ResponseAlias::HTTP_CREATED);
+        return new UserResource($user);
     }
 }

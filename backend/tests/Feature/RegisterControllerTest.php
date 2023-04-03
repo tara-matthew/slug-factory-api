@@ -36,11 +36,9 @@ class RegisterControllerTest extends TestCase
             ->assertStatus(ResponseAlias::HTTP_CREATED)
             ->assertJson([
                 'data' => [
-                    'user' => [
-                        'name' => 'Tara',
-                        'email' => 'tara@gmail.com',
-                        'username' => 'tara'
-                    ]
+                    'name' => 'Tara',
+                    'email' => 'tara@gmail.com',
+                    'username' => 'tara'
                 ]
             ]);
     }
