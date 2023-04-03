@@ -7,7 +7,8 @@
         "eslint:recommended",
         "plugin:vue/vue3-recommended",
         "@nuxtjs/eslint-config-typescript",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:storybook/recommended"
     ],
     "overrides": [
     ],
@@ -41,6 +42,24 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "vue/multi-word-component-names": [
+            "error", {
+            "ignores": [
+                "Welcome",
+                "Register",
+                "Home"
+            ]
+        }
+        ],
+        "vue/html-self-closing": ["error", {
+            "html": {
+                "void": "never",
+                "normal": "always",
+                "component": "always"
+            },
+            "svg": "always",
+            "math": "always"
+        }]
     }
 }
