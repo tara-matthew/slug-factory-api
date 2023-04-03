@@ -4,6 +4,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { FetchError } from "ofetch";
+import { LoginData } from "~/types/LoginData";
 
 const errors = ref([]);
 const { $apiFetch } = useNuxtApp();
@@ -36,7 +37,7 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
     }
 }
 
-const loginData = ref({
+const loginData = ref<LoginData>({
     headerContent: "Welcome to Slug Factory",
     buttonText: "Become a member and get printing",
     inputs: [
