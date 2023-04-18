@@ -22,11 +22,35 @@ export const Primary = Template.bind({});
 Primary.args = {
     inputs: [
         {
-            text: "Input 1"
+            text: "Input 1",
+            elementId: "input_1"
         },
         {
-            text: "Input 2"
+            text: "Input 2",
+            elementId: "input_2"
+        },
+        {
+            text: "Input 3",
+            elementId: "input_3"
+        },
+        {
+            text: "Input 4",
+            elementId: "input_4"
         }
     ],
+    errors: {
+        input_1: [
+            undefined
+        ],
+        input_2: [
+            undefined
+        ],
+        input_3: [
+            undefined
+        ],
+        input_4: [
+            undefined
+        ]
+    },
     buttonText: "Sign up"
 };
