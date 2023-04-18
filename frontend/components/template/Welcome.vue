@@ -17,7 +17,7 @@ defineProps({
         required: true
     },
     inputs: {
-        type: Array as PropType<FormInput[] >,
+        type: Array as PropType<FormInput[]>,
         required: true
     },
     buttonText: {
@@ -25,7 +25,7 @@ defineProps({
         required: true
     },
     errors: {
-        type: Array,
+        type: Object,
         required: false,
         default: undefined
     }

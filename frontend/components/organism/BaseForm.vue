@@ -19,7 +19,7 @@ defineProps({
         required: true
     },
     errors: {
-        type: Array,
+        type: Object,
         required: false,
         default: undefined
     }

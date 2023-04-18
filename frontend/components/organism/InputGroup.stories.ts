@@ -1,10 +1,10 @@
-import { StoryFn } from "@storybook/vue3";
+import { Meta, StoryFn } from "@storybook/vue3";
 import InputGroup from "~/components/organism/InputGroup.vue";
 
 export default {
     title: "InputGroup",
     component: { InputGroup }
-};
+} as Meta;
 
 const Template: StoryFn = args => ({
     // Components used in your story `template` are defined in the `components` object
@@ -22,10 +22,20 @@ export const Primary = Template.bind({});
 Primary.args = {
     inputs: [
         {
-            text: "Input 1"
+            text: "Input 1",
+            elementId: "input_1"
         },
         {
-            text: "Input 2"
+            text: "Input 2",
+            elementId: "input_2"
         }
-    ]
+    ],
+    errors: {
+        input_1: [
+            undefined
+        ],
+        input_2: [
+            undefined
+        ]
+    }
 };

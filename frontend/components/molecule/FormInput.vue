@@ -29,7 +29,7 @@ defineProps({
         default: "text"
     },
     errors: {
-        type: Array,
+        type: Object,
         required: false,
         default: undefined
     }
