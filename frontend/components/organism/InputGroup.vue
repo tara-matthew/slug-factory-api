@@ -22,7 +22,7 @@ defineProps({
         required: true
     },
     errors: {
-        type: Object,
+        type: Object, // TODO give this an interface
         required: false,
         default: undefined
     }
