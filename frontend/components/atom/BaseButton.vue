@@ -11,4 +11,6 @@ defineProps({
         required: true
     }
 });
+
+// TODO consider using a slot to allow something like a button with an icon
 </script>
