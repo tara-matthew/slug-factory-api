@@ -45,6 +45,5 @@ WithImage.args = {
         "Ut enim ad minim veniam, quis nostrud exercitation " +
         "ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
     footer: "<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Go somewhere</button>",
-    image: "<img src=\"https://fastly.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM\" alt=\"\" class=\"w-full h-48 object-cover\">"
+    image: "<img src='https://fastly.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM' alt='' class='w-full h-48 object-cover'>"
 };
-console.dir(WithImage);
