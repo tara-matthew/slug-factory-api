@@ -20,16 +20,10 @@ const Template: StoryFn = (args, { argTypes }) => ({
     template:
         `<div class="w-1/3">
             <BaseCard>
-            <template v-if="${"image" in args}" #image>${args.image}
-            </template>
+            <template v-if="${"image" in args}" #image>${args.image}</template>
             <template #title>${args.title}</template>
-            <template #content><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-                eu fugiat nulla pariatur.</p></template>
-            <template #footer><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Go somewhere
-            </button></template>.
+            <template #content>${args.content}</template>
+            <template #footer>${args.footer}</template>.
         </BaseCard>
         </div>`
 });
@@ -38,13 +32,19 @@ export const Default = Template.bind({});
 Default.args = {
     // Note: Have disabled inspections for this file as this showed as not imported
     title: "<BaseTitle tag='h1' content='My card' />",
-    // content: "<p>Lorem ipsum dolor sit amet</p>"
+    content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+        "Ut enim ad minim veniam, quis nostrud exercitation " +
+        "ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+    footer: "<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Go somewhere</button>"
 };
 export const WithImage = Template.bind({});
 WithImage.args = {
     // Note: Have disabled inspections for this file as this showed as not imported
     title: "<BaseTitle tag='h1' content='My card' />",
-    // content: "<p>Lorem ipsum dolor sit amet</p>"
+    content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+        "Ut enim ad minim veniam, quis nostrud exercitation " +
+        "ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+    footer: "<button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Go somewhere</button>",
     image: "<img src=\"https://fastly.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM\" alt=\"\" class=\"w-full h-48 object-cover\">"
 };
 console.dir(WithImage);
