@@ -1,5 +1,5 @@
 <template>
-    <div :class="gridClasses" class="grid">
+    <div :class="gridClasses" class="grid gap-3">
         <slot />
     </div>
 </template>

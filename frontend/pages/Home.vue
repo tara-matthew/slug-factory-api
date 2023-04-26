@@ -1,7 +1,7 @@
 <template>
     <div v-if="!loading" class="flex flex-col justify-center">
         <div class="px-60 pt-28">
-            <AtomBaseTitle tag="h1" content="Recently added" class="text-center" />
+            <AtomBaseTitle tag="h1" content="Recently added" class="text-center mb-8" />
 
             <OrganismBaseGrid :columns="5">
                 <MoleculeBaseCard v-for="print in prints.slice(0,5)">
@@ -24,8 +24,8 @@
         </div>
 
         <div class="w-full flex justify-around">
-            <div class="w-2/5 mt-10 px-16">
-                <AtomBaseTitle tag="h1" content="Most popular" class="text-center" />
+            <div class="w-[45%] mt-10 px-16 py-10">
+                <AtomBaseTitle tag="h1" content="Most popular" class="text-center mb-8" />
                 <OrganismBaseGrid :columns="3">
                     <MoleculeBaseCard v-for="print in prints.slice(0,6)">
                         <template #image>
@@ -46,8 +46,8 @@
                 </OrganismBaseGrid>
             </div>
 
-            <div class="w-2/5 mt-10 px-16">
-                <AtomBaseTitle tag="h1" content="Recently viewed" class="text-center" />
+            <div class="w-[45%] mt-10 px-16 py-10">
+                <AtomBaseTitle tag="h1" content="Recently viewed" class="text-center mb-8" />
                 <OrganismBaseGrid :columns="3">
                     <MoleculeBaseCard v-for="print in prints.slice(0,6)">
                         <template #image>
