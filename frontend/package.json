@@ -11,6 +11,7 @@
     "lint": "npx eslint . --ext .js,.ts,.vue --fix"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-28020728.5df24eb",
     "@storybook/addon-essentials": "^7.0.0-beta.47",
     "@storybook/addon-interactions": "^7.0.0-beta.47",
     "@storybook/addon-links": "^7.0.0-beta.47",
