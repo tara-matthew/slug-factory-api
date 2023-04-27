@@ -6,7 +6,7 @@
             <OrganismBaseGrid :columns="5">
                 <MoleculeBaseCard v-for="print in prints.slice(0,5)">
                     <template #image>
-                        <img src="https://fastly.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM" alt="" class="w-full h-48 object-cover">
+                        <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                     </template>
                     <template #title>
                         <AtomBaseTitle tag="h2" :content="print.title" />
@@ -27,7 +27,7 @@
                 <OrganismBaseGrid :columns="3">
                     <MoleculeBaseCard v-for="print in prints.slice(0,6)">
                         <template #image>
-                            <img src="https://fastly.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM" alt="" class="w-full h-48 object-cover">
+                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
                         <template #title>
                             <AtomBaseTitle tag="h2" :content="print.title" />
@@ -47,7 +47,7 @@
                 <OrganismBaseGrid :columns="3">
                     <MoleculeBaseCard v-for="print in prints.slice(0,6)">
                         <template #image>
-                            <img src="https://fastly.picsum.photos/id/404/200/300.jpg?hmac=1i6ra6DJN9kJ9AQVfSf3VD1w08FkegBgXuz9lNDk1OM" alt="" class="w-full h-48 object-cover">
+                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
                         <template #title>
                             <AtomBaseTitle tag="h2" :content="print.title" />
@@ -81,7 +81,7 @@ onMounted(async () => {
     }).then((response) => {
         prints.value = response.data;
         loading.value = false;
-        console.log(prints);
+        console.log(prints.value[0].images[0]);
         // TODO limit to 5 and order correctly
     });
 });
