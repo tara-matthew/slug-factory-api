@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        User::factory([
+            'username' => 'tara'
+        ])->create();
         User::factory(10)->create();
 //        Image::factory(5)->create();
         PrintedDesign::factory(5)->hasImages()->create();
