@@ -39,6 +39,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static User create($array = [])
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PrintedDesign[] $printedDesigns
+ * @property-read int|null $printed_designs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @mixin Builder
  */
 class User extends Authenticatable

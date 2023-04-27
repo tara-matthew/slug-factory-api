@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereUserId($value)
  * @method static PrintedDesign create($array = [])
-
+ * @property-read \App\Models\User $user
  * @mixin Builder
  */
 class PrintedDesign extends Model
