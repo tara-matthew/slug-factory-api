@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import InputGroup from "~/components/organism/InputGroup.vue";
 
 export default {
-    title: "InputGroup",
+    title: "Organism/InputGroup",
     component: { InputGroup }
 } as Meta;
 

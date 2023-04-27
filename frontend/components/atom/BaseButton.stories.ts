@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/vue3";
 import BaseButton from "./BaseButton.vue";
 
 export default {
-    title: "BaseButton",
+    title: "Atom/BaseButton",
     component: { BaseButton }
 } as Meta;
 

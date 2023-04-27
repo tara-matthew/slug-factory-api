@@ -3,7 +3,7 @@ import BaseTitle from "~/components/atom/BaseTitle.vue";
 import BaseCard from "~/components/molecule/BaseCard.vue";
 
 export default {
-    title: "BaseCard",
+    title: "Molecule/BaseCard",
     component: { BaseCard }
 } as Meta;
 

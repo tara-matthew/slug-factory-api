@@ -1,7 +1,7 @@
 import { StoryFn } from "@storybook/vue3";
 import Welcome from "~/components/template/Welcome.vue";
 export default {
-    title: "Welcome",
+    title: "Template/Welcome",
     component: { Welcome }
 };
 

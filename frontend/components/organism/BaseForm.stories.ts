@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/vue3";
 import BaseForm from "~/components/organism/BaseForm.vue";
 
 export default {
-    title: "BaseForm",
+    title: "Organism/BaseForm",
     component: { BaseForm }
 };
 

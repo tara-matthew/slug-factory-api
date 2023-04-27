@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/vue3";
 import FormInput from "./FormInput.vue";
 
 export default {
-    title: "FormInput",
+    title: "Molecule/FormInput",
     component: { FormInput }
 };
 

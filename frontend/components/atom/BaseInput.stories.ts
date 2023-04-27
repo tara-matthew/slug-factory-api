@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/vue3";
 import BaseInput from "./BaseInput.vue";
 
 export default {
-    title: "BaseInput",
+    title: "Atom/BaseInput",
     component: { BaseInput }
 };
 
