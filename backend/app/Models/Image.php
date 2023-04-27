@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Image extends Model
 {
+    protected $fillable = ['url'];
+    // TODO make a resource
     use HasFactory;
 
     public function printedDesign(): BelongsTo

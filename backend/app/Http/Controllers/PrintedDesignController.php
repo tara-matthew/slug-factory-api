@@ -30,6 +30,11 @@ class PrintedDesignController extends Controller
         $printedDesign = PrintedDesign::create(
             $request->validated()
         );
+        foreach ($request->safe()->only(['images'])['images'] as $image) {
+            $printedDesign->images()->create([
+                'url' => $image['url']
+            ]);
+        }
 
         return new PrintedDesignResource($printedDesign);
     }
