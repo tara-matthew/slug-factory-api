@@ -15,9 +15,7 @@
                         <p>{{ print.description }}</p>
                     </template>
                     <template #footer>
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Go somewhere
-                        </button>
+                        <AtomBaseButton component-type="NuxtLink" text="Go somewhere" to="/register" />
                     </template>
                 </MoleculeBaseCard>
             </OrganismBaseGrid>
@@ -38,9 +36,7 @@
                             <p>{{ print.description }}</p>
                         </template>
                         <template #footer>
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Go somewhere
-                            </button>
+                            <AtomBaseButton text="Go somewhere" />
                         </template>
                     </MoleculeBaseCard>
                 </OrganismBaseGrid>
@@ -60,9 +56,7 @@
                             <p>{{ print.description }}</p>
                         </template>
                         <template #footer>
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Go somewhere
-                            </button>
+                            <AtomBaseButton text="Go somewhere" />
                         </template>
                     </MoleculeBaseCard>
                 </OrganismBaseGrid>
@@ -72,6 +66,7 @@
 </template>
 
 <script setup lang="ts">
+import { NuxtLink } from "#components";
 const { $apiFetch } = useNuxtApp();
 
 const prints = ref([]);
