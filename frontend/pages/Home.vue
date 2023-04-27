@@ -4,20 +4,22 @@
             <AtomBaseTitle tag="h1" content="Recently added" class="text-center mb-8" />
 
             <OrganismBaseGrid :columns="5">
-                <MoleculeBaseCard v-for="print in prints.slice(0,5)">
-                    <template #image>
-                        <img :src="print.images[0].url" alt="" class="w-full h-48 object-fill">
-                    </template>
-                    <template #title>
-                        <AtomBaseTitle tag="h2" :content="print.title" />
-                    </template>
-                    <template #content>
-                        <p>{{ print.description }}</p>
-                    </template>
-                    <template #footer>
-                        <AtomBaseButton component-type="NuxtLink" text="Go somewhere" to="/register" />
-                    </template>
-                </MoleculeBaseCard>
+                <NuxtLink v-for="print in prints.slice(0,5)" :to="`/prints/${print.id}`">
+                    <MoleculeBaseCard>
+                        <template #image>
+                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-fill">
+                        </template>
+                        <template #title>
+                            <AtomBaseTitle tag="h2" :content="print.title" />
+                        </template>
+                        <template #content>
+                            <p>{{ print.description }}</p>
+                        </template>
+                        <template #footer>
+                            <AtomBaseButton component-type="NuxtLink" text="Go somewhere" :to="`/prints/${print.id}`" />
+                        </template>
+                    </MoleculeBaseCard>
+                </NuxtLink>
             </OrganismBaseGrid>
         </div>
 
@@ -87,4 +89,5 @@ onMounted(async () => {
 });
 
 // TODO shuffle at the top in nav
+// TODO use nuxt-img
 </script>

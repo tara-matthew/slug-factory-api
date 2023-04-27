@@ -28,7 +28,7 @@ Default.args = {
     // Note: Have disabled inspections for this file as this showed as not imported
     default:
         "<BaseCard v-for='n in 8'> " +
-            "<template #title> <BaseTitle tag='h2' content='My title' /></template>" +
+            "<template #title> <BaseTitle tag='h2' :content='`My title ${n}`' /></template>" +
             "<template #content><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                 "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                 "Ut enim ad minim veniam, quis nostrud exercitation     ullamco laboris</p></template>" +
