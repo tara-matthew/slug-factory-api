@@ -35,6 +35,8 @@ class PrintedDesign extends Model
 {
     use HasFactory;
 
+    protected $with = ['images'];
+
     protected $fillable = [
         'title',
         'description',
