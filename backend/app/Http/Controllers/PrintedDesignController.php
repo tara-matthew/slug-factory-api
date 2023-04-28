@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
 use App\Http\Resources\PrintedDesignResource;
-use App\Http\Resources\PrintedDesignResourceCollection;
 use App\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JetBrains\PhpStorm\Pure;
