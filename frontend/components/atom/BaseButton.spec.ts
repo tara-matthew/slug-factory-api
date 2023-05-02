@@ -1,9 +1,9 @@
 // @vitest-environment nuxt
 import { describe, it, expect } from "vitest";
-import { mount } from "@vue/test-utils";
+import { mount, RouterLinkStub } from "@vue/test-utils";
 import BaseButton from "../atom/BaseButton.vue";
 
-describe("Base Button text", () => {
+describe("Component mounts correctly", () => {
     it("displays the correct text", () => {
         const wrapper = mount(BaseButton, {
             props: {
@@ -13,6 +13,22 @@ describe("Base Button text", () => {
         });
 
         expect(wrapper.text()).toContain("My button");
+    });
+    it("links to the correct url", () => {
+        const wrapper = mount(BaseButton, {
+            props: {
+                text: "My button",
+                componentType: "link",
+                to: "/test-url"
+            },
+            global: {
+                stubs: {
+                    RouterLink: RouterLinkStub
+                }
+            }
+        });
+        const nuxtLink = wrapper.findComponent({ name: "NuxtLink" });
+        expect(nuxtLink.props("to")).toBe("/test-url");
     });
 });
 

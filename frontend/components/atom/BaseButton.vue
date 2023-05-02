@@ -1,4 +1,5 @@
 <template>
+    <p>Test</p>
     <component
         :is="componentToShow"
         :to="to"
@@ -9,6 +10,9 @@
 </template>
 
 <script setup lang="ts">
+onMounted(() => {
+    // console.log(componentToShow);
+});
 const componentToShow = computed(() => {
     return props.componentType === "button" ? "button" : resolveComponent("NuxtLink"); // TODO use an enum/constant
 });
