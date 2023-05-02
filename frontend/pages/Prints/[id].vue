@@ -1,12 +1,19 @@
 <template>
     <div v-if="!loading">
-        <h1>Print ID: {{ $route.params.id }}</h1>
-        <p>{{ print.images[0].url }}</p>
-        <nuxt-img :src="print.images[0].url" sizes="sm:100vw md:50vw lg:400px" />
+        <div class="flex justify-center">
+            <div class="px-60 pt-28">
+                <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
+                <nuxt-img :src="print.images[0].url" sizes="sm:100vw md:50vw lg:800px" />
+            </div>
+        </div>
+        <div class="mx-32 mt-36">
+            <p class="text-2xl">{{ print.description }}</p>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
+// TODO tabs with settings, filament used, story, source
 const { $apiFetch } = useNuxtApp();
 
 const print = ref([]);
