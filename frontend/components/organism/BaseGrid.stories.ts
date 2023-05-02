@@ -35,4 +35,3 @@ Default.args = {
             "<template #footer><BaseButton text='Go somewhere' /></template>" +
         "</BaseCard>"
 };
-

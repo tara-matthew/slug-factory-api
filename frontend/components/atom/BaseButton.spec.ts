@@ -19,7 +19,6 @@ describe("Base Button text", () => {
 // TODO may be able to streamline this into one test rather than having two repetitive tests
 describe("Component type", () => {
     it("is a link when link is passed in as a prop", () => {
-        // console.log(BaseButton)
         const wrapper = mount(BaseButton, {
             props: {
                 text: "hello",
@@ -30,7 +29,6 @@ describe("Component type", () => {
         expect(wrapper.find("a").exists()).toBe(true); // TODO can we check for an actual NuxtLink (not essential)
     });
     it("is a button when button is passed in as a prop", () => {
-        // console.log(BaseButton)
         const wrapper = mount(BaseButton, {
             props: {
                 text: "hello",
