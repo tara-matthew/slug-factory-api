@@ -7,7 +7,7 @@
                 <NuxtLink v-for="print in prints.slice(0,5)" :to="`/prints/${print.id}`">
                     <MoleculeBaseCard>
                         <template #image>
-                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-fill">
+                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
                         <template #title>
                             <AtomBaseTitle tag="h2" :content="print.title" />
@@ -16,7 +16,7 @@
                             <p>{{ print.description }}</p>
                         </template>
                         <template #footer>
-                            <AtomBaseButton component-type="NuxtLink" text="Go somewhere" :to="`/prints/${print.id}`" />
+                            <AtomBaseButton component-type="NuxtLink" text="View print" :to="`/prints/${print.id}`" />
                         </template>
                     </MoleculeBaseCard>
                 </NuxtLink>
@@ -29,7 +29,7 @@
                 <OrganismBaseGrid :columns="3">
                     <MoleculeBaseCard v-for="print in prints.slice(0,6)">
                         <template #image>
-                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-fill">
+                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
                         <template #title>
                             <AtomBaseTitle tag="h2" :content="print.title" />
@@ -38,7 +38,7 @@
                             <p>{{ print.description }}</p>
                         </template>
                         <template #footer>
-                            <AtomBaseButton component-type="NuxtLink" text="Go somewhere" to="/register" />
+                            <AtomBaseButton component-type="NuxtLink" text="View print" to="/register" />
                         </template>
                     </MoleculeBaseCard>
                 </OrganismBaseGrid>
@@ -49,7 +49,7 @@
                 <OrganismBaseGrid :columns="3">
                     <MoleculeBaseCard v-for="print in prints.slice(0,6)">
                         <template #image>
-                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-fill">
+                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
                         <template #title>
                             <AtomBaseTitle tag="h2" :content="print.title" />
@@ -58,7 +58,7 @@
                             <p>{{ print.description }}</p>
                         </template>
                         <template #footer>
-                            <AtomBaseButton component-type="NuxtLink" text="Go somewhere" to="/register" />
+                            <AtomBaseButton component-type="NuxtLink" text="View print" to="/register" />
                         </template>
                     </MoleculeBaseCard>
                 </OrganismBaseGrid>

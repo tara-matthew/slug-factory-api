@@ -1,5 +1,4 @@
 <template>
-    <p>Test</p>
     <component
         :is="componentToShow"
         :to="to"
