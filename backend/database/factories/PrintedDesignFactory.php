@@ -20,7 +20,7 @@ class PrintedDesignFactory extends Factory
         return [
             'user_id' => User::factory(), // FOR A RANDOM USER User::inRandomOrder()->first(),
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->sentence()
+            'description' => $this->faker->text(600)
         ];
     }
 }
