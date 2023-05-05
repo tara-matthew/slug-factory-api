@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FilamentBrandResource;
 use App\Models\FilamentBrand;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FilamentBrandController extends Controller
 {
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return FilamentBrandResource::collection(FilamentBrand::all());
     }

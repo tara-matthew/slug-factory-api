@@ -22,6 +22,7 @@ class PrintedDesignResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'images' => ImageResource::collection($this->images)
+            // TODO add created and updated_at
         ];
     }
 }

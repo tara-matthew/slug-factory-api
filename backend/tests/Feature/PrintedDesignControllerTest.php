@@ -23,6 +23,7 @@ class PrintedDesignControllerTest extends TestCase
      */
     public function it_returns_a_list_of_prints(): void
     {
+        // TODO Add several prints rather than just one
         /**
          * @var User $user
          * @var PrintedDesign $print
@@ -43,6 +44,19 @@ class PrintedDesignControllerTest extends TestCase
                         'description' => $print->description
                     ]
                 ]
+            ]);
+    }
+
+    /** @test */
+    public function it_returns_an_empty_collection_of_prints_when_no_records_exist()
+    {
+        $response = $this->getJson('api/prints');
+
+        $response
+            ->assertOk()
+            ->assertJsonCount(0, 'data')
+            ->assertJsonStructure([
+                'data' => [],
             ]);
     }
 
