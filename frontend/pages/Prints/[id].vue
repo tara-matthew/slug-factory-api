@@ -1,7 +1,7 @@
 <template>
     <div v-if="!loading">
         <div class="flex justify-center">
-            <div class="px-60 pt-28">
+            <div class="px-60 pt-28 flex flex-col w-3/5">
                 <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
                 <nuxt-img :src="print.images[0].url" sizes="sm:100vw md:50vw lg:800px" />
             </div>
