@@ -21,7 +21,7 @@ const loading = ref(true);
 const route = useRoute();
 
 onMounted(async () => {
-    await ($apiFetch as Function)(`/api/prints/${route.params.id}`, {
+    await ($apiFetch)(`/api/prints/${route.params.id}`, {
         headers: {
             Accept: "application/json"
         },

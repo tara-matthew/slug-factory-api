@@ -75,7 +75,7 @@ const prints = ref([]);
 const loading = ref(true);
 
 onMounted(async () => {
-    await ($apiFetch as Function)("/api/prints", {
+    await ($apiFetch)("/api/prints", {
         headers: {
             Accept: "application/json"
         },

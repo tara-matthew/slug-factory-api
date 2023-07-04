@@ -1,8 +1,7 @@
 import { defineNuxtPlugin } from "#app";
 
-export default defineNuxtPlugin((nuxtApp) => {
-    nuxtApp.provide(
-        "apiFetch",
+export default defineNuxtPlugin(() => {
+    const fetch =
         $fetch.create({
             baseURL: "http://localhost",
             credentials: "include",
@@ -11,6 +10,10 @@ export default defineNuxtPlugin((nuxtApp) => {
                 "X-XSRF-TOKEN": useCookie("XSRF-TOKEN").value
             }
 
-        })
-    );
+        });
+    return {
+        provide: {
+            apiFetch: fetch
+        }
+    };
 });
