@@ -69,23 +69,32 @@
 
 <script setup lang="ts">
 import { NuxtLink } from "#components";
+
 const { $apiFetch } = useNuxtApp();
 
 const prints = ref([]);
 const loading = ref(true);
 
-onMounted(async () => {
-    await ($apiFetch)("/api/prints", {
+interface IResponse {
+    data: Array
+}
+
+async function retrieve () {
+    // https://github.com/nuxt/nuxt/issues/18570
+    return await ($apiFetch)("/api/prints", {
         headers: {
             Accept: "application/json"
         },
         method: "GET"
-    }).then((response) => {
-        prints.value = response.data;
-        loading.value = false;
-        console.log(prints.value[0].images[0]);
-        // TODO limit to 5 and order correctly
     });
+}
+
+onMounted(async () => {
+    const response = await retrieve();
+    prints.value = response.data;
+    loading.value = false;
+    // TODO limit to 5 and order correctly
+    // });
 });
 
 // TODO shuffle at the top in nav
