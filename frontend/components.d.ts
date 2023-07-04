@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     OrganismBaseForm: typeof import('./components/organism/BaseForm.vue')['default']
     OrganismBaseGrid: typeof import('./components/organism/BaseGrid.vue')['default']
     OrganismInputGroup: typeof import('./components/organism/InputGroup.vue')['default']
+    OrganismNavBar: typeof import('./components/organism/NavBar.vue')['default']
     PageLogin: typeof import('./components/page/Login.vue')['default']
     PageRegister: typeof import('./components/page/Register.vue')['default']
     Pages: typeof import('./components/pages/index.vue')['default']
