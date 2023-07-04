@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading" class="flex flex-col justify-center">
-        <div class="px-60 pt-28">
+        <div class="px-60 pt-8">
             <AtomBaseTitle tag="h1" content="Recently added" class="text-center mb-8" />
 
             <OrganismBaseGrid :columns="5">
