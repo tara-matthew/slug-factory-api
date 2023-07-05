@@ -7,7 +7,9 @@
             </div>
         </div>
         <div class="mx-32 mt-36">
-            <p class="text-2xl">{{ print.description }}</p>
+            <p class="text-2xl">
+                {{ print.description }}
+            </p>
         </div>
     </div>
 </template>

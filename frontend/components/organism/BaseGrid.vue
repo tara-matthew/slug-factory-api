@@ -14,5 +14,6 @@ const props = defineProps({
 
 const gridClasses = computed(() => {
     return `grid-cols-${props.columns}`; // TODO some responsive classes with different cols depending on screen size
+    // Tailwind will have issues with dynamic classes https://stackoverflow.com/questions/70579947/vue-application-styled-with-tailwindcss-ignores-a-grid-with-4-columns-but-works //
 });
 </script>
