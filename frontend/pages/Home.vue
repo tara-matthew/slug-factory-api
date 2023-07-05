@@ -68,19 +68,38 @@
 </template>
 
 <script setup lang="ts">
+import { Ref } from "vue";
 import { NuxtLink } from "#components";
 
 const { $apiFetch } = useNuxtApp();
 
-const prints = ref([]);
+const prints: Ref = ref([]);
 const loading = ref(true);
 
-interface IResponse {
-    data: Array
+interface IImage {
+    id: string,
+    printed_design_id: string,
+    url: string,
+    is_cover_image: boolean,
+    user_id ?: number
 }
 
-async function retrieve () {
+interface IResponseBody {
+    id: string, // todo check whether string or number
+    title: string
+    description: string,
+    user_id: number,
+    images: IImage
+}
+
+interface IResponse {
+    data: IResponseBody[]
+}
+
+async function retrieve (): Promise<IResponse> {
     // https://github.com/nuxt/nuxt/issues/18570
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return await ($apiFetch)("/api/prints", {
         headers: {
             Accept: "application/json"
