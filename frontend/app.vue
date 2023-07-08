@@ -11,7 +11,8 @@ import NavBar from "~/components/organism/NavBar.vue";
 
 const links = ref([
     {
-        title: "Prints"
+        title: "Prints",
+        path: "/home"
     },
     {
         title: "Random Print"
