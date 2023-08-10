@@ -60,6 +60,7 @@
             },
             "svg": "always",
             "math": "always"
-        }]
+        }],
+        "@typescript-eslint/typedef": "error"
     }
 }
