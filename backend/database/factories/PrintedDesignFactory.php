@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\FilamentBrandFilamentColour;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +20,7 @@ class PrintedDesignFactory extends Factory
     {
         return [
             'user_id' => User::factory(), // FOR A RANDOM USER User::inRandomOrder()->first(),
+            'brand_colour_id' => FilamentBrandFilamentColour::factory(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->text(600)
         ];

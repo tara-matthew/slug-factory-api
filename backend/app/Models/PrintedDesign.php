@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Models\PrintedDesign
@@ -40,7 +42,8 @@ class PrintedDesign extends Model
     protected $fillable = [
         'title',
         'description',
-        'user_id'
+        'user_id',
+        'brand_colour_id'
     ];
 
     public function user(): BelongsTo
@@ -52,4 +55,19 @@ class PrintedDesign extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function filamentBrandColour()
+    {
+        return $this->belongsTo(FilamentBrandFilamentColour::class, 'brand_colour_id');
+    }
+
+    public function brand()
+    {
+        return $this->hasOneThrough(FilamentBrand::class, FilamentBrandFilamentColour::class, 'filament_brand_id', 'id', 'id', 'id');
+    }
+
+//    public function filamentBrands(): BelongsToMany
+//    {
+//        return $this->belongsToMany(FilamentBrand::class, 'filament_brand_filament_colour');
+//    }
 }
