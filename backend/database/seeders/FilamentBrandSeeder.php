@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\FilamentBrand;
+use App\Models\PrintedDesign;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,10 @@ class FilamentBrandSeeder extends Seeder
      */
     public function run()
     {
-        FilamentBrand::factory(10)->create();
+        foreach (config('filaments.brands') as $brand) {
+            FilamentBrand::factory()->create([
+                'name' => $brand
+            ]);
+        }
     }
 }

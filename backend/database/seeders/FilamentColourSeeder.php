@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\FilamentColour;
+use App\Models\PrintedDesign;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

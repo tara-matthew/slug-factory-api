@@ -16,8 +16,9 @@ class FilamentColourFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create();
         return [
-            'name' => $this->faker->safeColorName
+            'name' => $this->faker->unique(false, 50000)->safeColorName
         ];
     }
 }

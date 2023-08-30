@@ -19,11 +19,12 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create();
 
-        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
+//        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
 
-//        $this->call([
-//            FilamentBrandSeeder::class,
-//            FilamentColourSeeder::class
-//        ]);
+        $this->call([
+            FilamentBrandSeeder::class,
+            FilamentColourSeeder::class,
+            PrintedDesignSeeder::class
+        ]);
     }
 }

@@ -14,6 +14,7 @@ return new class () extends Migration {
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            // TODO do I need this column?
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained('users')

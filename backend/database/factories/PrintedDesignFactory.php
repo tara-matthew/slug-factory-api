@@ -22,8 +22,8 @@ class PrintedDesignFactory extends Factory
     {
         return [
             'user_id' => User::factory(), // FOR A RANDOM USER User::inRandomOrder()->first(),
-            'filament_brand_id' => FilamentBrand::factory(),
-            'filament_colour_id' => FilamentColour::factory(),
+            'filament_brand_id' => FilamentBrand::inRandomOrder()->first(),
+            'filament_colour_id' => FilamentColour::inRandomOrder()->first(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->text(600)
         ];
