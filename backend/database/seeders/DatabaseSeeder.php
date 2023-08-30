@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'tara'
         ])->create();
 
+        // TODO use UserSeeder
         User::factory(10)->create();
 
 //        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();

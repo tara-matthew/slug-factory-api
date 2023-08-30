@@ -72,6 +72,7 @@ class PrintedDesignControllerTest extends TestCase
          */
         $user = User::factory()->create();
         $this->actingAs($user);
+        // Use 'has' magic method with the factory
         $print = PrintedDesign::factory()->for($user)->create();
         $response = $this->getJson("/api/prints/$print->id");
 

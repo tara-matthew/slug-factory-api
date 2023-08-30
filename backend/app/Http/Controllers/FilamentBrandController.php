@@ -35,15 +35,9 @@ class FilamentBrandController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(FilamentBrand $filamentBrand): FilamentBrandResource
     {
-        //
+        return new FilamentBrandResource($filamentBrand);
     }
 
     /**

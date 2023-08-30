@@ -7,17 +7,20 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class FilamentBrandTest extends TestCase
+class FilamentBrandControllerTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
     public function it_returns_a_list_of_filament_brands()
     {
+        // arrange
         $filamentBrands = FilamentBrand::factory()->count(3)->create();
 
+        // act
         $response = $this->getJson('api/filament-brands');
 
+        // assert
         $response
             ->assertOk()
             ->assertJsonCount(3, 'data')
@@ -47,5 +50,38 @@ class FilamentBrandTest extends TestCase
             ->assertJsonStructure([
                 'data' => [],
             ]);
+    }
+
+    /** @test  */
+    public function it_returns_a_specific_filament_brand()
+    {
+        /**
+         * @var FilamentBrand $filamentBrand
+         */
+        $filamentBrand = FilamentBrand::factory()->create();
+
+        $response = $this->getJson("/api/filament-brands/$filamentBrand->id");
+
+        $response
+            ->assertOk()
+            ->assertJson([
+                'data' => [
+                    'id' => $filamentBrand->id,
+                    'name' => $filamentBrand->name,
+                ]
+            ]);
+
+    }
+
+    /** @test */
+    public function it_stores_a_filament_brand()
+    {
+
+    }
+
+    /** @test */
+    public function store_validates_using_a_form_request()
+    {
+
     }
 }
