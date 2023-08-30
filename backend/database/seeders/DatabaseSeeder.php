@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\FilamentBrand;
+use App\Models\FilamentColour;
 use App\Models\PrintedDesign;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,7 +18,8 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         User::factory(10)->create();
-        PrintedDesign::factory(5)->hasImages()->hasFilamentBrandColour()->create();
+
+        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
 
 //        $this->call([
 //            FilamentBrandSeeder::class,

@@ -56,18 +56,8 @@ class PrintedDesign extends Model
         return $this->hasMany(Image::class);
     }
 
-    public function filamentBrandColour()
+    public function filamentBrand()
     {
-        return $this->belongsTo(FilamentBrandFilamentColour::class, 'brand_colour_id');
+        return $this->belongsTo(FilamentBrand::class);
     }
-
-    public function brand()
-    {
-        return $this->hasOneThrough(FilamentBrand::class, FilamentBrandFilamentColour::class, 'filament_brand_id', 'id', 'id', 'id');
-    }
-
-//    public function filamentBrands(): BelongsToMany
-//    {
-//        return $this->belongsToMany(FilamentBrand::class, 'filament_brand_filament_colour');
-//    }
 }

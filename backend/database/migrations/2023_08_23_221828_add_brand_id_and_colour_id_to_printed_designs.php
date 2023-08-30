@@ -14,9 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('printed_designs', function (Blueprint $table) {
-            $table->foreignId('brand_colour_id')
+            $table->foreignId('filament_brand_id')
                 ->after('user_id')
-                ->constrained('filament_brand_filament_colour')
+                ->constrained('filament_brands')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('filament_colour_id')
+                ->after('filament_brand_id')
+                ->constrained('filament_colours')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });

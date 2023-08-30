@@ -10,8 +10,8 @@ class FilamentColour extends Model
 {
     use HasFactory;
 
-    public function filamentBrands(): BelongsToMany
+    public function printedDesigns()
     {
-        return $this->belongsToMany(FilamentBrand::class)->using(FilamentBrandFilamentColour::class);
+        return $this->hasMany(PrintedDesign::class);
     }
 }
