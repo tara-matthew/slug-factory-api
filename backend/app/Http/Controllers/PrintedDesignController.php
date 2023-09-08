@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\StorePrintedDesignAction;
+use App\DataFactories\PrintedDesignDataFactory;
 use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
 use App\Http\Resources\PrintedDesignResource;
 use App\Models\PrintedDesign;
+use Database\Factories\PrintedDesignFactory;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JetBrains\PhpStorm\Pure;
 
@@ -28,14 +31,8 @@ class PrintedDesignController extends Controller
 
     public function store(StorePrintedDesignRequest $request): PrintedDesignResource
     {
-        $printedDesign = PrintedDesign::create(
-            $request->validated()
-        );
-        foreach ($request->safe()->only(['images'])['images'] as $image) {
-            $printedDesign->images()->create([
-                'url' => $image['url']
-            ]);
-        }
+        $printedDesignData = PrintedDesignDataFactory::fromRequest($request);
+        $printedDesign = (new StorePrintedDesignAction())->execute($printedDesignData);
 
         return new PrintedDesignResource($printedDesign);
     }

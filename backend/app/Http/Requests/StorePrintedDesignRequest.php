@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use JetBrains\PhpStorm\ArrayShape;
+use PrintedDesignData;
 
 class StorePrintedDesignRequest extends FormRequest
 {
@@ -22,4 +23,13 @@ class StorePrintedDesignRequest extends FormRequest
 
         ];
     }
+
+//    public function toDTO(): PrintedDesignData
+//    {
+//        return new PrintedDesignData(
+//            title: $this->title,
+//            description: $this->description,
+//            userID: $this->user_id
+//        );
+//    }
 }
