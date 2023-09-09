@@ -43,7 +43,8 @@ class PrintedDesign extends Model
         'title',
         'description',
         'user_id',
-        'brand_colour_id'
+        'filament_brand_id',
+        'filament_colour_id'
     ];
 
     public function user(): BelongsTo

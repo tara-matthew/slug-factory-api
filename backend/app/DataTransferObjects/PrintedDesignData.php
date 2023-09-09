@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataTransferObjects;
 
 class PrintedDesignData
@@ -7,6 +8,9 @@ class PrintedDesignData
         public string $title,
         public string $description,
         public int $user_id,
+        public int $filament_brand_id,
+        public int $filament_colour_id,
         public ?array $images = [] // TODO could this be a value object?
-    ){}
+    ) {
+    }
 }

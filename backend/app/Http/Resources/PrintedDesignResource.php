@@ -21,7 +21,9 @@ class PrintedDesignResource extends JsonResource
             'user_id' => $this->user_id,
             'title' => $this->title,
             'description' => $this->description,
-            'images' => ImageResource::collection($this->images)
+            'images' => ImageResource::collection($this->images),
+            'filament_brand_id' => $this->filament_brand_id,
+            'filament_colour_id' => $this->filament_colour_id,
             // TODO add created and updated_at
         ];
     }

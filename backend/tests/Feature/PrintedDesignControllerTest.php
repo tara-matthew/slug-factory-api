@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Http\Controllers\PrintedDesignController;
 use App\Http\Requests\StorePrintedDesignRequest;
+use App\Models\FilamentBrand;
+use App\Models\FilamentColour;
 use App\Models\PrintedDesign;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,6 +17,16 @@ class PrintedDesignControllerTest extends TestCase
 {
     use RefreshDatabase;
     use AdditionalAssertions;
+
+    private FilamentBrand $brand;
+    private FilamentColour $colour;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->brand = FilamentBrand::factory()->create();
+        $this->colour = FilamentColour::factory()->create();
+    }
 
     /**
      * @test
@@ -41,7 +53,9 @@ class PrintedDesignControllerTest extends TestCase
                         'id' => $print->id,
                         'user_id' => $user->id,
                         'title' => $print->title,
-                        'description' => $print->description
+                        'description' => $print->description,
+                        'filament_brand_id' => $print->filament_brand_id,
+                        'filament_colour_id' => $print->filament_colour_id
                     ]
                 ]
             ]);
@@ -83,7 +97,9 @@ class PrintedDesignControllerTest extends TestCase
                     'id' => $print->id,
                     'user_id' => $user->id,
                     'title' => $print->title,
-                    'description' => $print->description
+                    'description' => $print->description,
+                    'filament_brand_id' => $print->filament_brand_id,
+                    'filament_colour_id' => $print->filament_colour_id
                 ]
             ]);
     }
@@ -99,7 +115,9 @@ class PrintedDesignControllerTest extends TestCase
         $response = $this->postJson("/api/prints", [
             'title' => 'My title',
             'description' => 'My description',
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'filament_brand_id' => $this->brand->id,
+            'filament_colour_id' => $this->colour->id
         ]);
 
         $response
@@ -108,7 +126,9 @@ class PrintedDesignControllerTest extends TestCase
                 'data' => [
                     'title' => 'My title',
                     'description' => 'My description',
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
+                    'filament_brand_id' => $this->brand->id,
+                    'filament_colour_id' => $this->colour->id
                 ]
             ]);
     }

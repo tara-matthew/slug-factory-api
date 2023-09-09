@@ -19,6 +19,8 @@ class StorePrintedDesignRequest extends FormRequest
             'title' => 'required|max:255',
             'description' => 'required',
             'user_id' => 'required|exists:users,id',
+            'filament_brand_id' => 'required',
+            'filament_colour_id' => 'required',
             'images.*.url' => 'required'
 
         ];

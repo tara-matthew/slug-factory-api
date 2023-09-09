@@ -13,7 +13,9 @@ class StorePrintedDesignAction
         $printedDesign = PrintedDesign::create([
             'title' => $printedDesignData->title,
             'description' => $printedDesignData->description,
-            'user_id' => $printedDesignData->user_id
+            'user_id' => $printedDesignData->user_id,
+            'filament_brand_id' => $printedDesignData->filament_brand_id,
+            'filament_colour_id' => $printedDesignData->filament_colour_id
         ]);
         foreach ($printedDesignData->images as $image) {
             $printedDesign->images()->create([
