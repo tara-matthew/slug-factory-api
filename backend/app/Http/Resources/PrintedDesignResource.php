@@ -9,6 +9,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property int $user_id
  * @property string $title
  * @property string $description
+ * @property int $filament_brand_id
+ * @property int $filament_colour_id
  * @property array $images
  */
 

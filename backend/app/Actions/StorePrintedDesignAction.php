@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use App\DataTransferObjects\PrintedDesignData;
 use App\Models\PrintedDesign;
-use Illuminate\Http\Request;
 
 class StorePrintedDesignAction
 {
