@@ -10,7 +10,6 @@ use App\Models\FilamentBrand;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-// TODO require user auth
 class FilamentBrandController extends Controller
 {
     public function index(): AnonymousResourceCollection
