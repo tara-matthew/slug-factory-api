@@ -29,6 +29,12 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
             body: formData
         });
 
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        await ($apiFetch as Function)("/auth/login", {
+            method: "POST",
+            body: formData
+        });
+
         window.location.pathname = "/home";
     } catch (error) {
         // console.dir(error);
