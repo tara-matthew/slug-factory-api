@@ -24,7 +24,6 @@ class FilamentBrandController extends Controller
         $filamentBrand = (new StoreFilamentBrandAction())->execute($filamentBrandData);
 
         return new FilamentBrandResource($filamentBrand);
-
     }
 
     public function show(FilamentBrand $filamentBrand): FilamentBrandResource

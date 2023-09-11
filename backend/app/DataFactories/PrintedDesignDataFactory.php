@@ -4,7 +4,6 @@ namespace App\DataFactories;
 
 use App\DataTransferObjects\PrintedDesignData;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
 class PrintedDesignDataFactory
 {

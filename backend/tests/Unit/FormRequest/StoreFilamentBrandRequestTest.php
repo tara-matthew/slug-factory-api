@@ -12,5 +12,4 @@ class StoreFilamentBrandRequestTest extends TestCase
     public function it_has_rules_set_up_as_expected(): void
     {
     }
-
 }

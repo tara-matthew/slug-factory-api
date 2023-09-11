@@ -19,7 +19,7 @@ class ImageFactory extends Factory
     {
         return [
             'url' => $this->faker->imageUrl,
-            'printed_design_id' => PrintedDesign::factory()
+            'printed_design_id' => PrintedDesign::factory(),
         ];
     }
 }

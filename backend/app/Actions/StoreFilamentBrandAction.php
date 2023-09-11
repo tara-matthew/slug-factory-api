@@ -10,7 +10,7 @@ class StoreFilamentBrandAction
     public function execute(FilamentBrandData $data): FilamentBrand
     {
         return FilamentBrand::create([
-            'name' => $data->name
+            'name' => $data->name,
         ]);
     }
 }

@@ -33,7 +33,7 @@ class RegisterUserRequestTest extends TestCase
                     ->letters()
                     ->mixedCase()
                     ->numbers()
-                    ->symbols(),'required','confirmed'],
+                    ->symbols(), 'required', 'confirmed', ],
             ],
             $this->registerUserRequest->rules()
         );

@@ -6,8 +6,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Requests\LoginUserRequest;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Http\Response;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
@@ -38,8 +36,8 @@ class LoginControllerTest extends TestCase
                 'data' => [
                     'name' => $user->name,
                     'email' => $user->email,
-                    'username' => $user->username
-                ]
+                    'username' => $user->username,
+                ],
             ]);
     }
 
@@ -61,7 +59,7 @@ class LoginControllerTest extends TestCase
         $response
             ->assertStatus(ResponseAlias::HTTP_UNAUTHORIZED)
             ->assertJson([
-                'message' => "The provided credentials do not match our records."
+                'message' => 'The provided credentials do not match our records.',
             ]);
     }
 

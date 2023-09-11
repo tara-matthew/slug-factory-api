@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\FilamentBrand;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class FilamentBrandControllerTest extends TestCase
@@ -27,16 +26,16 @@ class FilamentBrandControllerTest extends TestCase
             ->assertJsonCount(3, 'data')
             ->assertJsonStructure([
                 'data' => [
-                  '*' =>  [
-                    'id',
-                    'name',
-                    'created_at',
-                    'updated_at',
-                    ]
-                ]
+                    '*' => [
+                        'id',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
             ])
             ->assertJson([
-                'data' => $filamentBrands->toArray()
+                'data' => $filamentBrands->toArray(),
             ]);
     }
 
@@ -69,9 +68,8 @@ class FilamentBrandControllerTest extends TestCase
                 'data' => [
                     'id' => $filamentBrand->id,
                     'name' => $filamentBrand->name,
-                ]
+                ],
             ]);
-
     }
 
     /** @test */
@@ -79,7 +77,7 @@ class FilamentBrandControllerTest extends TestCase
     {
 //        $user = User::factory()->create();
 //        $this->actingAs($user);
-        $response = $this->postJson("/api/filament-brands", [
+        $response = $this->postJson('/api/filament-brands', [
             'name' => 'My name',
         ]);
 
@@ -88,14 +86,12 @@ class FilamentBrandControllerTest extends TestCase
             ->assertJson([
                 'data' => [
                     'name' => 'My name',
-                ]
+                ],
             ]);
-
     }
 
     /** @test */
     public function store_validates_using_a_form_request()
     {
-
     }
 }

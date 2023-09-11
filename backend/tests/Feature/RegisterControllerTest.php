@@ -6,9 +6,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Http;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
@@ -29,7 +26,7 @@ class RegisterControllerTest extends TestCase
             'email' => 'tara@gmail.com',
             'username' => 'tara',
             'password' => 'Password123!',
-            'password_confirmation' => 'Password123!'
+            'password_confirmation' => 'Password123!',
         ]);
 
         $response
@@ -38,8 +35,8 @@ class RegisterControllerTest extends TestCase
                 'data' => [
                     'name' => 'Tara',
                     'email' => 'tara@gmail.com',
-                    'username' => 'tara'
-                ]
+                    'username' => 'tara',
+                ],
             ]);
     }
 
@@ -58,7 +55,7 @@ class RegisterControllerTest extends TestCase
             'email' => $user->email,
             'username' => $user->username,
             'password' => 'abc',
-            'password_confirmation' => 'abcd'
+            'password_confirmation' => 'abcd',
         ]);
 
         $response
@@ -66,19 +63,19 @@ class RegisterControllerTest extends TestCase
             ->assertJson([
                 'errors' => [
                     'email' => [
-                        'The email has already been taken.'
+                        'The email has already been taken.',
                     ],
                     'username' => [
-                        'The username has already been taken.'
+                        'The username has already been taken.',
                     ],
                     'password' => [
-                        "The password must be at least 8 characters.",
-                        "The password must contain at least one uppercase and one lowercase letter.",
-                        "The password must contain at least one symbol.",
-                        "The password must contain at least one number.",
-                        "The password confirmation does not match."
-                    ]
-                ]
+                        'The password must be at least 8 characters.',
+                        'The password must contain at least one uppercase and one lowercase letter.',
+                        'The password must contain at least one symbol.',
+                        'The password must contain at least one number.',
+                        'The password confirmation does not match.',
+                    ],
+                ],
             ]);
     }
 

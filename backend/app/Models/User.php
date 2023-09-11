@@ -26,6 +26,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -39,8 +40,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static User create($array = [])
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PrintedDesign[] $printedDesigns
  * @property-read int|null $printed_designs_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @mixin Builder
  */

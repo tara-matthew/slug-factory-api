@@ -13,7 +13,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property int $filament_colour_id
  * @property array $images
  */
-
 class PrintedDesignResource extends JsonResource
 {
     public function toArray($request): array

@@ -16,4 +16,3 @@ class FilamentBrandResource extends JsonResource
         ];
     }
 }
-

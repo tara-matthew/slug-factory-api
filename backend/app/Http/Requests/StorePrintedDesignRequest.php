@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 use PrintedDesignData;
 
 class StorePrintedDesignRequest extends FormRequest
@@ -21,7 +20,7 @@ class StorePrintedDesignRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'filament_brand_id' => 'required',
             'filament_colour_id' => 'required',
-            'images.*.url' => 'required'
+            'images.*.url' => 'required',
 
         ];
     }

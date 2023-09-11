@@ -8,7 +8,6 @@ use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
 use App\Http\Resources\PrintedDesignResource;
 use App\Models\PrintedDesign;
-use Database\Factories\PrintedDesignFactory;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use JetBrains\PhpStorm\Pure;
 
@@ -27,15 +26,15 @@ class PrintedDesignController extends Controller
         return new PrintedDesignResource($printedDesign);
     }
 
-    #[Pure] public function show(PrintedDesign $printedDesign): PrintedDesignResource
-    {
-        return new PrintedDesignResource($printedDesign);
-    }
+     public function show(PrintedDesign $printedDesign): PrintedDesignResource
+     {
+         return new PrintedDesignResource($printedDesign);
+     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param PrintedDesign $printedDesign
+     * @param  PrintedDesign  $printedDesign
      * @return \Illuminate\Http\Response
      */
     public function edit(PrintedDesign $printedDesign)
@@ -47,7 +46,7 @@ class PrintedDesignController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdatePrintedDesignRequest  $request
-     * @param PrintedDesign $printedDesign
+     * @param  PrintedDesign  $printedDesign
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePrintedDesignRequest $request, PrintedDesign $printedDesign)
@@ -58,7 +57,7 @@ class PrintedDesignController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PrintedDesign $printedDesign
+     * @param  PrintedDesign  $printedDesign
      * @return \Illuminate\Http\Response
      */
     public function destroy(PrintedDesign $printedDesign)

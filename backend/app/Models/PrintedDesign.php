@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Models\PrintedDesign
@@ -19,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Database\Factories\PrintedDesignFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign newQuery()
@@ -30,6 +29,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign whereUserId($value)
  * @method static PrintedDesign create($array = [])
+ *
  * @property-read \App\Models\User $user
  * @mixin Builder
  */
@@ -44,7 +44,7 @@ class PrintedDesign extends Model
         'description',
         'user_id',
         'filament_brand_id',
-        'filament_colour_id'
+        'filament_colour_id',
     ];
 
     public function user(): BelongsTo
