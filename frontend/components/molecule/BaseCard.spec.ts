@@ -22,8 +22,6 @@ describe("Component mounts correctly", () => {
             // }
         });
 
-        console.log(wrapper.text());
-
-        // expect(wrapper.text()).toContain("My button");
+        expect(wrapper.text()).toContain("Hello world");
     });
 });

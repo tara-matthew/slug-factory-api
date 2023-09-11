@@ -4,7 +4,7 @@
             <AtomBaseTitle tag="h1" content="Recently added" class="text-center mb-8" />
 
             <OrganismBaseGrid :columns="5">
-                <NuxtLink v-for="print in prints.slice(0,5)" :to="`/prints/${print.id}`">
+                <NuxtLink v-for="print in prints.slice(0,5)" :key="print.id" :to="`/prints/${print.id}`">
                     <MoleculeBaseCard>
                         <template #image>
                             <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
@@ -27,7 +27,7 @@
             <div class="w-[45%] mt-10 px-16 py-10">
                 <AtomBaseTitle tag="h1" content="Most popular" class="text-center mb-8" />
                 <OrganismBaseGrid :columns="3">
-                    <MoleculeBaseCard v-for="print in prints.slice(0,6)">
+                    <MoleculeBaseCard v-for="print in prints.slice(0,6)" :key="print.id">
                         <template #image>
                             <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
@@ -47,7 +47,7 @@
             <div class="w-[45%] mt-10 px-16 py-10">
                 <AtomBaseTitle tag="h1" content="Recently viewed" class="text-center mb-8" />
                 <OrganismBaseGrid :columns="3">
-                    <MoleculeBaseCard v-for="print in prints.slice(0,6)">
+                    <MoleculeBaseCard v-for="print in prints.slice(0,6)" :key="print.id">
                         <template #image>
                             <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
