@@ -19,11 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('prints', PrintedDesignController::class)->parameters(['prints' => 'printed_design']);
+    Route::resource('filament-brands', FilamentBrandController::class);
 });
 
 // TODO be cruddy by design and create a separate controller for Popular Prints
-
-Route::resource('filament-brands', FilamentBrandController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

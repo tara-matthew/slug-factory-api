@@ -16,6 +16,8 @@ class FilamentBrandControllerTest extends TestCase
     {
         // arrange
         $filamentBrands = FilamentBrand::factory()->count(3)->create();
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
         // act
         $response = $this->getJson('api/filament-brands');
@@ -42,6 +44,9 @@ class FilamentBrandControllerTest extends TestCase
     /** @test */
     public function it_returns_an_empty_collection_of_filament_brands_when_no_records_exist()
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $response = $this->getJson('api/filament-brands');
 
         $response
@@ -53,12 +58,14 @@ class FilamentBrandControllerTest extends TestCase
     }
 
     /** @test  */
-    public function it_returns_a_specific_filament_brand()
+    public function it_returns_a_specific_filament_brand(): void
     {
         /**
          * @var FilamentBrand $filamentBrand
          */
         $filamentBrand = FilamentBrand::factory()->create();
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
         $response = $this->getJson("/api/filament-brands/$filamentBrand->id");
 
@@ -73,10 +80,11 @@ class FilamentBrandControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_stores_a_filament_brand()
+    public function it_stores_a_filament_brand(): void
     {
-//        $user = User::factory()->create();
-//        $this->actingAs($user);
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $response = $this->postJson('/api/filament-brands', [
             'name' => 'My name',
         ]);

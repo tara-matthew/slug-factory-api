@@ -31,17 +31,6 @@ class PrintedDesignController extends Controller
      }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  PrintedDesign  $printedDesign
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PrintedDesign $printedDesign)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdatePrintedDesignRequest  $request
