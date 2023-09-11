@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
-use JetBrains\PhpStorm\NoReturn;
 
 class RegisterController extends Controller
 {
@@ -15,7 +13,7 @@ class RegisterController extends Controller
     {
     }
 
-     public function __invoke(RegisterUserRequest $request): UserResource | JsonResponse
+     public function __invoke(RegisterUserRequest $request): UserResource
      {
          $validated = $request->validated();
          $validated['password'] = $this->hash::make($validated['password']);
