@@ -19,14 +19,4 @@ class FilamentBrand extends Model
     {
         return $this->hasMany(PrintedDesign::class);
     }
-
-//    public function filamentColours(): BelongsToMany
-//    {
-//        return $this->belongsToMany(FilamentColour::class)->using(FilamentBrandFilamentColour::class);
-//    }
-
-//    public function filamentColors()
-//    {
-//        return $this->hasMany(FilamentBrandFilamentColour::class, 'filament_brand_id'); // Adjust the foreign key column name if needed
-//    }
 }
