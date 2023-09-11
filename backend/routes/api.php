@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('prints', PrintedDesignController::class)->parameters(['prints' => 'printed_design']);
 });
+
 // TODO be cruddy by design and create a separate controller for Popular Prints
 
 Route::resource('filament-brands', FilamentBrandController::class);

@@ -19,16 +19,6 @@ class PrintedDesignController extends Controller
         return PrintedDesignResource::collection(PrintedDesign::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     public function store(StorePrintedDesignRequest $request): PrintedDesignResource
     {
         $printedDesignData = PrintedDesignDataFactory::fromRequest($request);

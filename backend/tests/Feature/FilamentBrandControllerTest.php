@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\FilamentBrand;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -76,6 +77,19 @@ class FilamentBrandControllerTest extends TestCase
     /** @test */
     public function it_stores_a_filament_brand()
     {
+//        $user = User::factory()->create();
+//        $this->actingAs($user);
+        $response = $this->postJson("/api/filament-brands", [
+            'name' => 'My name',
+        ]);
+
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'data' => [
+                    'name' => 'My name',
+                ]
+            ]);
 
     }
 

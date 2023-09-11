@@ -64,6 +64,13 @@ class PrintedDesignControllerTest extends TestCase
     /** @test */
     public function it_returns_an_empty_collection_of_prints_when_no_records_exist()
     {
+        /**
+         * @var User $user
+         * @var PrintedDesign $print
+         */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
         $response = $this->getJson('api/prints');
 
         $response

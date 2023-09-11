@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\StoreFilamentBrandAction;
+use App\DataFactories\FilamentBrandDataFactory;
+use App\Http\Requests\StoreFilamentBrandRequest;
 use App\Http\Resources\FilamentBrandResource;
 use App\Models\FilamentBrand;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
+// TODO require user auth
 class FilamentBrandController extends Controller
 {
     public function index(): AnonymousResourceCollection
@@ -14,25 +18,13 @@ class FilamentBrandController extends Controller
         return FilamentBrandResource::collection(FilamentBrand::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(StoreFilamentBrandRequest $request): FilamentBrandResource
     {
-        //
-    }
+        $filamentBrandData = FilamentBrandDataFactory::fromRequest($request);
+        $filamentBrand = (new StoreFilamentBrandAction())->execute($filamentBrandData);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return new FilamentBrandResource($filamentBrand);
+
     }
 
     public function show(FilamentBrand $filamentBrand): FilamentBrandResource

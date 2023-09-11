@@ -3,11 +3,12 @@
 namespace App\DataFactories;
 
 use App\DataTransferObjects\PrintedDesignData;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
 class PrintedDesignDataFactory
 {
-    public static function fromRequest(Request $request): PrintedDesignData
+    public static function fromRequest(FormRequest $request): PrintedDesignData
     {
         return new PrintedDesignData(...$request->validated());
     }
