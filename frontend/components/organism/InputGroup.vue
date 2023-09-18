@@ -6,7 +6,7 @@
             :text="input.text"
             :element-id="input.elementId"
             :type="input.type"
-            :errors="errors[input.elementId]"
+            :errors="errors?.[input.elementId]"
             class="mb-7"
         />
     </div>

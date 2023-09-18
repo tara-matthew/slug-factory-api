@@ -76,6 +76,10 @@ const { $apiFetch } = useNuxtApp();
 const prints: Ref = ref([]);
 const loading = ref(true);
 
+definePageMeta({
+    middleware: ["auth"]
+});
+
 interface IImage {
     id: string,
     printed_design_id: string,

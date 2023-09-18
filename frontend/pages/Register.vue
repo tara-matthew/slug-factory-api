@@ -9,6 +9,10 @@ import { LoginData } from "~/types/LoginData";
 const errors = ref([]);
 const { $apiFetch } = useNuxtApp();
 
+definePageMeta({
+    middleware: ["guest"]
+});
+
 function csrf () {
     // eslint-disable-next-line @typescript-eslint/ban-types
     return ($apiFetch as Function)("/sanctum/csrf-cookie");
@@ -34,6 +38,11 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
             method: "POST",
             body: formData
         });
+
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        const user = await ($apiFetch as Function)("/api/user");
+        const { setUser } = useAuth();
+        setUser(user.name);
 
         window.location.pathname = "/home";
     } catch (error) {
