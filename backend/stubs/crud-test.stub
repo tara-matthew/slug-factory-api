@@ -1,0 +1,96 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use JMac\Testing\Traits\AdditionalAssertions;
+use Tests\TestCase;
+
+class {{ class }} extends TestCase
+{
+    use RefreshDatabase;
+    use AdditionalAssertions;
+
+    public function it_returns_a_list_of_(): void
+    {
+        // arrange
+
+        // act
+        $response = $this->getJson("/");
+
+        // assert
+        $response
+            ->assertOk()
+            ->assertJsonCount(, 'data')
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+
+                    ],
+                ],
+            ])
+            ->assertJson([
+                'data' => [
+
+                ],
+            ]);
+    }
+
+    public function it_returns_an_empty_collection_of__when_no_records_exist(): void
+    {
+        // arrange
+
+        // act
+        $response = $this->getJson("/");
+
+        // assert
+        $response
+            ->assertOk()
+            ->assertJsonCount(0, 'data')
+            ->assertJsonStructure([
+                'data' => [],
+            ]);
+    }
+
+    public function it_returns_a_specific_(): void
+    {
+        // arrange
+
+        // act
+        $response = $this->getJson("/");
+
+        // assert
+        $response
+            ->assertOk()
+            ->assertJson([
+                'data' => [
+
+                ],
+            ]);
+    }
+
+    public function it_stores_a_(): void
+    {
+        // arrange
+
+        // act
+        $response = $this->postJson("/");
+
+        // assert
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'data' => [
+
+                ],
+            ]);
+    }
+
+    public function store_validates_using_a_form_request(): void
+    {
+        $this->assertActionUsesFormRequest(
+
+        );
+    }
+}
