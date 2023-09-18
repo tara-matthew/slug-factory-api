@@ -17,10 +17,10 @@ class PrintedDesignController extends Controller
         return PrintedDesignResource::collection(PrintedDesign::all());
     }
 
-    public function store(StorePrintedDesignRequest $request): PrintedDesignResource
+    public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
         $printedDesignData = PrintedDesignDataFactory::fromRequest($request);
-        $printedDesign = (new StorePrintedDesignAction())->execute($printedDesignData);
+        $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
 
         return new PrintedDesignResource($printedDesign);
     }
