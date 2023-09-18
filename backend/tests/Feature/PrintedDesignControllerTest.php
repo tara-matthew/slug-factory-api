@@ -47,7 +47,7 @@ class PrintedDesignControllerTest extends TestCase
         $response = $this->getJson('/api/prints');
 
         $response
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJson([
                 'data' => [
                     [

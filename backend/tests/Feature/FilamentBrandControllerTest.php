@@ -2,14 +2,18 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\FilamentBrandController;
+use App\Http\Requests\StoreFilamentBrandRequest;
 use App\Models\FilamentBrand;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
 class FilamentBrandControllerTest extends TestCase
 {
     use RefreshDatabase;
+    use AdditionalAssertions;
 
     /** @test */
     public function it_returns_a_list_of_filament_brands()
@@ -101,5 +105,10 @@ class FilamentBrandControllerTest extends TestCase
     /** @test */
     public function store_validates_using_a_form_request()
     {
+        $this->assertActionUsesFormRequest(
+            FilamentBrandController::class,
+            'store',
+            StoreFilamentBrandRequest::class
+        );
     }
 }
