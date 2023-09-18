@@ -12,9 +12,11 @@ class {{ class }} extends TestCase
     use RefreshDatabase;
     use AdditionalAssertions;
 
+    /** @test */
     public function it_returns_a_list_of_(): void
     {
         // arrange
+        $ = ::factory()->count(3)->create();
 
         // act
         $response = $this->getJson("/");
@@ -22,21 +24,20 @@ class {{ class }} extends TestCase
         // assert
         $response
             ->assertOk()
-            ->assertJsonCount(, 'data')
+            ->assertJsonCount(3, 'data')
             ->assertJsonStructure([
                 'data' => [
                     '*' => [
-
+                        'id',
                     ],
                 ],
             ])
             ->assertJson([
-                'data' => [
-
-                ],
+                'data' => $->toArray(),
             ]);
     }
 
+    /** @test */
     public function it_returns_an_empty_collection_of__when_no_records_exist(): void
     {
         // arrange
@@ -53,9 +54,11 @@ class {{ class }} extends TestCase
             ]);
     }
 
+    /** @test */
     public function it_returns_a_specific_(): void
     {
         // arrange
+        $ = ::factory()->create();
 
         // act
         $response = $this->getJson("/");
@@ -65,11 +68,12 @@ class {{ class }} extends TestCase
             ->assertOk()
             ->assertJson([
                 'data' => [
-
+                    'id' => $->id,
                 ],
             ]);
     }
 
+    /** @test */
     public function it_stores_a_(): void
     {
         // arrange
@@ -87,6 +91,7 @@ class {{ class }} extends TestCase
             ]);
     }
 
+    /** @test */
     public function store_validates_using_a_form_request(): void
     {
         $this->assertActionUsesFormRequest(
