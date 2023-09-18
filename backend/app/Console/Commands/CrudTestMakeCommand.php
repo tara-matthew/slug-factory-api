@@ -21,11 +21,11 @@ class CrudTestMakeCommand extends Command
         $stubPath = base_path('stubs/crud-test.stub');
         $testPath = base_path("tests/Feature/{$name}Test.php");
 
-        if (!file_exists($stubPath)) {
-            $this->error('Custom stub not found.');
+        if (file_exists($testPath)) {
+            $this->error('A test with that name already exists.');
+            return;
         }
 
-        // TODO make sure the test file doesn't already exist
         // TODO see if Laravel file helpers can be used
         // TODO write a test for the command
 
