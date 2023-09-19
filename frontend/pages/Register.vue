@@ -4,6 +4,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { FetchError } from "ofetch";
+import { $Fetch } from "nitropack";
 import { LoginData } from "~/types/LoginData";
 
 const errors = ref([]);
@@ -14,8 +15,7 @@ definePageMeta({
 });
 
 function csrf () {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    return ($apiFetch as Function)("/sanctum/csrf-cookie");
+    return ($apiFetch as $Fetch)("/sanctum/csrf-cookie");
 }
 
 async function register (event: { target: HTMLFormElement | undefined; }) {
@@ -33,8 +33,7 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
             body: formData
         });
 
-        // eslint-disable-next-line @typescript-eslint/ban-types
-        await ($apiFetch as Function)("/auth/login", {
+        await ($apiFetch as $Fetch)("/auth/login", {
             method: "POST",
             body: formData
         });
@@ -42,7 +41,7 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
         // eslint-disable-next-line @typescript-eslint/ban-types
         const user = await ($apiFetch as Function)("/api/user");
         const { setUser } = useAuth();
-        setUser(user.name);
+        setUser(user.username);
 
         window.location.pathname = "/home";
     } catch (error) {

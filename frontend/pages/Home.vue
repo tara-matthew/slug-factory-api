@@ -69,10 +69,9 @@
 
 <script setup lang="ts">
 import { Ref } from "vue";
+import { FetchError } from "ofetch";
+import { $Fetch } from "nitropack";
 import { NuxtLink } from "#components";
-import { FetchError, FetchRequest } from "ofetch";
-import { ResponseError } from "vscode-jsonrpc";
-import { $Fetch, NitroFetchRequest } from "nitropack";
 const { removeUser } = useAuth();
 
 const { $apiFetch } = useNuxtApp();
@@ -104,10 +103,8 @@ interface IResponse {
     data: IResponseBody[]
 }
 
-async function retrieve (): Promise<IResponse> {
+async function retrieve (): Promise<IResponse | undefined> {
     // https://github.com/nuxt/nuxt/issues/18570
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     try {
         return (await $apiFetch as $Fetch)("/api/prints", {
             headers: {
@@ -126,8 +123,10 @@ async function retrieve (): Promise<IResponse> {
 
 onMounted(async () => {
     const response = await retrieve();
-    prints.value = response.data;
-    loading.value = false;
+    if (response) {
+        prints.value = response.data;
+        loading.value = false;
+    }
     // TODO limit to 5 and order correctly
 });
 
