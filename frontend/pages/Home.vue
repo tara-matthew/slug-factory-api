@@ -70,6 +70,10 @@
 <script setup lang="ts">
 import { Ref } from "vue";
 import { NuxtLink } from "#components";
+import { FetchError, FetchRequest } from "ofetch";
+import { ResponseError } from "vscode-jsonrpc";
+import { $Fetch, NitroFetchRequest } from "nitropack";
+const { removeUser } = useAuth();
 
 const { $apiFetch } = useNuxtApp();
 
@@ -104,12 +108,20 @@ async function retrieve (): Promise<IResponse> {
     // https://github.com/nuxt/nuxt/issues/18570
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return await ($apiFetch)("/api/prints", {
-        headers: {
-            Accept: "application/json"
-        },
-        method: "GET"
-    });
+    try {
+        return (await $apiFetch as $Fetch)("/api/prints", {
+            headers: {
+                Accept: "application/json"
+            },
+            method: "GET"
+        });
+    } catch (error: unknown) {
+        if (error instanceof FetchError && error.response?.status === 401) {
+            removeUser();
+        } else {
+            console.log(error);
+        }
+    }
 }
 
 onMounted(async () => {
