@@ -41,7 +41,7 @@ onMounted(async () => {
 
 async function addToFavourites () {
     try {
-        await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/2`, {
+        await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${route.params.id}`, {
             method: "PATCH"
         });
     } catch (error) {

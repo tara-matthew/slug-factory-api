@@ -63,9 +63,11 @@ class FavouritePrintedDesignControllerTest extends TestCase
     public function it_returns_an_empty_collection_of_favourite_prints_when_no_records_exist(): void
     {
         // arrange
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
         // act
-        $response = $this->getJson("/");
+        $response = $this->getJson("/api/users/$user->id/favourite-printed-designs/");
 
         // assert
         $response
@@ -75,43 +77,31 @@ class FavouritePrintedDesignControllerTest extends TestCase
                 'data' => [],
             ]);
     }
-//
-//    /** @test */
-//    public function it_returns_a_specific_(): void
-//    {
-//        // arrange
-//        $ = ::factory()->create();
-//
-//        // act
-//        $response = $this->getJson("/");
-//
-//        // assert
-//        $response
-//            ->assertOk()
-//            ->assertJson([
-//                'data' => [
-//                    'id' => $->id,
-//                ],
-//            ]);
-//    }
-//
-//    /** @test */
-//    public function it_stores_a_(): void
-//    {
-//        // arrange
-//
-//        // act
-//        $response = $this->postJson("/");
-//
-//        // assert
-//        $response
-//            ->assertStatus(201)
-//            ->assertJson([
-//                'data' => [
-//
-//                ],
-//            ]);
-//    }
+
+    /** @test */
+    public function it_stores_a_favourite_print(): void
+    {
+        // arrange
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $print = PrintedDesign::factory()->create();
+
+        // act
+        $response = $this->patchJson("/api/users/$user->id/favourite-printed-designs/$print->id");
+        $decodedResponse = json_decode($response->getContent());
+
+        // assert
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'data' => [
+                    'id' => $decodedResponse->data->id,
+                    'user_id' => $decodedResponse->data->user_id,
+                    'favouritable_type' => $decodedResponse->data->favouritable_type,
+                    'favouritable_id' => $decodedResponse->data->favouritable_id
+                ],
+            ]);
+    }
 //
 //    /** @test */
 //    public function store_validates_using_a_form_request(): void

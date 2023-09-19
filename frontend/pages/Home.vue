@@ -7,6 +7,11 @@
                 <NuxtLink v-for="print in prints.slice(0,5)" :key="print.id" :to="`/prints/${print.id}`">
                     <MoleculeBaseCard>
                         <template #image>
+                            <div class="relative">
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white absolute right-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" :fill="calculateFill(print)" viewBox="0 0 21 19">
+                                    <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
+                                </svg>
+                            </div>
                             <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
                         </template>
                         <template #title>
@@ -96,6 +101,7 @@ interface IResponseBody {
     title: string
     description: string,
     user_id: number,
+    is_favourite: boolean,
     images: IImage
 }
 
@@ -103,7 +109,7 @@ interface IResponse {
     data: IResponseBody[]
 }
 
-async function retrieve (): Promise<IResponse | undefined> {
+async function retrievePrints (): Promise<IResponse | undefined> {
     // https://github.com/nuxt/nuxt/issues/18570
     try {
         return (await $apiFetch as $Fetch)("/api/prints", {
@@ -112,7 +118,7 @@ async function retrieve (): Promise<IResponse | undefined> {
             },
             method: "GET"
         });
-    } catch (error: unknown) {
+    } catch (error: unknown) { // TODO could this be middleware?
         if (error instanceof FetchError && error.response?.status === 401) {
             removeUser();
         } else {
@@ -122,13 +128,21 @@ async function retrieve (): Promise<IResponse | undefined> {
 }
 
 onMounted(async () => {
-    const response = await retrieve();
+    const response = await retrievePrints();
     if (response) {
         prints.value = response.data;
         loading.value = false;
     }
     // TODO limit to 5 and order correctly
 });
+
+function calculateFill(print) {
+    if (print.is_favourite) {
+        return "pink";
+    }
+
+    return "none";
+}
 
 // TODO shuffle at the top in nav
 // TODO use nuxt-img

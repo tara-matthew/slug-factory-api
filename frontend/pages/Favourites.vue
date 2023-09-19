@@ -14,6 +14,7 @@ import { Ref } from "vue";
 
 const { $apiFetch } = useNuxtApp();
 const prints: Ref = ref([]);
+const { getUser } = useAuth();
 
 definePageMeta({
     middleware: ["auth"]
@@ -21,7 +22,7 @@ definePageMeta({
 
 async function retrieve() {
     try {
-        return (await $apiFetch as $Fetch)("/api/printed-designs/favourite", {
+        return (await $apiFetch as $Fetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/`, {
             method: "GET"
         });
     } catch (error: unknown) {

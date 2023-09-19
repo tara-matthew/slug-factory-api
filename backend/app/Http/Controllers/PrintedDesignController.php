@@ -8,13 +8,16 @@ use App\Http\Requests\StorePrintedDesignRequest;
 use App\Http\Requests\UpdatePrintedDesignRequest;
 use App\Http\Resources\PrintedDesignResource;
 use App\Models\PrintedDesign;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PrintedDesignController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
-        return PrintedDesignResource::collection(PrintedDesign::all());
+        return PrintedDesignResource::collection(PrintedDesign::withUserFavourites());
     }
 
     public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource

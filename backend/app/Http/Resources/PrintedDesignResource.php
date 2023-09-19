@@ -15,7 +15,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class PrintedDesignResource extends JsonResource
 {
-    public function toArray($request): array
+    public function toArray($request)
     {
         return [
             'id' => $this->id,
@@ -25,6 +25,9 @@ class PrintedDesignResource extends JsonResource
             'images' => ImageResource::collection($this->images),
             'filament_brand_id' => $this->filament_brand_id,
             'filament_colour_id' => $this->filament_colour_id,
+            'is_favourite' => (bool) $this->favourites->filter(function ($favourite) {
+                return $favourite->user_id == auth()->id();
+            })->first()
             // TODO add created and updated_at
         ];
     }
