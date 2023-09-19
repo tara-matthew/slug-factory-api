@@ -1,5 +1,8 @@
 <template>
     <div v-if="!loading">
+        <h1 @click="addToFavourites">
+            Add to favourites
+        </h1>
         <div class="flex justify-center">
             <div class="px-60 pt-28 flex flex-col w-3/5">
                 <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
@@ -16,6 +19,7 @@
 
 <script setup lang="ts">
 // TODO tabs with settings, filament used, story, source
+
 const { $apiFetch } = useNuxtApp();
 
 const print = ref([]);
@@ -24,13 +28,24 @@ const route = useRoute();
 
 onMounted(async () => {
     await ($apiFetch)(`/api/prints/${route.params.id}`, {
-        headers: {
-            Accept: "application/json"
-        },
+        // headers: {
+        //     Accept: "application/json",
+        // },
         method: "GET"
     }).then((response) => {
         print.value = response.data;
         loading.value = false;
     });
 });
+
+async function addToFavourites () {
+    try {
+        await ($apiFetch)(`/api/printed-designs/${route.params.id}/favourite`, {
+            method: "POST"
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    // console.log(favourite);
+}
 </script>

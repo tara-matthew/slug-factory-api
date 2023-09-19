@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavouritePrintedDesignController;
 use App\Http\Controllers\FilamentBrandController;
 use App\Http\Controllers\PrintedDesignController;
 use App\Http\Controllers\RegisterController;
@@ -27,5 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('printed-designs/{printed_design}/favourite', [FavouritePrintedDesignController::class, 'store']);
+
 //Route::resource('prints', PrintedDesignController::class)->parameters(['prints' => 'printed_design']);
 //Route::post('/auth/register', RegisterController::class);

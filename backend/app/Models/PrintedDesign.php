@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * App\Models\PrintedDesign
@@ -60,5 +61,10 @@ class PrintedDesign extends Model
     public function filamentBrand()
     {
         return $this->belongsTo(FilamentBrand::class);
+    }
+
+    public function favourites(): MorphMany
+    {
+        return $this->morphMany(Favourite::class, 'favouritable');
     }
 }
