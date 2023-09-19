@@ -25,6 +25,7 @@ const { $apiFetch } = useNuxtApp();
 const print = ref([]);
 const loading = ref(true);
 const route = useRoute();
+const { getUser } = useAuth();
 
 onMounted(async () => {
     await ($apiFetch)(`/api/prints/${route.params.id}`, {
@@ -40,8 +41,8 @@ onMounted(async () => {
 
 async function addToFavourites () {
     try {
-        await ($apiFetch)(`/api/printed-designs/${route.params.id}/favourite`, {
-            method: "POST"
+        await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/2`, {
+            method: "PATCH"
         });
     } catch (error) {
         console.log(error);

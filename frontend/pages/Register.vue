@@ -41,7 +41,7 @@ async function register (event: { target: HTMLFormElement | undefined; }) {
         // eslint-disable-next-line @typescript-eslint/ban-types
         const user = await ($apiFetch as Function)("/api/user");
         const { setUser } = useAuth();
-        setUser(user.username);
+        setUser(user);
 
         window.location.pathname = "/home";
     } catch (error) {

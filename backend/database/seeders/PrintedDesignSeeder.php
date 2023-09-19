@@ -14,6 +14,6 @@ class PrintedDesignSeeder extends Seeder
      */
     public function run()
     {
-        PrintedDesign::factory(30)->hasImages(3)->create();
+        PrintedDesign::factory(30)->hasImages(3)->hasFavourites()->create();
     }
 }

@@ -1,6 +1,6 @@
 export function useAuth () {
-    function setUser (name: string) {
-        localStorage.setItem("user", JSON.stringify({ name }));
+    function setUser (user) {
+        localStorage.setItem("user", JSON.stringify(user));
     }
 
     function getUser () {
