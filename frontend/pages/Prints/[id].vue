@@ -3,11 +3,17 @@
         <h1 @click="addToFavourites" class="text-right">
             Add to favourites
         </h1>
+        <div class="flex px-32">
+            <div style="flex:.75;">
+        <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
+            </div>
+            <div style="flex:1">
+
+            </div>
+        </div>
 
         <div class="flex items-center px-32">
             <div style="flex:.75;">
-                <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
-
                 <nuxt-img :src="print.images[0].url" sizes="sm:100vw md:50vw lg:800px" style="width:100%;"/>
             </div>
             <div style="flex:1;" class="px-6">
