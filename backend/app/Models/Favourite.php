@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Favourite extends Model
 {
-	public $timestamps = false;
-
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
         "user_id"
@@ -19,5 +18,14 @@ class Favourite extends Model
     public function favouritable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function scopeByUser($query)
+    {
+        return $query->where(
+            ['user_id' => 1, 'favouritable_type' => 'App\Models\PrintedDesign']
+        )
+            ->get()
+            ->pluck('favouritable');
     }
 }

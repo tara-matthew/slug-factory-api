@@ -4,21 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Actions\StoreFavouritePrintedDesignAction;
 use App\DataTransferObjects\FavouritePrintedDesignData;
+use App\Http\Resources\FavouriteResource;
+use App\Http\Resources\PrintedDesignResource;
+use App\Models\Favourite;
 use App\Models\PrintedDesign;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FavouritePrintedDesignController extends Controller
 {
-    public function store(PrintedDesign $printedDesign, StoreFavouritePrintedDesignAction $storeFavouritePrintedDesignAction)
+    public function index(): AnonymousResourceCollection
     {
-        return $storeFavouritePrintedDesignAction->execute($printedDesign);
-        // Store printed design action execute
-//        $favouriteData = new FavouritePrintedDesignData($printedDesign); //PrintedDesignDataFactory::fromRequest($request);
-//        return $favourite;
-//
-//        $favourite = $storeFavouritePrintedDesignAction->execute($favouriteData);
+        return PrintedDesignResource::collection(Favourite::byUser());
+    }
+    public function store(PrintedDesign $printedDesign, StoreFavouritePrintedDesignAction $storeFavouritePrintedDesignAction): FavouriteResource
+    {
+        $favourite = $storeFavouritePrintedDesignAction->execute($printedDesign);
 
-//        $printedDesign->favourites()->create(['user_id' => auth()->id()]);
+        return new FavouriteResource($favourite);
     }
 
     public function destroy(PrintedDesign $printedDesign)
