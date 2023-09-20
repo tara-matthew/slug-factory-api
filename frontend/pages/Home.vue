@@ -96,6 +96,7 @@ const { $apiFetch } = useNuxtApp();
 
 const prints: Ref = ref([]);
 const loading = ref(true);
+const red = "rgb(204,0,0)";
 
 definePageMeta({
     middleware: ["auth"]
@@ -118,9 +119,23 @@ interface IResponseBody {
     images: IImage
 }
 
+interface IPrint extends IResponseBody {
+    hovered: boolean
+}
+
 interface IResponse {
     data: IResponseBody[]
 }
+
+onMounted(async () => {
+    const response = await retrievePrints();
+    if (response) {
+        setPrints(response);
+    } else {
+        console.log("request failed");
+    }
+    // TODO limit to 5 and order correctly
+});
 
 async function retrievePrints (): Promise<IResponse | undefined> {
     // https://github.com/nuxt/nuxt/issues/18570
@@ -141,19 +156,48 @@ async function retrievePrints (): Promise<IResponse | undefined> {
     }
 }
 
-onMounted(async () => {
-    const response = await retrievePrints();
-    if (response) {
-        prints.value = response.data;
-        loading.value = false;
-    } else {
-        console.log("request failed");
+async function addToFavourites (print: IResponseBody) {
+    try {
+        await storeFavourite(print);
+        const response = await retrievePrints();
+        if (response) {
+            setPrints(response);
+        }
+    } catch (error) {
+        console.log(error);
     }
-    // TODO limit to 5 and order correctly
-});
+}
 
-function calculateFill (print) {
-    const red = "rgb(204,0,0)";
+async function removeFromFavourites (print: IResponseBody) {
+    try {
+        await removeFavourite(print);
+        const response = await retrievePrints();
+        if (response) {
+            setPrints(response);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function storeFavourite (print: IResponseBody) {
+    await ($apiFetch as $Fetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
+        method: "PATCH"
+    });
+}
+
+async function removeFavourite(print: IResponseBody) {
+    await ($apiFetch as $Fetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
+        method: "DELETE"
+    });
+}
+
+function setPrints (response: IResponse) {
+    prints.value = response.data;
+    loading.value = false;
+}
+
+function calculateFill (print: IResponseBody) {
     if (print.is_favourite) {
         return red;
     }
@@ -161,7 +205,7 @@ function calculateFill (print) {
     return "none";
 }
 
-function calculateClass (print) {
+function calculateClass (print: IPrint) {
     const suffix = (print.hovered ? " hover-effect" : "");
     if (print.is_favourite) {
         return "favourited" + suffix;
@@ -170,20 +214,12 @@ function calculateClass (print) {
     return "not-favourited" + suffix;
 }
 
-async function changeHeartStatus (print) {
+async function changeHeartStatus (print: IPrint) {
     print.hovered = false; // Remove if I want the heart effect to be immediate
     if (!print.is_favourite) {
-        try {
-            await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
-                method: "PATCH"
-            });
-            const response = await retrievePrints();
-            if (response) {
-                prints.value = response.data;
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        await addToFavourites(print);
+    } else {
+        await removeFromFavourites(print);
     }
 }
 // TODO shuffle at the top in nav
@@ -196,7 +232,7 @@ async function changeHeartStatus (print) {
 }
 
 .not-favourited.hover-effect {
-    fill: rgb(204,0,0);
+    fill: v-bind(red);
 }
 
 </style>

@@ -1,25 +1,33 @@
 <template>
     <div v-if="!loading">
-        <h1 @click="addToFavourites" class="text-right">
-            Add to favourites
+        <h1 @click="removeFromFavourites" class="text-right">
+            {{ favouritesText }}
         </h1>
-        <div class="flex px-32">
-            <div style="flex:.75;">
-        <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
-            </div>
-            <div style="flex:1">
-
-            </div>
+        <div>
+<!--            <AtomBaseButton component-type="NuxtLink" :text="favouritesText" class="w-1/4 ml-auto" />-->
         </div>
+        <div class="mt-16">
+            <div class="flex px-32">
+                <div style="flex:.75;">
+                    <AtomBaseTitle tag="h1" :content="print.title" class="text-center mb-4" />
+                </div>
+                <div style="flex:1">
+                    <AtomBaseButton component-type="NuxtLink" :text="favouritesText" class="w-2/3 ml-auto" />
 
-        <div class="flex items-center px-32">
-            <div style="flex:.75;">
-                <nuxt-img :src="print.images[0].url" sizes="sm:100vw md:50vw lg:800px" style="width:100%;"/>
+                </div>
             </div>
-            <div style="flex:1;" class="px-6">
-                <p class="text-2xl">
-                    {{ print.description }}
-                </p>
+
+            <div class="flex items-center px-32">
+                <div style="flex:.75;">
+                    <nuxt-img :src="print.images[0].url" sizes="sm:100vw md:50vw lg:800px" style="width:100%;"/>
+                </div>
+                <div style="flex:1;" class="px-6">
+<!--                    <AtomBaseButton component-type="NuxtLink" :text="favouritesText" class="w-1/4 ml-auto" />-->
+
+                    <p class="text-2xl">
+                        {{ print.description }}
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -89,4 +97,19 @@ async function addToFavourites () {
     }
     // console.log(favourite);
 }
+
+async function removeFromFavourites () {
+    try {
+        await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${route.params.id}`, {
+            method: "DELETE"
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    // console.log(favourite);
+}
+
+const favouritesText = computed(() => {
+    return print.value.is_favourite ? "Remove from favourites" : "Add to favourites";
+});
 </script>
