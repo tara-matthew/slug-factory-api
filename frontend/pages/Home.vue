@@ -4,27 +4,29 @@
             <AtomBaseTitle tag="h1" content="Recently added" class="text-center mb-8" />
 
             <OrganismBaseGrid :columns="5">
-                <NuxtLink v-for="print in prints.slice(0,5)" :key="print.id" :to="`/prints/${print.id}`">
-                    <MoleculeBaseCard>
-                        <template #image>
-                            <div class="relative">
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white absolute right-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" :fill="calculateFill(print)" viewBox="0 0 21 19">
-                                    <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
-                                </svg>
-                            </div>
-                            <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
-                        </template>
-                        <template #title>
-                            <AtomBaseTitle tag="h2" :content="print.title" />
-                        </template>
-                        <template #content>
-                            <p>{{ print.description }}</p>
-                        </template>
-                        <template #footer>
-                            <AtomBaseButton component-type="NuxtLink" text="View print" :to="`/prints/${print.id}`" />
-                        </template>
-                    </MoleculeBaseCard>
-                </NuxtLink>
+                <div v-for="print in prints.slice(0,5)" :key="print.id">
+                    <div class="relative">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white absolute right-5 top-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" :fill="calculateFill(print)" viewBox="0 0 21 19">
+                            <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
+                        </svg>
+                    </div>
+                    <NuxtLink :to="`/prints/${print.id}`">
+                        <MoleculeBaseCard>
+                            <template #image>
+                                <img :src="print.images[0].url" alt="" class="w-full h-48 object-cover">
+                            </template>
+                            <template #title>
+                                <AtomBaseTitle tag="h2" :content="print.title" />
+                            </template>
+                            <template #content>
+                                <p>{{ print.description }}</p>
+                            </template>
+                            <template #footer>
+                                <AtomBaseButton component-type="NuxtLink" text="View print" :to="`/prints/${print.id}`" />
+                            </template>
+                        </MoleculeBaseCard>
+                    </NuxtLink>
+                </div>
             </OrganismBaseGrid>
         </div>
 
@@ -77,12 +79,15 @@ import { Ref } from "vue";
 import { FetchError } from "ofetch";
 import { $Fetch } from "nitropack";
 import { NuxtLink } from "#components";
-const { removeUser } = useAuth();
+
+const { removeUser, getUser } = useAuth();
 
 const { $apiFetch } = useNuxtApp();
 
 const prints: Ref = ref([]);
 const loading = ref(true);
+const background = ref("red");
+const route = useRoute();
 
 definePageMeta({
     middleware: ["auth"]
@@ -112,13 +117,14 @@ interface IResponse {
 async function retrievePrints (): Promise<IResponse | undefined> {
     // https://github.com/nuxt/nuxt/issues/18570
     try {
-        return (await $apiFetch as $Fetch)("/api/prints", {
+        return await ($apiFetch as $Fetch)("/api/prints", {
             headers: {
                 Accept: "application/json"
             },
             method: "GET"
         });
     } catch (error: unknown) { // TODO could this be middleware?
+        console.log(error);
         if (error instanceof FetchError && error.response?.status === 401) {
             removeUser();
         } else {
@@ -132,18 +138,42 @@ onMounted(async () => {
     if (response) {
         prints.value = response.data;
         loading.value = false;
+    } else {
+        console.log("request failed");
     }
     // TODO limit to 5 and order correctly
 });
 
-function calculateFill(print) {
+function calculateFill (print) {
+    const red = "rgb(204,0,0)";
     if (print.is_favourite) {
-        return "pink";
+        return red;
     }
 
     return "none";
 }
 
+async function addToFavourites (print) {
+    try {
+        await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
+            method: "PATCH"
+        });
+        console.log("added to favourites");
+    } catch (error) {
+        console.log(error);
+    }
+    // console.log(favourite);
+}
 // TODO shuffle at the top in nav
 // TODO use nuxt-img
 </script>
+
+<style>
+.favourited:hover {
+    fill: none
+}
+.not-favourited:hover {
+    fill: red
+}
+
+</style>
