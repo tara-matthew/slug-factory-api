@@ -162,15 +162,16 @@ function calculateFill (print) {
 }
 
 function calculateClass (print) {
+    const suffix = (print.hovered ? " hover-effect" : "");
     if (print.is_favourite) {
-        return "favourited" + (print.hovered ? " hover-effect" : "");
+        return "favourited" + suffix;
     }
 
-    return "not-favourited" + (print.hovered ? " hover-effect" : "");
+    return "not-favourited" + suffix;
 }
 
 async function changeHeartStatus (print) {
-    print.hovered = false;
+    print.hovered = false; // Remove if I want the heart effect to be immediate
     if (!print.is_favourite) {
         try {
             await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
