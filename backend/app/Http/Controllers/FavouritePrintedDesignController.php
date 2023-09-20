@@ -24,7 +24,8 @@ class FavouritePrintedDesignController extends Controller
         return new FavouriteResource($favourite);
     }
 
-    public function destroy(PrintedDesign $printedDesign)
+    public function destroy(User $user, PrintedDesign $printedDesign): void
     {
+        $printedDesign->favourites()->delete();
     }
 }
