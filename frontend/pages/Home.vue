@@ -6,7 +6,17 @@
             <OrganismBaseGrid :columns="5">
                 <div v-for="print in prints.slice(0,5)" :key="print.id">
                     <div class="relative">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white absolute right-5 top-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" :fill="calculateFill(print)" viewBox="0 0 21 19">
+                        <svg
+                            :class="calculateClass(print)"
+                            :fill="calculateFill(print)"
+                            class="w-6 h-6 text-gray-800 dark:text-white absolute right-5 top-1.5"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 21 19"
+                            @mouseenter="print.hovered = true"
+                            @mouseleave="print.hovered = false"
+                            @click="changeHeartStatus(print)"
+                        >
                             <path stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z" />
                         </svg>
                     </div>
@@ -86,8 +96,6 @@ const { $apiFetch } = useNuxtApp();
 
 const prints: Ref = ref([]);
 const loading = ref(true);
-const background = ref("red");
-const route = useRoute();
 
 definePageMeta({
     middleware: ["auth"]
@@ -153,27 +161,41 @@ function calculateFill (print) {
     return "none";
 }
 
-async function addToFavourites (print) {
-    try {
-        await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
-            method: "PATCH"
-        });
-        console.log("added to favourites");
-    } catch (error) {
-        console.log(error);
+function calculateClass (print) {
+    if (print.is_favourite) {
+        return "favourited" + (print.hovered ? " hover-effect" : "");
     }
-    // console.log(favourite);
+
+    return "not-favourited" + (print.hovered ? " hover-effect" : "");
+}
+
+async function changeHeartStatus (print) {
+    print.hovered = false;
+    if (!print.is_favourite) {
+        try {
+            await ($apiFetch)(`/api/users/${getUser()?.id}/favourite-printed-designs/${print.id}`, {
+                method: "PATCH"
+            });
+            const response = await retrievePrints();
+            if (response) {
+                prints.value = response.data;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 // TODO shuffle at the top in nav
 // TODO use nuxt-img
 </script>
 
 <style>
-.favourited:hover {
-    fill: none
+.favourited.hover-effect {
+    fill: none;
 }
-.not-favourited:hover {
-    fill: red
+
+.not-favourited.hover-effect {
+    fill: rgb(204,0,0);
 }
 
 </style>
