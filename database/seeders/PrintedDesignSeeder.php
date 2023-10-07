@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\PrintedDesign;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Seeder;
 
 class PrintedDesignSeeder extends Seeder

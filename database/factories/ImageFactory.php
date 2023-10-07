@@ -2,14 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\PrintedDesign;
+use Domain\Images\Models\Image;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domain\Favourites\Image>
  */
 class ImageFactory extends Factory
 {
+    protected $model = Image::class;
     /**
      * Define the model's default state.
      *

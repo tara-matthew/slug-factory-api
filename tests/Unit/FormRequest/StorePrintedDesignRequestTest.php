@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\FormRequest;
 
-use App\Http\Requests\StorePrintedDesignRequest;
+use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
@@ -22,7 +22,7 @@ class StorePrintedDesignRequestTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Requests\StorePrintedDesignRequest::rules
+     * @covers \App\PrintedDesigns\Requests\StorePrintedDesignRequest::rules
      */
     public function it_has_rules_set_up_as_expected(): void
     {

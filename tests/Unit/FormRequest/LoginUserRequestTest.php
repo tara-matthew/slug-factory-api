@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\FormRequest;
 
-use App\Http\Requests\LoginUserRequest;
+use App\Users\Requests\LoginUserRequest;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 

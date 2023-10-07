@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\FilamentBrand;
+use Domain\Filaments\Brands\Models\FilamentBrand;
 use Illuminate\Database\Seeder;
 
 class FilamentBrandSeeder extends Seeder

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\RegisterController;
+use App\Users\Controllers\LoginController;
+use App\Users\Controllers\LogoutController;
+use App\Users\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*

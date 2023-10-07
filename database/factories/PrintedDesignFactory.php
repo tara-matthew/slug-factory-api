@@ -2,16 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\FilamentBrand;
-use App\Models\FilamentColour;
-use App\Models\User;
+use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Colours\Models\FilamentColour;
+use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PrintedDesign>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domain\Favourites\PrintedDesign>
  */
 class PrintedDesignFactory extends Factory
 {
+    protected $model = PrintedDesign::class;
     /**
      * Define the model's default state.
      *
