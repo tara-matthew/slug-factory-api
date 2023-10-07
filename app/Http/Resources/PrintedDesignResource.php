@@ -26,8 +26,8 @@ class PrintedDesignResource extends JsonResource
             'filament_brand_id' => $this->filament_brand_id,
             'filament_colour_id' => $this->filament_colour_id,
             'is_favourite' => (bool) $this->favourites->filter(function ($favourite) {
-                return $favourite->user_id == auth()->id();
-            })->first()
+                return $favourite->user_id === auth()->id();
+            })->first() // exists?
             // TODO add created and updated_at
         ];
     }

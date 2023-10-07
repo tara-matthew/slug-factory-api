@@ -21,7 +21,7 @@ class ImageResource extends JsonResource
             'printed_design_id' => $this->printed_design_id,
             'user_id' => $this->user_id,
             'url' => $this->url,
-            'is_cover_image' => $this->is_cover_image,
+            'is_cover_image' => (bool) $this->is_cover_image,
         ];
     }
 }
