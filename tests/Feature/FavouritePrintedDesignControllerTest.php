@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Favourite;
-use App\Models\FilamentBrand;
-use App\Models\FilamentColour;
-use App\Models\PrintedDesign;
-use App\Models\User;
+use Domain\Favourites\Models\Favourite;
+use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Colours\Models\FilamentColour;
+use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;

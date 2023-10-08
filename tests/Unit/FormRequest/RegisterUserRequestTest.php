@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\FormRequest;
 
-use App\Http\Requests\RegisterUserRequest;
+use App\Users\Requests\RegisterUserRequest;
 use Illuminate\Validation\Rules\Password;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\LoginController;
-use App\Http\Requests\LoginUserRequest;
-use App\Models\User;
+use App\Users\Controllers\LoginController;
+use App\Users\Requests\LoginUserRequest;
+use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -17,7 +17,7 @@ class LoginControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\LoginController::_invoke
+     * @covers \App\Users\Controllers\LoginController::__invoke
      */
     public function it_logs_in_a_user_successfully(): void
     {
@@ -43,7 +43,7 @@ class LoginControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\LoginController::_invoke
+     * @covers \App\Users\Controllers\LoginController::__invoke
      */
     public function it_generates_an_error_message_on_unsuccessful_login(): void
     {
@@ -65,7 +65,7 @@ class LoginControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\LoginController::__invoke
+     * @covers \App\Users\Controllers\LoginController::__invoke
      */
     public function it_validates_using_a_form_request(): void
     {

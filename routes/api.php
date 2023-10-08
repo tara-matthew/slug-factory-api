@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\FavouritePrintedDesignController;
-use App\Http\Controllers\FilamentBrandController;
-use App\Http\Controllers\PrintedDesignController;
-use App\Http\Controllers\RegisterController;
+
+use App\Favourites\Controllers\FavouritePrintedDesignController;
+use App\Filaments\Brands\Controllers\FilamentBrandController;
+use App\PrintedDesigns\Controllers\PrintedDesignController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

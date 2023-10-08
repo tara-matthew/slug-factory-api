@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\FormRequest;
 
-use App\Http\Requests\StoreFilamentBrandRequest;
+use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;
 use Tests\TestCase;
 
 class StoreFilamentBrandRequestTest extends TestCase

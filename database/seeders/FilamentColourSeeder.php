@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\FilamentColour;
+use Domain\Filaments\Colours\Models\FilamentColour;
 use Illuminate\Database\Seeder;
 
 class FilamentColourSeeder extends Seeder

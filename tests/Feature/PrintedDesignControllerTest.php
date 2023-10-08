@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\PrintedDesignController;
-use App\Http\Requests\StorePrintedDesignRequest;
-use App\Models\FilamentBrand;
-use App\Models\FilamentColour;
-use App\Models\PrintedDesign;
-use App\Models\User;
+use App\PrintedDesigns\Controllers\PrintedDesignController;
+use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
+use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Colours\Models\FilamentColour;
+use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
@@ -30,7 +30,7 @@ class PrintedDesignControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\PrintedDesignController::index
+     * @covers \App\PrintedDesigns\Controllers\PrintedDesignController::index
      *
      * @return void
      */
@@ -84,7 +84,7 @@ class PrintedDesignControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\PrintedDesignController::index
+     * @covers
      */
     public function it_returns_a_specific_print(): void
     {
@@ -114,7 +114,7 @@ class PrintedDesignControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\PrintedDesignController::store
+     * @covers \App\PrintedDesigns\Controllers\PrintedDesignController::store
      */
     public function it_stores_a_print(): void
     {
@@ -143,7 +143,7 @@ class PrintedDesignControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\PrintedDesignController::store
+     * @covers \App\PrintedDesigns\Controllers\PrintedDesignController::store
      */
     public function store_validates_using_a_form_request(): void
     {

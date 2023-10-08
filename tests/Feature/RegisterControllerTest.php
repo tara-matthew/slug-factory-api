@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\RegisterController;
-use App\Http\Requests\RegisterUserRequest;
-use App\Models\User;
+use App\Users\Controllers\RegisterController;
+use App\Users\Requests\RegisterUserRequest;
+use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -17,7 +17,7 @@ class RegisterControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\RegisterController::_invoke
+     * @covers \App\Users\Controllers\RegisterController::__invoke
      */
     public function it_registers_a_user_successfully(): void
     {
@@ -42,13 +42,10 @@ class RegisterControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\RegisterController::_invoke
+     * @covers
      */
     public function it_generates_an_error_message_on_unsuccessful_registration(): void
     {
-        /**
-         * @var User $user
-         */
         $user = User::factory()->create();
         $response = $this->postJson('/auth/register', [
             'name' => $user->name,
@@ -81,7 +78,7 @@ class RegisterControllerTest extends TestCase
 
     /**
      * @test
-     * @covers \App\Http\Controllers\RegisterController::__invoke
+     * @covers
      */
     public function it_validates_using_a_form_request(): void
     {
