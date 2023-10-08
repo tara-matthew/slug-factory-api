@@ -12,7 +12,7 @@ class FavouriteResource extends JsonResource
             'id' => $this->id,
             'user_id' => $this->user_id,
             'favouritable_type' => $this->favouritable_type,
-            'favouritable_id' => $this->favouritable_id
+            'favouritable_id' => $this->favouritable_id,
         ];
     }
 }

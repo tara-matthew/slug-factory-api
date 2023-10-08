@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class FavouriteFactory extends Factory
 {
     protected $model = Favourite::class;
+
     /**
      * Define the model's default state.
      *
@@ -20,7 +21,7 @@ class FavouriteFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory()->create()
+            'user_id' => User::factory()->create(),
         ];
     }
 }

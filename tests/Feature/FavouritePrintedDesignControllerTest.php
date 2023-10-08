@@ -98,7 +98,7 @@ class FavouritePrintedDesignControllerTest extends TestCase
                     'id' => $decodedResponse->data->id,
                     'user_id' => $decodedResponse->data->user_id,
                     'favouritable_type' => $decodedResponse->data->favouritable_type,
-                    'favouritable_id' => $decodedResponse->data->favouritable_id
+                    'favouritable_id' => $decodedResponse->data->favouritable_id,
                 ],
             ]);
     }

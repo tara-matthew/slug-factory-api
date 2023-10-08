@@ -39,7 +39,7 @@ class PrintedDesignPolicy
     {
         //
     }
-    
+
     public function forceDelete(User $user, PrintedDesign $printedDesign)
     {
         //

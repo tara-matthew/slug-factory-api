@@ -17,6 +17,7 @@ class FavouritePrintedDesignController extends Controller
     {
         return PrintedDesignResource::collection(Favourite::byUser($user));
     }
+
     public function update(User $user, PrintedDesign $printedDesign, StoreFavouritePrintedDesignAction $storeFavouritePrintedDesignAction): FavouriteResource
     {
         $favourite = $storeFavouritePrintedDesignAction->execute($printedDesign, $user);

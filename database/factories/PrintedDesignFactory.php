@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class PrintedDesignFactory extends Factory
 {
     protected $model = PrintedDesign::class;
+
     /**
      * Define the model's default state.
      *

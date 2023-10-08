@@ -14,6 +14,7 @@ class StoreFilamentBrandRequestTest extends TestCase
         parent::setUp();
         $this->storeFilamentBrandRequest = new StoreFilamentBrandRequest();
     }
+
     /**
      * @test
      */

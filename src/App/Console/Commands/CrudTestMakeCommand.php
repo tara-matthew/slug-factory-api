@@ -23,6 +23,7 @@ class CrudTestMakeCommand extends Command
 
         if (file_exists($testPath)) {
             $this->error('A test with that name already exists.');
+
             return;
         }
 
@@ -30,7 +31,7 @@ class CrudTestMakeCommand extends Command
         // TODO write a test for the command
 
         $stubContent = file_get_contents($stubPath);
-        $customStub = str_replace('{{ class }}', $name . "Test", $stubContent);
+        $customStub = str_replace('{{ class }}', $name.'Test', $stubContent);
         file_put_contents($testPath, $customStub);
 
         $this->info("Custom test file {$name}Test.php generated successfully.");
