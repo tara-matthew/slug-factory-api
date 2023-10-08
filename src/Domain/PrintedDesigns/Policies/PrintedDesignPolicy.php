@@ -15,9 +15,9 @@ class PrintedDesignPolicy
         //
     }
 
-    public function view(User $user, PrintedDesign $printedDesign)
+    public function view(User $user, PrintedDesign $printedDesign): bool
     {
-        //
+        return $user->id === $printedDesign->user_id;
     }
 
     public function create(User $user)
@@ -25,14 +25,14 @@ class PrintedDesignPolicy
         //
     }
 
-    public function update(User $user, PrintedDesign $printedDesign)
+    public function update(User $user, PrintedDesign $printedDesign): bool
     {
-        //
+        return $user->id === $printedDesign->user_id;
     }
 
-    public function delete(User $user, PrintedDesign $printedDesign)
+    public function delete(User $user, PrintedDesign $printedDesign): bool
     {
-        //
+        return $user->id === $printedDesign->user_id;
     }
 
     public function restore(User $user, PrintedDesign $printedDesign)
