@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// TODO add named routes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('prints', PrintedDesignController::class)->parameters(['prints' => 'printed_design']);
     Route::resource('filament-brands', FilamentBrandController::class);

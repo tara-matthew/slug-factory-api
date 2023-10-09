@@ -4,6 +4,7 @@ namespace Domain\PrintedDesigns\Models;
 
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Images\Models\Image;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Carbon;
 
 /**
  * Domain\PrintedDesigns\Models\PrintedDesign
@@ -20,8 +22,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property int $user_id
  * @property string $title
  * @property string $description
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  *
  * @method static \Database\Factories\PrintedDesignFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|PrintedDesign newModelQuery()
@@ -62,9 +64,14 @@ class PrintedDesign extends Model
         return $this->hasMany(Image::class);
     }
 
-    public function filamentBrand()
+    public function filamentBrand(): BelongsTo
     {
         return $this->belongsTo(FilamentBrand::class);
+    }
+
+    public function filamentColour(): BelongsTo
+    {
+        return $this->belongsTo(FilamentColour::class);
     }
 
     public function favourites(): MorphMany

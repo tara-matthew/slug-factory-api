@@ -21,7 +21,6 @@ class PrintedDesignController extends Controller
     public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
         $printedDesignData = PrintedDesignDataFactory::fromRequest($request);
-//        dd($printedDesignData);
         $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
 
         return new PrintedDesignResource($printedDesign);
