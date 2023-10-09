@@ -19,7 +19,7 @@ class RegisterUserRequest extends FormRequest
             'email' => 'required|email|unique:users|max:255',
             'username' => 'required|unique:users|max:255',
             'password' => [Password::defaults(), 'required', 'confirmed'],
-            'role' => 'required',
+            'role' => 'required', // TODO explore limiting by role
         ];
     }
 }
