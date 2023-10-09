@@ -34,6 +34,7 @@ class RegisterUserRequestTest extends TestCase
                     ->mixedCase()
                     ->numbers()
                     ->symbols(), 'required', 'confirmed', ],
+                'role' => 'required'
             ],
             $this->registerUserRequest->rules()
         );

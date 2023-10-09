@@ -5,10 +5,12 @@ namespace Tests\Unit\Policy;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\PrintedDesigns\Policies\PrintedDesignPolicy;
 use Domain\Users\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PrintedDesignPolicyTest extends TestCase
 {
+    use RefreshDatabase;
     private PrintedDesignPolicy $policy;
     private User $user;
     private PrintedDesign $printBelongingToUser;
