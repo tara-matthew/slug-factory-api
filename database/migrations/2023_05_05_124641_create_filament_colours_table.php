@@ -17,6 +17,6 @@ return new class() extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('filament_colours');
+        Schema::dropIfExists('filament_colours'); // TODO fix
     }
 };
