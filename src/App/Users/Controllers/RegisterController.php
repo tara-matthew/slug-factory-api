@@ -12,6 +12,7 @@ class RegisterController extends Controller
 {
      public function __invoke(RegisterUserRequest $request): UserResource
      {
+         // TODO could use a UserData DTO and an action here
          $validated = $request->validated();
          $validated['password'] = Hash::make($validated['password']);
 
