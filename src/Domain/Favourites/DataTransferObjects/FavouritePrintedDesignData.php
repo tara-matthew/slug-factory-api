@@ -2,7 +2,7 @@
 
 namespace Domain\Favourites\DataTransferObjects;
 
-use Domain\Favourites\PrintedDesign;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 
 class FavouritePrintedDesignData
 {
