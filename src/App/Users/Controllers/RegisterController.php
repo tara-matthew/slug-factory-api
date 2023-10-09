@@ -10,14 +10,10 @@ use Support\Controllers\Controller;
 
 class RegisterController extends Controller
 {
-    public function __construct(private readonly Hash $hash)
-    {
-    }
-
      public function __invoke(RegisterUserRequest $request): UserResource
      {
          $validated = $request->validated();
-         $validated['password'] = $this->hash::make($validated['password']);
+         $validated['password'] = Hash::make($validated['password']);
 
          $user = User::create($validated);
 
