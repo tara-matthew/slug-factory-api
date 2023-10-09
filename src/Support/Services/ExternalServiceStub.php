@@ -12,7 +12,9 @@ class ExternalServiceStub implements ExternalService
     {
         // Pass the user details to the external service
         // If it needs a token, this will already have been added in the service provider
-
+        // Is it worth returning a response here?
+        // May need error handling, depending on how the third party api works, although ideally the shape of data it expects would conform to the DTO
+        // May want to return the object which it creates
 
     }
 }

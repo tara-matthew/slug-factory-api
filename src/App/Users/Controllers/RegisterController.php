@@ -17,6 +17,8 @@ class RegisterController extends Controller
      {
          $userData = UserDataFactory::fromRequest($request);
          $user = $storeUserAction->execute($userData);
+         // TODO should this be injected, or does this mess up SRP?
+         // sending everything but the API key
          $sendUserDetailsToThirdPartyAction->execute($userData);
 
          return new UserResource($user);
