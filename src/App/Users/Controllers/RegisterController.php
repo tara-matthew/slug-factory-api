@@ -10,14 +10,14 @@ use Support\Controllers\Controller;
 
 class RegisterController extends Controller
 {
-     public function __invoke(RegisterUserRequest $request): UserResource
-     {
-         // TODO could use a UserData DTO and an action here
-         $validated = $request->validated();
-         $validated['password'] = Hash::make($validated['password']);
+    public function __invoke(RegisterUserRequest $request): UserResource
+    {
+        // TODO could use a UserData DTO and an action here
+        $validated = $request->validated();
+        $validated['password'] = Hash::make($validated['password']);
 
-         $user = User::create($validated);
+        $user = User::create($validated);
 
-         return new UserResource($user);
-     }
+        return new UserResource($user);
+    }
 }

@@ -13,9 +13,13 @@ class PrintedDesignPolicyTest extends TestCase
     use RefreshDatabase;
 
     private PrintedDesignPolicy $policy;
+
     private User $user;
+
     private PrintedDesign $printBelongingToUser;
+
     private PrintedDesign $printNotBelongingToUser;
+
     private array $permissionsRequiringSameUserID;
 
     public function setUp(): void
