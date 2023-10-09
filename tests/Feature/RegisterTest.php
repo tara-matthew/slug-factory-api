@@ -10,7 +10,7 @@ use JMac\Testing\Traits\AdditionalAssertions;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
 
-class RegisterControllerTest extends TestCase
+class RegisterTest extends TestCase
 {
     use AdditionalAssertions;
     use RefreshDatabase;

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
-class FavouritePrintedDesignControllerTest extends TestCase
+class FavouritePrintedDesignTest extends TestCase
 {
     use RefreshDatabase;
     use AdditionalAssertions;
