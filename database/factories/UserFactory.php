@@ -29,6 +29,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$rjqKPbHkax2YsyAGwmg6Lul.e.kkkocGzrWN9A3aIqtDnQoIUJbte', // Password123!
             'remember_token' => Str::random(10),
+            'role' => fake()->randomElement(['admin', 'user']), // TODO use an enum
+            'api_key' => Str::random(32)
         ];
     }
 

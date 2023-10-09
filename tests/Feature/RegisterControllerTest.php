@@ -7,12 +7,15 @@ use App\Users\Requests\RegisterUserRequest;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
+use Mockery;
+use Mockery\MockInterface;
+use Support\Services\ExternalServiceStub;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase
 {
-    use AdditionalAssertions;
+    use AdditionalAssertions; // TODO put this in the base test class
     use RefreshDatabase;
 
     /**
@@ -21,12 +24,23 @@ class RegisterControllerTest extends TestCase
      */
     public function it_registers_a_user_successfully(): void
     {
+//        $this->mock(ExternalServiceStub::class, function ($mock) {
+//            $mock->shouldReceive('execute')->andReturn(null);
+//        });
+        $this->instance(
+            ExternalServiceStub::class,
+            Mockery::mock(ExternalServiceStub::class, function (MockInterface $mock) {
+                $mock->shouldReceive('passUserDetails')->once();
+            })
+        );
         $response = $this->postJson('/auth/register', [
             'name' => 'Tara',
             'email' => 'tara@gmail.com',
             'username' => 'tara',
             'password' => 'Password123!',
+            'role' => 'admin',
             'password_confirmation' => 'Password123!',
+
         ]);
 
         $response
@@ -36,13 +50,14 @@ class RegisterControllerTest extends TestCase
                     'name' => 'Tara',
                     'email' => 'tara@gmail.com',
                     'username' => 'tara',
+                    'role' => 'admin'
                 ],
             ]);
     }
 
     /**
      * @test
-     * @covers
+     * @covers \App\Users\Controllers\RegisterController::__invoke
      */
     public function it_generates_an_error_message_on_unsuccessful_registration(): void
     {

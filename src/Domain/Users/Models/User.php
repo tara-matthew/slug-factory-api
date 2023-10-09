@@ -5,6 +5,7 @@ namespace Domain\Users\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Users\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
@@ -65,6 +66,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'api_key',
+        'role'
     ];
 
     /**
@@ -75,6 +78,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'api_key'
     ];
 
     /**
