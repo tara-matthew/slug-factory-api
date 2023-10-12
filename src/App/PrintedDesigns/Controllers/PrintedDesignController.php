@@ -7,6 +7,7 @@ use App\PrintedDesigns\Requests\UpdatePrintedDesignRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\StorePrintedDesignAction;
 use Domain\PrintedDesigns\DataFactories\PrintedDesignDataFactory;
+use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Support\Controllers\Controller;
@@ -20,7 +21,7 @@ class PrintedDesignController extends Controller
 
     public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
-        $printedDesignData = PrintedDesignDataFactory::fromRequest($request);
+        $printedDesignData = PrintedDesignData::from($request->validated());
         $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
 
         return new PrintedDesignResource($printedDesign);

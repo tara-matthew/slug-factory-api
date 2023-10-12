@@ -2,7 +2,9 @@
 
 namespace Domain\PrintedDesigns\DataTransferObjects;
 
-class PrintedDesignData
+use Spatie\LaravelData\Data;
+
+class PrintedDesignData extends Data
 {
     public function __construct(
         public string $title,

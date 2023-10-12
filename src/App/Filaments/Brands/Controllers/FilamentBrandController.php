@@ -6,6 +6,7 @@ use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;
 use App\Filaments\Brands\Resources\FilamentBrandResource;
 use Domain\Filaments\Brands\Actions\StoreFilamentBrandAction;
 use Domain\Filaments\Brands\DataFactories\FilamentBrandDataFactory;
+use Domain\Filaments\Brands\DataTransferObjects\FilamentBrandData;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -20,7 +21,7 @@ class FilamentBrandController extends Controller
 
     public function store(StoreFilamentBrandRequest $request): FilamentBrandResource
     {
-        $filamentBrandData = FilamentBrandDataFactory::fromRequest($request);
+        $filamentBrandData = FilamentBrandData::from($request->validated());
         $filamentBrand = (new StoreFilamentBrandAction())->execute($filamentBrandData);
 
         return new FilamentBrandResource($filamentBrand);
