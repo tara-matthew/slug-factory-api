@@ -6,7 +6,6 @@ use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use App\PrintedDesigns\Requests\UpdatePrintedDesignRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\StorePrintedDesignAction;
-use Domain\PrintedDesigns\DataFactories\PrintedDesignDataFactory;
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
