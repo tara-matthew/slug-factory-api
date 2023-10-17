@@ -20,6 +20,7 @@ class StorePrintedDesignRequest extends FormRequest
             'filament_brand_id' => 'required',
             'filament_colour_id' => 'required',
             'images.*.url' => 'required',
+            'images.*.is_cover_image' => 'required|bool',
 
         ];
     }

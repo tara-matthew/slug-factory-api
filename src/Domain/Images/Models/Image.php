@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Image extends Model
 {
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'is_cover_image'];
 
     // TODO make a resource
     use HasFactory;

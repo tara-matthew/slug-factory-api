@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\PrintedDesigns\Controllers\PrintedDesignController;
 use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
+use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\PrintedDesigns\Models\PrintedDesign;
@@ -14,6 +15,7 @@ use Tests\TestCase;
 
 class PrintedDesignTest extends TestCase
 {
+    // TODO add images into responses for test
     use RefreshDatabase;
     use AdditionalAssertions;
 
@@ -43,7 +45,13 @@ class PrintedDesignTest extends TestCase
          */
         $user = User::factory()->create();
         $this->actingAs($user);
-        $print = PrintedDesign::factory()->for($user)->create();
+        $prints = PrintedDesign::factory(2)->hasImages()->for($user)->create();
+
+        // Make a favourite for the first print and the current user
+        Favourite::factory()->for(
+            $prints[0], 'favouritable'
+        )->create(['user_id' => $user->id]);
+
         $response = $this->getJson('/api/prints');
 
         $response
@@ -51,12 +59,22 @@ class PrintedDesignTest extends TestCase
             ->assertJson([
                 'data' => [
                     [
-                        'id' => $print->id,
+                        'id' => $prints[0]->id,
                         'user_id' => $user->id,
-                        'title' => $print->title,
-                        'description' => $print->description,
-                        'filament_brand_id' => $print->filament_brand_id,
-                        'filament_colour_id' => $print->filament_colour_id,
+                        'title' => $prints[0]->title,
+                        'description' => $prints[0]->description,
+                        'filament_brand_id' => $prints[0]->filament_brand_id,
+                        'filament_colour_id' => $prints[0]->filament_colour_id,
+                        'is_favourite' => true
+                    ],
+                    [
+                        'id' => $prints[1]->id,
+                        'user_id' => $user->id,
+                        'title' => $prints[1]->title,
+                        'description' => $prints[1]->description,
+                        'filament_brand_id' => $prints[1]->filament_brand_id,
+                        'filament_colour_id' => $prints[1]->filament_colour_id,
+                        'is_favourite' => false
                     ],
                 ],
             ]);
@@ -126,6 +144,9 @@ class PrintedDesignTest extends TestCase
             'user_id' => $user->id,
             'filament_brand_id' => $this->brand->id,
             'filament_colour_id' => $this->colour->id,
+            'images' => [
+                ['url' => 'test', 'is_cover_image' => true]
+            ],
         ]);
 
         $response
@@ -137,6 +158,12 @@ class PrintedDesignTest extends TestCase
                     'user_id' => $user->id,
                     'filament_brand_id' => $this->brand->id,
                     'filament_colour_id' => $this->colour->id,
+                    'images' => [
+                        [
+                            'url' => 'test',
+                            'is_cover_image' => true,
+                        ]
+                    ]
                 ],
             ]);
     }

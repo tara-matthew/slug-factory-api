@@ -18,7 +18,8 @@ class StorePrintedDesignAction
         ]);
         foreach ($printedDesignData->images as $image) {
             $printedDesign->images()->create([
-                'url' => $image['url'],
+                'url' => $image->url,
+                'is_cover_image' => $image->is_cover_image
             ]);
         }
 

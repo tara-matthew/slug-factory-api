@@ -4,31 +4,30 @@ namespace App\PrintedDesigns\Controllers;
 
 use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use App\PrintedDesigns\Requests\UpdatePrintedDesignRequest;
-use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\StorePrintedDesignAction;
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Spatie\LaravelData\DataCollection;
 use Support\Controllers\Controller;
 
 class PrintedDesignController extends Controller
 {
-    public function index(): AnonymousResourceCollection
+    public function index(): DataCollection
     {
-        return PrintedDesignResource::collection(PrintedDesign::withUserFavourites());
+        return PrintedDesignData::collection(PrintedDesign::withUserFavourites());
     }
 
-    public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
+    public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignData
     {
         $printedDesignData = PrintedDesignData::from($request->validated());
         $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
 
-        return new PrintedDesignResource($printedDesign);
+        return PrintedDesignData::from($printedDesign);
     }
 
-     public function show(PrintedDesign $printedDesign): PrintedDesignResource
+     public function show(PrintedDesign $printedDesign): PrintedDesignData
      {
-         return new PrintedDesignResource($printedDesign);
+         return PrintedDesignData::from($printedDesign);
      }
 
     /**

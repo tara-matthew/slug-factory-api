@@ -34,6 +34,7 @@ class StorePrintedDesignRequestTest extends TestCase
                 'filament_brand_id' => 'required',
                 'filament_colour_id' => 'required',
                 'images.*.url' => 'required',
+                'images.*.is_cover_image' => 'required|bool',
             ],
             $this->printedDesignRequest->rules()
         );
