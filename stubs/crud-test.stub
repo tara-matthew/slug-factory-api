@@ -8,9 +8,6 @@ use Tests\TestCase;
 
 class {{ class }} extends TestCase
 {
-    use RefreshDatabase;
-    use AdditionalAssertions;
-
     /** @test */
     public function it_returns_a_list_of_(): void
     {

@@ -16,9 +16,6 @@ use Tests\TestCase;
 class PrintedDesignTest extends TestCase
 {
     // TODO add images into responses for test
-    use RefreshDatabase;
-    use AdditionalAssertions;
-
     private FilamentBrand $brand;
 
     private FilamentColour $colour;
@@ -38,7 +35,6 @@ class PrintedDesignTest extends TestCase
      */
     public function it_returns_a_list_of_prints(): void
     {
-        // TODO Add several prints rather than just one
         /**
          * @var User $user
          * @var PrintedDesign $print
@@ -52,7 +48,7 @@ class PrintedDesignTest extends TestCase
             $prints[0], 'favouritable'
         )->create(['user_id' => $user->id]);
 
-        $response = $this->getJson('/api/prints');
+        $response = $this->getJson(route('prints.index'));
 
         $response
             ->assertOk()
@@ -90,7 +86,7 @@ class PrintedDesignTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $response = $this->getJson('api/prints');
+        $response = $this->getJson(route('prints.index'));
 
         $response
             ->assertOk()
@@ -114,7 +110,7 @@ class PrintedDesignTest extends TestCase
         $this->actingAs($user);
         // TODO Use 'has' magic method with the factory
         $print = PrintedDesign::factory()->for($user)->create();
-        $response = $this->getJson("/api/prints/$print->id");
+        $response = $this->getJson(route('prints.show', ['printed_design' => $print]));
 
         $response
             ->assertStatus(200)
@@ -138,7 +134,7 @@ class PrintedDesignTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-        $response = $this->postJson('/api/prints', [
+        $response = $this->postJson(route('prints.store'), [
             'title' => 'My title',
             'description' => 'My description',
             'user_id' => $user->id,

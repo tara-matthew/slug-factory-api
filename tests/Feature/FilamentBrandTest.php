@@ -12,9 +12,6 @@ use Tests\TestCase;
 
 class FilamentBrandTest extends TestCase
 {
-    use RefreshDatabase;
-    use AdditionalAssertions;
-
     /** @test */
     public function it_returns_a_list_of_filament_brands()
     {
