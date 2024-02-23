@@ -2,20 +2,18 @@
 
 namespace App\Filaments\Colours\Controllers;
 
-use Domain\Favourites\FilamentColour;
+use App\Filaments\Colours\Resources\FilamentColourResource;
+use Domain\Filaments\Colours\Models\FilamentColour;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Support\Controllers\Controller;
 
 class FilamentColourController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        return FilamentColourResource::collection(FilamentColour::all());
+
     }
 
     /**
