@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Domain\Favourites\Models\Favourite;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -10,9 +12,13 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory([
+        $user = User::factory([
             'username' => 'tara',
         ])->create();
+        Favourite::factory(['user_id' => $user->id])->for(
+            PrintedDesign::factory(),
+            'favouritable'
+        )->create();
 
         // TODO use UserSeeder
         User::factory(10)->create();

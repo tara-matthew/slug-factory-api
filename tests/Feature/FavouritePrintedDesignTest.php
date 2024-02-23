@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Database\Factories\UserFactory;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
@@ -33,10 +34,7 @@ class FavouritePrintedDesignTest extends TestCase
         // arrange
         $user = User::factory()->create();
         $this->actingAs($user);
-        Favourite::factory(['user_id' => $user->id])->count(3)->for(
-            PrintedDesign::factory(),
-            'favouritable'
-        )->create();
+        $this->createFavouritesForUser($user);
 
         // act
         $response = $this->getJson("/api/users/$user->id/favourite-printed-designs");
@@ -112,4 +110,15 @@ class FavouritePrintedDesignTest extends TestCase
 //    }
 
     // TODO add a test to check when user isn't authorised
+
+    private function createFavouritesForUser(User $user, int $count = 3): void
+    {
+        for ($i = 0; $i < $count; $i++) {
+            Favourite::factory(['user_id' => $user->id])->for(
+                PrintedDesign::factory(),
+                'favouritable'
+            )->create();
+        }
+
+    }
 }

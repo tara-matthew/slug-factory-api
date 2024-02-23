@@ -2,6 +2,7 @@
 
 namespace Domain\Favourites\Models;
 
+use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -20,6 +21,13 @@ class Favourite extends Model
     {
         return $this->morphTo();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // TODO set up proper relationship with user
 
     public function scopeByUser($query, $user)
     {
