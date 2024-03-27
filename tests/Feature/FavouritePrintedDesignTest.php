@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Database\Factories\UserFactory;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;

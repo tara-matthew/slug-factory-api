@@ -8,8 +8,8 @@ use Spatie\LaravelData\Data;
 class FavouritePrintedDesignData extends Data
 {
     public function __construct(
-        public PrintedDesign $printedDesign,
-//        public int $user_id,
+//        public PrintedDesign $printedDesign,
+        public int $user_id,
     ) {
     }
 }

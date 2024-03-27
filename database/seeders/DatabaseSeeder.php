@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
 //        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
 
         $this->call([
+            AdminSeeder::class,
             FilamentBrandSeeder::class,
             FilamentColourSeeder::class,
             PrintedDesignSeeder::class,

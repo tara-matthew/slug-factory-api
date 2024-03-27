@@ -6,8 +6,6 @@ use App\Filaments\Brands\Controllers\FilamentBrandController;
 use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Users\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
 class FilamentBrandTest extends TestCase

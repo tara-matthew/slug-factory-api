@@ -2,10 +2,13 @@
 
 namespace App\PrintedDesigns\Requests;
 
+use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Illuminate\Foundation\Http\FormRequest;
+use Spatie\LaravelData\WithData;
 
 class StorePrintedDesignRequest extends FormRequest
 {
+//    use WithData;
     public function authorize(): bool
     {
         return true;
@@ -24,4 +27,9 @@ class StorePrintedDesignRequest extends FormRequest
 
         ];
     }
+
+//    protected function dataClass(): string
+//    {
+//        return PrintedDesignData::class;
+//    }
 }

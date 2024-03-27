@@ -10,6 +10,10 @@ class FilamentColour extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function printedDesigns()
     {
         return $this->hasMany(PrintedDesign::class);
