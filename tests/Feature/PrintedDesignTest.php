@@ -9,6 +9,7 @@ use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PrintedDesignTest extends TestCase
@@ -25,12 +26,7 @@ class PrintedDesignTest extends TestCase
         $this->colour = FilamentColour::factory()->create();
     }
 
-    /**
-     * @test
-     * @covers \App\PrintedDesigns\Controllers\PrintedDesignController::index
-     *
-     * @return void
-     */
+    #[Test]
     public function it_returns_a_list_of_prints(): void
     {
         /**
@@ -74,7 +70,7 @@ class PrintedDesignTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_an_empty_collection_of_prints_when_no_records_exist()
     {
         /**
@@ -94,10 +90,7 @@ class PrintedDesignTest extends TestCase
             ]);
     }
 
-    /**
-     * @test
-     * @covers
-     */
+    #[Test]
     public function it_returns_a_specific_print(): void
     {
         /**
@@ -124,10 +117,7 @@ class PrintedDesignTest extends TestCase
             ]);
     }
 
-    /**
-     * @test
-     * @covers \App\PrintedDesigns\Controllers\PrintedDesignController::store
-     */
+    #[Test]
     public function it_stores_a_print(): void
     {
         $user = User::factory()->create();
@@ -162,10 +152,7 @@ class PrintedDesignTest extends TestCase
             ]);
     }
 
-    /**
-     * @test
-     * @covers \App\PrintedDesigns\Controllers\PrintedDesignController::store
-     */
+    #[Test]
     public function store_validates_using_a_form_request(): void
     {
         $this->assertActionUsesFormRequest(

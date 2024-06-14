@@ -6,6 +6,7 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\PrintedDesigns\Policies\PrintedDesignPolicy;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class PrintedDesignPolicyTest extends TestCase
@@ -32,27 +33,21 @@ class PrintedDesignPolicyTest extends TestCase
         $this->printNotBelongingToUser = PrintedDesign::factory()->create();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_view_permission_set_up_correctly(): void
     {
         $this->assertTrue($this->policy->view($this->user, $this->printBelongingToUser));
         $this->assertFalse($this->policy->view($this->user, $this->printNotBelongingToUser));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_update_permission_set_up_correctly(): void
     {
         $this->assertTrue($this->policy->update($this->user, $this->printBelongingToUser));
         $this->assertFalse($this->policy->update($this->user, $this->printNotBelongingToUser));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_delete_permission_set_up_correctly(): void
     {
         $this->assertTrue($this->policy->delete($this->user, $this->printBelongingToUser));

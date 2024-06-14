@@ -7,6 +7,7 @@ use App\Users\Requests\RegisterUserRequest;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 use Tests\TestCase;
 
@@ -15,10 +16,7 @@ class RegisterTest extends TestCase
     use AdditionalAssertions;
     use RefreshDatabase;
 
-    /**
-     * @test
-     * @covers \App\Users\Controllers\RegisterController::__invoke
-     */
+    #[Test]
     public function it_registers_a_user_successfully(): void
     {
         $response = $this->postJson('/auth/register', [
@@ -40,10 +38,7 @@ class RegisterTest extends TestCase
             ]);
     }
 
-    /**
-     * @test
-     * @covers
-     */
+    #[Test]
     public function it_generates_an_error_message_on_unsuccessful_registration(): void
     {
         $user = User::factory()->create();
@@ -76,10 +71,7 @@ class RegisterTest extends TestCase
             ]);
     }
 
-    /**
-     * @test
-     * @covers
-     */
+    #[Test]
     public function it_validates_using_a_form_request(): void
     {
         $this->assertActionUsesFormRequest(

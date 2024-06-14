@@ -5,6 +5,7 @@ namespace Tests\Unit\FormRequest;
 use App\Users\Requests\RegisterUserRequest;
 use Illuminate\Validation\Rules\Password;
 use JMac\Testing\Traits\AdditionalAssertions;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RegisterUserRequestTest extends TestCase
@@ -19,9 +20,7 @@ class RegisterUserRequestTest extends TestCase
         $this->registerUserRequest = new RegisterUserRequest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_rules_set_up_as_expected()
     {
         $this->assertEquals(

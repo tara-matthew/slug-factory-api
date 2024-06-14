@@ -3,6 +3,7 @@
 namespace Tests\Unit\FormRequest;
 
 use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class StoreFilamentBrandRequestTest extends TestCase
@@ -15,9 +16,7 @@ class StoreFilamentBrandRequestTest extends TestCase
         $this->storeFilamentBrandRequest = new StoreFilamentBrandRequest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_rules_set_up_as_expected(): void
     {
         $this->assertEquals(

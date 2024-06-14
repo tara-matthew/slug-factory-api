@@ -4,6 +4,7 @@ namespace Tests\Unit\FormRequest;
 
 use App\Users\Requests\LoginUserRequest;
 use JMac\Testing\Traits\AdditionalAssertions;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class LoginUserRequestTest extends TestCase
@@ -18,9 +19,7 @@ class LoginUserRequestTest extends TestCase
         $this->loginUserRequest = new LoginUserRequest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_rules_set_up_as_expected()
     {
         $this->assertEquals(

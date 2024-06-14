@@ -9,12 +9,12 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use JMac\Testing\Traits\AdditionalAssertions;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class FavouritePrintedDesignTest extends TestCase
 {
     use RefreshDatabase;
-    use AdditionalAssertions;
 
     private FilamentBrand $brand;
 
@@ -27,7 +27,7 @@ class FavouritePrintedDesignTest extends TestCase
         $this->colour = FilamentColour::factory()->create();
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_a_list_of_favourite_prints(): void
     {
         // arrange
@@ -56,7 +56,7 @@ class FavouritePrintedDesignTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_an_empty_collection_of_favourite_prints_when_no_records_exist(): void
     {
         // arrange
@@ -75,7 +75,7 @@ class FavouritePrintedDesignTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_stores_a_favourite_print(): void
     {
         // arrange

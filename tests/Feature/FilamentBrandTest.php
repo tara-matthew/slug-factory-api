@@ -6,11 +6,12 @@ use App\Filaments\Brands\Controllers\FilamentBrandController;
 use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Users\Models\User;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class FilamentBrandTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_returns_a_list_of_filament_brands()
     {
         // arrange
@@ -40,7 +41,7 @@ class FilamentBrandTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_an_empty_collection_of_filament_brands_when_no_records_exist()
     {
         $user = User::factory()->create();
@@ -56,7 +57,7 @@ class FilamentBrandTest extends TestCase
             ]);
     }
 
-    /** @test  */
+    #[Test]
     public function it_returns_a_specific_filament_brand(): void
     {
         /**
@@ -78,7 +79,7 @@ class FilamentBrandTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_stores_a_filament_brand(): void
     {
         $user = User::factory()->create();
@@ -97,7 +98,7 @@ class FilamentBrandTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function store_validates_using_a_form_request()
     {
         $this->assertActionUsesFormRequest(
