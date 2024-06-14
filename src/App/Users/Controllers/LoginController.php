@@ -6,9 +6,8 @@ use App\Users\Requests\LoginUserRequest;
 use App\Users\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Support\Controllers\Controller;
 
-class LoginController extends Controller
+class LoginController
 {
     public function __invoke(LoginUserRequest $request): UserResource | JsonResponse
     {
