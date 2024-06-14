@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\PrintedDesigns;
 
-use App\PrintedDesigns\Controllers\PrintedDesignController;
 use App\PrintedDesigns\Controllers\StorePrintedDesignController;
 use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use Domain\Filaments\Brands\Models\FilamentBrand;
@@ -30,16 +29,15 @@ class StorePrintedDesignTest extends TestCase
     {
         $user = User::factory()->create();
         $this->actingAs($user);
-//        $printedDesign = [
-//            'title' => 'My title',
-//            'description' => 'My description',
-//            'user_id' => $user->id,
-//            'filament_brand_id' => $this->brand->id,
-//            'filament_colour_id' => $this->colour->id,
-//            'images' => [
-//                ['url' => 'test', 'is_cover_image' => true]
-//        ],
-
+        //        $printedDesign = [
+        //            'title' => 'My title',
+        //            'description' => 'My description',
+        //            'user_id' => $user->id,
+        //            'filament_brand_id' => $this->brand->id,
+        //            'filament_colour_id' => $this->colour->id,
+        //            'images' => [
+        //                ['url' => 'test', 'is_cover_image' => true]
+        //        ],
 
         $response = $this->postJson(route('prints.store', [
             'title' => 'My title',
@@ -48,7 +46,7 @@ class StorePrintedDesignTest extends TestCase
             'filament_brand_id' => $this->brand->id,
             'filament_colour_id' => $this->colour->id,
             'images' => [
-                ['url' => 'test', 'is_cover_image' => true]
+                ['url' => 'test', 'is_cover_image' => true],
             ],
         ]));
 
@@ -65,8 +63,8 @@ class StorePrintedDesignTest extends TestCase
                         [
                             'url' => 'test',
                             'is_cover_image' => true,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
             ]);
     }

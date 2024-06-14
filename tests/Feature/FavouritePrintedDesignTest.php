@@ -8,7 +8,6 @@ use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use JMac\Testing\Traits\AdditionalAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -99,14 +98,14 @@ class FavouritePrintedDesignTest extends TestCase
                 ],
             ]);
     }
-//
-//    /** @test */
-//    public function store_validates_using_a_form_request(): void
-//    {
-//        $this->assertActionUsesFormRequest(
-//
-//        );
-//    }
+    //
+    //    /** @test */
+    //    public function store_validates_using_a_form_request(): void
+    //    {
+    //        $this->assertActionUsesFormRequest(
+    //
+    //        );
+    //    }
 
     // TODO add a test to check when user isn't authorised
 

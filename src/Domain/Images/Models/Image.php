@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Image whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Image whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Image whereUserId($value)
+ *
  * @mixin Builder
  */
 class Image extends Model

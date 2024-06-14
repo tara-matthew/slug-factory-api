@@ -8,7 +8,7 @@ use Spatie\LaravelData\WithData;
 
 class StorePrintedDesignRequest extends FormRequest
 {
-//    use WithData;
+    //    use WithData;
     public function authorize(): bool
     {
         return true;
@@ -28,8 +28,8 @@ class StorePrintedDesignRequest extends FormRequest
         ];
     }
 
-//    protected function dataClass(): string
-//    {
-//        return PrintedDesignData::class;
-//    }
+    //    protected function dataClass(): string
+    //    {
+    //        return PrintedDesignData::class;
+    //    }
 }

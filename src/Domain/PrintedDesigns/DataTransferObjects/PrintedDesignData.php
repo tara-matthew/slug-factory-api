@@ -2,11 +2,8 @@
 
 namespace Domain\PrintedDesigns\DataTransferObjects;
 
-use Domain\Favourites\DataTransferObjects\FavouritePrintedDesignData;
 use Domain\Images\DataTransferObjects\ImageData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Client\Request;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
@@ -46,7 +43,8 @@ class PrintedDesignData extends Data
         );
     }
 
-    public static function fromRequest(array $request) {
-//        dd('here', $request['title']);
+    public static function fromRequest(array $request)
+    {
+        //        dd('here', $request['title']);
     }
 }

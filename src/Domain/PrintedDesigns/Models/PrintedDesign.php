@@ -38,6 +38,7 @@ use Illuminate\Support\Carbon;
  * @method static PrintedDesign create($array = [])
  *
  * @property-read User $user
+ *
  * @mixin Builder
  */
 class PrintedDesign extends Model

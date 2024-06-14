@@ -39,7 +39,7 @@ class IndexPrintedDesignsTest extends TestCase
                         'description' => $prints[0]->description,
                         'filament_brand_id' => $prints[0]->filament_brand_id,
                         'filament_colour_id' => $prints[0]->filament_colour_id,
-                        'is_favourite' => true
+                        'is_favourite' => true,
                     ],
                     [
                         'id' => $prints[1]->id,
@@ -48,7 +48,7 @@ class IndexPrintedDesignsTest extends TestCase
                         'description' => $prints[1]->description,
                         'filament_brand_id' => $prints[1]->filament_brand_id,
                         'filament_colour_id' => $prints[1]->filament_colour_id,
-                        'is_favourite' => false
+                        'is_favourite' => false,
                     ],
                 ],
             ]);

@@ -29,7 +29,6 @@ class FilamentColourController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -62,7 +61,6 @@ class FilamentColourController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Domain\Favourites\FilamentColour  $filamentColour
      * @return \Illuminate\Http\Response
      */

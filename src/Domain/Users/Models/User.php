@@ -47,6 +47,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read int|null $printed_designs_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+ *
  * @mixin Builder
  */
 class User extends Authenticatable

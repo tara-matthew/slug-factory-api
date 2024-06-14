@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // TODO use UserSeeder
         User::factory(10)->create();
 
-//        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
+        //        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
 
         $this->call([
             AdminSeeder::class,

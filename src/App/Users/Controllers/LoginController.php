@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController
 {
-    public function __invoke(LoginUserRequest $request): UserResource | JsonResponse
+    public function __invoke(LoginUserRequest $request): UserResource|JsonResponse
     {
         $validated = $request->validated();
         if (! Auth::attempt($validated)) {
