@@ -6,6 +6,7 @@ use App\Filaments\Colours\Controllers\FilamentColourController;
 use App\PrintedDesigns\Controllers\IndexPrintedDesignsController;
 use App\PrintedDesigns\Controllers\PrintedDesignController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
+use App\PrintedDesigns\Controllers\StorePrintedDesignController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,8 @@ Route::get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/prints', IndexPrintedDesignsController::class)->name('prints.index');
     Route::get('/prints/{printedDesign}', ShowPrintedDesignController::class)->name('prints.show');
-    Route::resource('prints', PrintedDesignController::class)->parameters(['prints' => 'printed_design'])->except(['index', 'show']);
+    Route::post('/prints', StorePrintedDesignController::class)->name('prints.store');
+
     Route::resource('filament-brands', FilamentBrandController::class);
     Route::resource('users.favourite-printed-designs', FavouritePrintedDesignController::class)->parameters(['favourite-printed-designs' => 'printed_design']);
 });

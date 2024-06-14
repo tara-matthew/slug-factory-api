@@ -14,13 +14,13 @@ use Support\Controllers\Controller;
 
 class PrintedDesignController
 {
-    public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
-    {
-        $printedDesignData = PrintedDesignData::from($request->validated());
-        $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
-
-        return new PrintedDesignResource($printedDesign);
-    }
+//    public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
+//    {
+//        $printedDesignData = PrintedDesignData::from($request->validated());
+//        $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
+//
+//        return new PrintedDesignResource($printedDesign);
+//    }
 
     /**
      * Update the specified resource in storage.
