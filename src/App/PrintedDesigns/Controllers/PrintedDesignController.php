@@ -12,13 +12,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Spatie\LaravelData\DataCollection;
 use Support\Controllers\Controller;
 
-class PrintedDesignController extends Controller
+class PrintedDesignController
 {
-    public function index(): AnonymousResourceCollection
-    {
-        return PrintedDesignResource::collection(PrintedDesign::withUserFavourites());
-    }
-
     public function store(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
         $printedDesignData = PrintedDesignData::from($request->validated());
@@ -26,11 +21,6 @@ class PrintedDesignController extends Controller
 
         return new PrintedDesignResource($printedDesign);
     }
-
-     public function show(PrintedDesign $printedDesign): PrintedDesignResource
-     {
-         return new PrintedDesignResource($printedDesign);
-     }
 
     /**
      * Update the specified resource in storage.
