@@ -6,7 +6,7 @@ use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class IndexPrintedDesignsController
+class IndexMyPrintedDesignsController
 {
     public function __invoke(): AnonymousResourceCollection
     {

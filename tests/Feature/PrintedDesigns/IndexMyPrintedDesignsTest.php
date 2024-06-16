@@ -8,7 +8,7 @@ use Domain\Users\Models\User;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-class IndexPrintedDesignsTest extends TestCase
+class IndexMyPrintedDesignsTest extends TestCase
 {
     #[Test]
     public function it_returns_a_list_of_prints(): void
@@ -26,7 +26,7 @@ class IndexPrintedDesignsTest extends TestCase
             $prints[0], 'favouritable'
         )->create(['user_id' => $user->id]);
 
-        $response = $this->getJson(route('prints.index'));
+        $response = $this->getJson(route('my.prints.index'));
 
         $response
             ->assertOk()
@@ -64,7 +64,7 @@ class IndexPrintedDesignsTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $response = $this->getJson(route('prints.index'));
+        $response = $this->getJson(route('my.prints.index'));
 
         $response
             ->assertOk()
