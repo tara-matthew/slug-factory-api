@@ -84,6 +84,6 @@ class PrintedDesign extends Model
     {
         return $query->with(['favourites' => function (MorphMany $morphMany) {
             $morphMany->where('user_id', auth()->id());
-        }])->get();
+        }]);
     }
 }

@@ -10,6 +10,8 @@ class IndexPrintedDesignsController
 {
     public function __invoke(): AnonymousResourceCollection
     {
-        return PrintedDesignResource::collection(PrintedDesign::withUserFavourites());
+        return PrintedDesignResource::collection(
+            PrintedDesign::withUserFavourites()->paginate(30)
+        );
     }
 }
