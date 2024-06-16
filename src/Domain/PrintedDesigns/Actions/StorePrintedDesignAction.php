@@ -4,6 +4,7 @@ namespace Domain\PrintedDesigns\Actions;
 
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Illuminate\Support\Facades\Auth;
 
 class StorePrintedDesignAction
 {
@@ -14,7 +15,7 @@ class StorePrintedDesignAction
             'description' => $printedDesignData->description,
         ]);
 
-        $printedDesign->user()->associate($printedDesignData->user_id);
+        $printedDesign->user()->associate(Auth::user());
         $printedDesign->filamentBrand()->associate($printedDesignData->filament_brand_id);
         $printedDesign->filamentColour()->associate($printedDesignData->filament_colour_id);
         $printedDesign->save();

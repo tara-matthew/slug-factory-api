@@ -15,7 +15,6 @@ class PrintedDesignData extends Data
         public ?int $id,
         public string $title,
         public string $description,
-        public int $user_id,
         public int $filament_brand_id,
         public int $filament_colour_id,
         #[DataCollectionOf(ImageData::class)]

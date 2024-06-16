@@ -28,9 +28,8 @@ class StorePrintedDesignRequestTest extends TestCase
             [
                 'title' => 'required|max:255',
                 'description' => 'required',
-                'user_id' => 'required|exists:users,id',
-                'filament_brand_id' => 'required',
-                'filament_colour_id' => 'required',
+                'filament_brand_id' => 'required:exists:filament_brands,id',
+                'filament_colour_id' => 'required:exists:filament_colours,id',
                 'images.*.url' => 'required',
                 'images.*.is_cover_image' => 'required|bool',
             ],
