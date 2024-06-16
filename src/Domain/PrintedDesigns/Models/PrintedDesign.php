@@ -50,9 +50,6 @@ class PrintedDesign extends Model
     protected $fillable = [
         'title',
         'description',
-        'user_id',
-        'filament_brand_id',
-        'filament_colour_id',
     ];
 
     public function user(): BelongsTo
