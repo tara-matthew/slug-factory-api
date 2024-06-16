@@ -26,7 +26,6 @@ class StorePrintedDesignAction
             ]);
         }
 
-
         return $printedDesign;
     }
 }
