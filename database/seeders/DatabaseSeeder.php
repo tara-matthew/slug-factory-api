@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
         $user = User::factory([
             'username' => 'tara',
         ])->create();
-        Favourite::factory(['user_id' => $user->id])->for(
-            PrintedDesign::factory(),
-            'favouritable'
-        )->create();
+//        Favourite::factory(['user_id' => $user->id])->for(
+//            PrintedDesign::factory(),
+//            'favouritable'
+//        )->create();
 
         // TODO use UserSeeder
         User::factory(10)->create();
