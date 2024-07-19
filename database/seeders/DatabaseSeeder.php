@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory([
-            'username' => 'tara',
-        ])->create();
+//        $user = User::factory([
+//            'username' => 'tara',
+//        ])->create();
 //        Favourite::factory(['user_id' => $user->id])->for(
 //            PrintedDesign::factory(),
 //            'favouritable'
