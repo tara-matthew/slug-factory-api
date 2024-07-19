@@ -77,10 +77,10 @@ class PrintedDesign extends Model
         return $this->morphMany(Favourite::class, 'favouritable');
     }
 
-    public function scopewithUserFavourites($query)
+    public function scopeWithUserFavourites($query)
     {
         return $query->with(['favourites' => function (MorphMany $morphMany) {
-            $morphMany->where('user_id', auth()->id());
+            $morphMany->where('user_id', auth()->id()); //wherebelongsto?
         }]);
     }
 }
