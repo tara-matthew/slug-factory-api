@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,16 @@ class PrintedDesignSeeder extends Seeder
      */
     public function run()
     {
-        PrintedDesign::factory(30)->hasImages(3)->hasFavourites()->create();
+        $brands = FilamentBrand::all();
+        $colours = FilamentColour::all();
+
+        for ($i = 0; $i < 30; $i++) {
+            PrintedDesign::factory()
+                ->recycle($brands->random())
+                ->recycle($colours->random())
+                ->hasImages()
+                ->hasFavourites()
+                ->create();
+        }
     }
 }
