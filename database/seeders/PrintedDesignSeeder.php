@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Users\Models\User;
 use Illuminate\Database\Seeder;
 
 class PrintedDesignSeeder extends Seeder
@@ -20,11 +22,13 @@ class PrintedDesignSeeder extends Seeder
         $colours = FilamentColour::all();
 
         for ($i = 0; $i < 30; $i++) {
+            $user = User::factory()->create();
             PrintedDesign::factory()
-                ->recycle($brands->random())
-                ->recycle($colours->random())
+                ->for($brands->random())
+                ->for($colours->random())
+                ->for($user)
                 ->hasImages()
-                ->hasFavourites()
+                ->hasFavourites(['user_id' => $user->id])
                 ->create();
         }
     }
