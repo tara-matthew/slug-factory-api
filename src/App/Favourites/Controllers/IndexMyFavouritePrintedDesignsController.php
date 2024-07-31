@@ -2,6 +2,7 @@
 
 namespace App\Favourites\Controllers;
 
+use App\Favourites\Resources\FavouriteResource;
 use App\PrintedDesigns\Resources\FavouritePrintedDesignResource;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\Favourites\Models\Favourite;
