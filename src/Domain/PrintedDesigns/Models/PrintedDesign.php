@@ -2,6 +2,7 @@
 
 namespace Domain\PrintedDesigns\Models;
 
+use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
@@ -82,5 +83,15 @@ class PrintedDesign extends Model
         return $query->with(['favourites' => function (MorphMany $morphMany) {
             $morphMany->where('user_id', auth()->id()); //wherebelongsto?
         }]);
+    }
+
+    public function toResource()
+    {
+        return new PrintedDesignResource($this);
+    }
+
+    public function isFavourited() // todo put into a trait
+    {
+        return $this->favourites()->where('user_id', 1)->exists();
     }
 }

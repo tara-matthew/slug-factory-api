@@ -4,7 +4,7 @@ namespace App\Favourites\Controllers;
 
 use App\Favourites\Resources\FavouriteResource;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
-use Domain\Favourites\Actions\StoreFavouritePrintedDesignAction;
+use Domain\Favourites\Actions\StoreFavouriteAction;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
@@ -18,7 +18,7 @@ class FavouritePrintedDesignController extends Controller
         return PrintedDesignResource::collection(Favourite::byUser($user));
     }
 
-    public function update(User $user, PrintedDesign $printedDesign, StoreFavouritePrintedDesignAction $storeFavouritePrintedDesignAction): FavouriteResource
+    public function update(User $user, PrintedDesign $printedDesign, StoreFavouriteAction $storeFavouritePrintedDesignAction): FavouriteResource
     {
         $favourite = $storeFavouritePrintedDesignAction->execute($printedDesign, $user);
 

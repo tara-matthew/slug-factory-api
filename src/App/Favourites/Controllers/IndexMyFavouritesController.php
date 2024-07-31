@@ -2,6 +2,7 @@
 
 namespace App\Favourites\Controllers;
 
+use App\Favourites\Requests\IndexFavouritesRequest;
 use App\Favourites\Resources\FavouriteResource;
 use App\PrintedDesigns\Resources\FavouritePrintedDesignResource;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
@@ -10,16 +11,16 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class IndexMyFavouritePrintedDesignsController
+class IndexMyFavouritesController
 {
-    public function __invoke()
+    public function __invoke(IndexFavouritesRequest $request)
     {
-        $user = User::first();
-        $favouritePrints =  $user->favourites()
-            ->where('favouritable_type', PrintedDesign::class)
+        $user = User::find(1);
+        $favourites =  $user->favourites()
+            ->where('favouritable_type', $request->validated('type'))
             ->with('favouritable')
             ->get();
 
-        return FavouritePrintedDesignResource::collection($favouritePrints);
+        return FavouriteResource::collection($favourites);
     }
 }

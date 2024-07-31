@@ -1,12 +1,14 @@
 <?php
 
+use App\Favourites\Controllers\DeleteFavouriteController;
 use App\Favourites\Controllers\FavouritePrintedDesignController;
-use App\Favourites\Controllers\IndexMyFavouritePrintedDesignsController;
+use App\Favourites\Controllers\IndexMyFavouritesController;
 use App\Filaments\Brands\Controllers\FilamentBrandController;
 use App\Filaments\Colours\Controllers\FilamentColourController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
+use App\PrintedDesigns\Controllers\StoreFavouriteController;
 use App\PrintedDesigns\Controllers\StorePrintedDesignController;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
@@ -30,7 +32,9 @@ use Illuminate\Support\Facades\Route;
     Route::resource('filament-brands', FilamentBrandController::class);
 //    Route::resource('users.favourite-printed-designs', FavouritePrintedDesignController::class)->parameters(['favourite-printed-designs' => 'printed_design']); // todo change to my
 
-    Route::get('/favourites/printed-designs', IndexMyFavouritePrintedDesignsController::class)->name('my.favourites.printed-designs.index'); // todo this may replace the favourite printed design controller
+    Route::get('/favourites', IndexMyFavouritesController::class)->name('my.favourites.printed-designs.index'); // todo this may replace the favourite printed design controller
+    Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
+    Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
 
 //    Route::post('/favourites');
 //});

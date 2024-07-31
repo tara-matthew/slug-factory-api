@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -32,5 +35,10 @@ class AppServiceProvider extends ServiceProvider
                 ->numbers()
                 ->symbols();
         });
+
+        Relation::enforceMorphMap([
+            'printed_design' => PrintedDesign::class,
+            'filament_brand' => FilamentBrand::class,
+        ]);
     }
 }
