@@ -20,15 +20,17 @@ class PrintedDesignResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'type' => 'PrintedDesign',
             'user_id' => $this->user_id,
             'title' => $this->title,
             'description' => $this->description,
-            'images' => ImageResource::collection($this->images),
+            'images' => ImageResource::collection($this->images), // whenloaded
             'filament_brand_id' => $this->filament_brand_id,
             'filament_colour_id' => $this->filament_colour_id,
             'is_favourite' => (bool) $this->favourites->filter(function ($favourite) {
                 return $favourite->user_id === auth()->id();
             })->first(), // exists?
+            'created_at' => $this->created_at
             // TODO add created and updated_at
         ];
     }

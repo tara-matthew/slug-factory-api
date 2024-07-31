@@ -13,11 +13,6 @@ class FavouriteFactory extends Factory
 {
     protected $model = Favourite::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [

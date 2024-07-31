@@ -11,10 +11,8 @@ class Favourite extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = [
-        'user_id',
+//        'user_id',
     ];
 
     public function favouritable(): MorphTo
@@ -31,9 +29,9 @@ class Favourite extends Model
 
     public function scopeByUser($query, $user)
     {
-        return $query->where(
-            ['user_id' => $user->id, 'favouritable_type' => 'Domain\PrintedDesigns\Models\PrintedDesign']
-        )
+        return $query->where('user_id', $user->id)
+            ->where('favouritable_type','Domain\PrintedDesigns\Models\PrintedDesign')
+            ->with('favouritable')
             ->get()
             ->pluck('favouritable');
     }

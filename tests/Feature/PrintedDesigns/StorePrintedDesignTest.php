@@ -42,7 +42,6 @@ class StorePrintedDesignTest extends TestCase
         $response = $this->postJson(route('prints.store', [
             'title' => 'My title',
             'description' => 'My description',
-            'user_id' => $user->id,
             'filament_brand_id' => $this->brand->id,
             'filament_colour_id' => $this->colour->id,
             'images' => [
