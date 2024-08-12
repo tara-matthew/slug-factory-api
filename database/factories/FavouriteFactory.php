@@ -6,9 +6,6 @@ use Domain\Favourites\Models\Favourite;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Favourite>
- */
 class FavouriteFactory extends Factory
 {
     protected $model = Favourite::class;

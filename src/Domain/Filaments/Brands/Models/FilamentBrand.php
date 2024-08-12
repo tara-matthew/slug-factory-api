@@ -6,6 +6,7 @@ use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class FilamentBrand extends Model
@@ -16,7 +17,7 @@ class FilamentBrand extends Model
         'name',
     ];
 
-    public function printedDesigns()
+    public function printedDesigns(): HasMany
     {
         return $this->hasMany(PrintedDesign::class);
     }

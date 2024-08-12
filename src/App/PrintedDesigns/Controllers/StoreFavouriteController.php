@@ -20,7 +20,7 @@ class StoreFavouriteController // could have toggle favourite controller instead
     /**
      * @throws ItemAlreadyFavouritedException
      */
-    public function __invoke(string $type, int $id, StoreFavouriteAction $storeFavouriteAction)
+    public function __invoke(string $type, int $id, StoreFavouriteAction $storeFavouriteAction): FavouriteResource
     {
         $model = $this->identifyModel($type, $id);
 

@@ -93,7 +93,7 @@ class User extends Authenticatable
         return $this->hasMany(PrintedDesign::class);
     }
 
-    public function favourites()
+    public function favourites(): HasMany
     {
         return $this->hasMany(Favourite::class);
     }

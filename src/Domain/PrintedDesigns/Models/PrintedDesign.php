@@ -79,24 +79,21 @@ class PrintedDesign extends Model
         return $this->morphMany(Favourite::class, 'favouritable');
     }
 
-    public function scopeWithUserFavourites($query)
-    {
-        return $query->with(['favourites' => function (MorphMany $morphMany) {
-            $morphMany->where('user_id', auth()->id()); //wherebelongsto?
-        }]);
-    }
-
-    public function toResource()
+    public function toResource(): PrintedDesignResource
     {
         return new PrintedDesignResource($this);
     }
 
-    public function isFavourite() // todo put into a trait
+    public function isFavourite(): bool // todo put into a trait
     {
         /**
          * @var User $user
          */
         $user = Auth::user();
+        if (! $user) {
+            return false;
+        }
+
         return $this->favourites()->whereBelongsTo($user)->exists();
     }
 }

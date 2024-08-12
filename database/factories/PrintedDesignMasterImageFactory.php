@@ -10,12 +10,7 @@ class PrintedDesignMasterImageFactory extends Factory
 {
     protected $model = PrintedDesignMasterImage::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'url' => $this->faker->imageUrl,

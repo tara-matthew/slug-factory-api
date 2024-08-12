@@ -11,12 +11,7 @@ use Illuminate\Database\Seeder;
 
 class PrintedDesignSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         $brands = FilamentBrand::all();
         $colours = FilamentColour::all();

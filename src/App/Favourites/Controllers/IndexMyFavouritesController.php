@@ -9,11 +9,12 @@ use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 
 class IndexMyFavouritesController
 {
-    public function __invoke(IndexFavouritesRequest $request)
+    public function __invoke(IndexFavouritesRequest $request): AnonymousResourceCollection
     {
         $user = User::find(1);
         $favourites =  $user->favourites()

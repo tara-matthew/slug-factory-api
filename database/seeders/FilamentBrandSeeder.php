@@ -7,13 +7,9 @@ use Illuminate\Database\Seeder;
 
 class FilamentBrandSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
+        // TODO could use an enum
         foreach (config('filaments.brands') as $brand) {
             FilamentBrand::factory()->create([
                 'name' => $brand,

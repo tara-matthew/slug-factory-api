@@ -12,19 +12,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-//        $user = User::factory([
-//            'username' => 'tara',
-//        ])->create();
-//        Favourite::factory(['user_id' => $user->id])->for(
-//            PrintedDesign::factory(),
-//            'favouritable'
-//        )->create();
-
         // TODO use UserSeeder
-//        User::factory(10)->create();
-
-        //        FilamentColour::factory(4)->has(PrintedDesign::factory(4)->hasImages())->create();
-
         $this->call([
             AdminSeeder::class,
             FilamentBrandSeeder::class,
