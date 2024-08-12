@@ -5,6 +5,8 @@ namespace Tests\Feature\PrintedDesigns;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Testing\Fluent\AssertableJson;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -13,45 +15,34 @@ class IndexMyPrintedDesignsTest extends TestCase
     #[Test]
     public function it_returns_a_list_of_prints(): void
     {
-        /**
-         * @var User $user
-         * @var PrintedDesign $print
-         */
         $user = User::factory()->create();
-        $this->actingAs($user);
         $prints = PrintedDesign::factory(2)->hasImages()->for($user)->create();
 
         // Make a favourite for the first print and the current user
         Favourite::factory()->for(
             $prints[0], 'favouritable'
-        )->create(['user_id' => $user->id]);
+        )->for($user)->create();
 
-        $response = $this->getJson(route('my.prints.index'));
-
-        $response
+        $this
+            ->actingAs($user)
+            ->getJson(route('my.prints.index'))
             ->assertOk()
-            ->assertJson([
-                'data' => [
-                    [
-                        'id' => $prints[0]->id,
-                        'user_id' => $user->id,
-                        'title' => $prints[0]->title,
-                        'description' => $prints[0]->description,
-                        'filament_brand_id' => $prints[0]->filament_brand_id,
-                        'filament_colour_id' => $prints[0]->filament_colour_id,
-                        'is_favourite' => true,
-                    ],
-                    [
-                        'id' => $prints[1]->id,
-                        'user_id' => $user->id,
-                        'title' => $prints[1]->title,
-                        'description' => $prints[1]->description,
-                        'filament_brand_id' => $prints[1]->filament_brand_id,
-                        'filament_colour_id' => $prints[1]->filament_colour_id,
-                        'is_favourite' => false,
-                    ],
-                ],
-            ]);
+            ->assertJson(fn (AssertableJson $json) => $json
+                ->where('data.0.id', $prints[0]->id)
+                ->where('data.0.user_id', $user->id)
+                ->where('data.0.title', $prints[0]->title)
+                ->where('data.0.description', $prints[0]->description)
+                ->where('data.0.filament_brand_id', $prints[0]->filament_brand_id)
+                ->where('data.0.filament_colour_id', $prints[0]->filament_colour_id)
+                ->where('data.0.is_favourite', true)
+                ->where('data.1.id', $prints[1]->id)
+                ->where('data.1.user_id', $user->id)
+                ->where('data.1.title', $prints[1]->title)
+                ->where('data.1.description', $prints[1]->description)
+                ->where('data.1.filament_brand_id', $prints[1]->filament_brand_id)
+                ->where('data.1.filament_colour_id', $prints[1]->filament_colour_id)
+                ->where('data.1.is_favourite', false)
+            ->etc());
     }
 
     #[Test]

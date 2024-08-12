@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Domain\PrintedDesigns\Models\PrintedDesign
@@ -90,8 +91,12 @@ class PrintedDesign extends Model
         return new PrintedDesignResource($this);
     }
 
-    public function isFavourited() // todo put into a trait
+    public function isFavourite() // todo put into a trait
     {
-        return $this->favourites()->where('user_id', 1)->exists();
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+        return $this->favourites()->whereBelongsTo($user)->exists();
     }
 }
