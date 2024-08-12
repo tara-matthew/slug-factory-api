@@ -2,7 +2,6 @@
 
 namespace App\PrintedDesigns\Resources;
 
-use App\Images\Resources\ImageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,7 +13,7 @@ class FavouritePrintedDesignResource extends JsonResource
             'id' => $this->id,
             'type' => 'FavouritePrintedDesign',
             'favourited_at' => $this->created_at,
-            'printed_design' => new PrintedDesignResource($this->favouritable)
+            'printed_design' => new PrintedDesignResource($this->favouritable),
         ];
     }
 }

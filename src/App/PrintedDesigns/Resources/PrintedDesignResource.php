@@ -30,7 +30,7 @@ class PrintedDesignResource extends JsonResource
             'is_favourite' => $this->whenLoaded('favourites', function () {
                 return $this->favourites->contains('user_id', auth()->id());
             }),
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at,
         ];
     }
 }

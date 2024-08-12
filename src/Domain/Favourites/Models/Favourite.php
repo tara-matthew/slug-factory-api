@@ -13,7 +13,7 @@ class Favourite extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type'
+        'type',
     ];
 
     public function favouritable(): MorphTo
@@ -31,7 +31,7 @@ class Favourite extends Model
     public function scopeByUser($query, $user)
     {
         return $query->where('user_id', $user->id)
-            ->where('favouritable_type','Domain\PrintedDesigns\Models\PrintedDesign')
+            ->where('favouritable_type', 'Domain\PrintedDesigns\Models\PrintedDesign')
             ->with('favouritable')
             ->get()
             ->pluck('favouritable');

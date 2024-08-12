@@ -17,6 +17,7 @@ class FakerServiceProvider extends ServiceProvider
         $this->app->singleton(Generator::class, function () {
             $faker = Factory::create();
             $faker->addProvider(new FakerPicsumImagesProvider($faker));
+
             return $faker;
         });
     }

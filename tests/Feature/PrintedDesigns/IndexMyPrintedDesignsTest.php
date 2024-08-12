@@ -5,7 +5,6 @@ namespace Tests\Feature\PrintedDesigns;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\Fluent\AssertableJson;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -42,7 +41,7 @@ class IndexMyPrintedDesignsTest extends TestCase
                 ->where('data.1.filament_brand_id', $prints[1]->filament_brand_id)
                 ->where('data.1.filament_colour_id', $prints[1]->filament_colour_id)
                 ->where('data.1.is_favourite', false)
-            ->etc());
+                ->etc());
     }
 
     #[Test]

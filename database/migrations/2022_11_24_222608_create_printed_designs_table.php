@@ -1,7 +1,5 @@
 <?php
 
-use Domain\Filaments\Brands\Models\FilamentBrand;
-use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Users\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
