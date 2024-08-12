@@ -1,5 +1,6 @@
 <?php
 
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -8,19 +9,12 @@ return new class() extends Migration
 {
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('printed_design_master_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('printed_design_id')
-                ->nullable()
+            $table->foreignIdFor(PrintedDesign::class)
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            // TODO do I need this column?
-            $table->foreignId('user_id')
-                ->nullable()
-                ->constrained('users')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
             $table->string('url');
             $table->boolean('is_cover_image')->default(false);
             $table->timestamps();
@@ -29,6 +23,6 @@ return new class() extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('printed_design_master_images');
     }
 };

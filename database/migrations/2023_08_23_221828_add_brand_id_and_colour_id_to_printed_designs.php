@@ -1,5 +1,7 @@
 <?php
 
+use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Colours\Models\FilamentColour;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +16,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('printed_designs', function (Blueprint $table) {
-            $table->foreignId('filament_brand_id')
+            $table->foreignIdFor(FilamentBrand::class)
                 ->after('user_id')
-                ->constrained('filament_brands')
+                ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignId('filament_colour_id')
+            $table->foreignIdFor(FilamentColour::class)
                 ->after('filament_brand_id')
-                ->constrained('filament_colours')
+                ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });

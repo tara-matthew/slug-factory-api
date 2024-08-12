@@ -6,7 +6,7 @@ use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
-use Domain\Images\Models\Image;
+use Domain\Images\Models\PrintedDesignMasterImage;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,7 +61,7 @@ class PrintedDesign extends Model
 
     public function images(): HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(PrintedDesignMasterImage::class);
     }
 
     public function filamentBrand(): BelongsTo
