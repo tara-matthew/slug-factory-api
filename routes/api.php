@@ -5,7 +5,7 @@ use App\Favourites\Controllers\IndexMyFavouritesController;
 use App\Filaments\Brands\Controllers\IndexFilamentBrandsController;
 use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
-use App\Filaments\Colours\Controllers\FilamentColourController;
+use App\Filaments\Colours\Controllers\IndexFilamentColoursController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
@@ -30,16 +30,16 @@ Route::get('/my/prints', IndexMyPrintedDesignsController::class)->name('my.print
 Route::get('/prints/{printedDesign}', ShowPrintedDesignController::class)->name('prints.show');
 Route::post('/prints', StorePrintedDesignController::class)->name('prints.store');
 
-Route::get('/filament-brands', IndexFilamentBrandsController::class)->name('filament-brands.index');
-Route::get('/filament-brands/{filamentBrand}', ShowFilamentBrandController::class)->name('filament-brands.show');
-Route::post('/filament-brands', StoreFilamentBrandController::class)->name('filament-brands.store');
-
 Route::get('/my/favourites', IndexMyFavouritesController::class)->name('my.favourites.index');
 Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
 Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
 //});
 
-Route::resource('filament-colours', FilamentColourController::class);
+Route::get('/filament-brands', IndexFilamentBrandsController::class)->name('filament-brands.index');
+Route::get('/filament-brands/{filamentBrand}', ShowFilamentBrandController::class)->name('filament-brands.show');
+Route::post('/filament-brands', StoreFilamentBrandController::class)->name('filament-brands.store');
+
+Route::get('/filament-colours', IndexFilamentColoursController::class)->name('filament-colours.index');
 
 // TODO be cruddy by design and create a separate controller for Popular Prints
 
