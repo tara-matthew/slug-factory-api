@@ -14,7 +14,7 @@ class PrinterModelFactory extends Factory
     {
         return [
             'printer_brand_id' => PrinterBrand::factory(),
-            'name' => fake()->name()
+            'name' => fake()->name(),
         ];
     }
 }

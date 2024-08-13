@@ -2,7 +2,6 @@
 
 namespace Domain\Printers\Models;
 
-use Domain\Printers\Brands\Models\PrinterBrand;
 use Domain\Printers\PrinterModels\Models\PrinterModel;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
