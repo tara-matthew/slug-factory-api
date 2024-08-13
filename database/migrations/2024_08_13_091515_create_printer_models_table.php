@@ -9,15 +9,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('printers', function (Blueprint $table) {
+        Schema::create('printer_models', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PrinterBrand::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('printers');
+        Schema::dropIfExists('printer_models');
     }
 };
