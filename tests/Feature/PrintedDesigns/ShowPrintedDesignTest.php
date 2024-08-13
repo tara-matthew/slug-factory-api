@@ -4,35 +4,24 @@ namespace Tests\Feature\PrintedDesigns;
 
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Fluent\AssertableJson;
 
-class ShowPrintedDesignTest extends TestCase
-{
-    #[Test]
-    public function it_returns_a_specific_print(): void
-    {
-        /**
-         * @var User $user
-         * @var PrintedDesign $print
-         */
-        $user = User::factory()->create();
-        $this->actingAs($user);
+uses(RefreshDatabase::class);
 
-        $print = PrintedDesign::factory()->for($user)->create();
-        $response = $this->getJson(route('prints.show', ['printedDesign' => $print]));
+it('returns a specific print', function () {
+    $user = User::factory()->create();
 
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'data' => [
-                    'id' => $print->id,
-                    'user_id' => $user->id,
-                    'title' => $print->title,
-                    'description' => $print->description,
-                    'filament_brand_id' => $print->filament_brand_id,
-                    'filament_colour_id' => $print->filament_colour_id,
-                ],
-            ]);
-    }
-}
+    $print = PrintedDesign::factory()->for($user)->create();
+    asLoggedInUser()
+        ->getJson(route('prints.show', ['printedDesign' => $print]))
+        ->assertStatus(200)
+        ->assertJson(fn (AssertableJson $json) => $json
+            ->where('data.id', $print->id)
+            ->where('data.user_id', $user->id)
+            ->where('data.title', $print->title)
+            ->where('data.description', $print->description)
+            ->where('data.filament_brand_id', $print->filament_brand_id)
+            ->where('data.filament_colour_id', $print->filament_colour_id)
+        );
+});
