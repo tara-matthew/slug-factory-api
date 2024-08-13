@@ -25,7 +25,7 @@ it('returns a list of filament brands', function () {
 
 it('returns an empty collection of filament brands when none exist', function () {
     $this
-        ->getJson('api/filament-brands')
+        ->getJson(route('filament-brands.index'))
         ->assertOk()
         ->assertJsonCount(0, 'data')
         ->assertJsonStructure([
