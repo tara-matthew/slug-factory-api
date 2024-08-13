@@ -27,6 +27,7 @@ class PrintedDesignResource extends JsonResource
             'images' => ImageResource::collection($this->images), // whenloaded
             'filament_brand_id' => $this->filament_brand_id, // use resources?
             'filament_colour_id' => $this->filament_colour_id,
+            'filament_material_id' => $this->filament_material_id,
             'is_favourite' => $this->whenLoaded('favourites', function () {
                 return $this->favourites->contains('user_id', auth()->id());
             }),

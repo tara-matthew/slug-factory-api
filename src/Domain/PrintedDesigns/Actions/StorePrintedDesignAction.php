@@ -18,6 +18,7 @@ class StorePrintedDesignAction
         $printedDesign->user()->associate(Auth::user());
         $printedDesign->filamentBrand()->associate($printedDesignData->filament_brand_id);
         $printedDesign->filamentColour()->associate($printedDesignData->filament_colour_id);
+        $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
         $printedDesign->save();
 
         foreach ($printedDesignData->images as $image) {

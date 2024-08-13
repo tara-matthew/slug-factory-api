@@ -17,6 +17,7 @@ class PrintedDesignData extends Data
         public string $description,
         public int $filament_brand_id,
         public int $filament_colour_id,
+        public int $filament_material_id,
         #[DataCollectionOf(ImageData::class)]
         public ?DataCollection $images,
         public bool $is_favourite = false
