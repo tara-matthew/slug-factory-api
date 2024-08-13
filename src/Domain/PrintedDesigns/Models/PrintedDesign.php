@@ -6,6 +6,7 @@ use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
+use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Images\Models\PrintedDesignMasterImage;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -72,6 +73,11 @@ class PrintedDesign extends Model
     public function filamentColour(): BelongsTo
     {
         return $this->belongsTo(FilamentColour::class);
+    }
+
+    public function filamentMaterial(): BelongsTo
+    {
+        return $this->belongsTo(FilamentMaterial::class);
     }
 
     public function favourites(): MorphMany
