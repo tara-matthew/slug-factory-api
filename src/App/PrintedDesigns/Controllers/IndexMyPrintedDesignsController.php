@@ -4,14 +4,21 @@ namespace App\PrintedDesigns\Controllers;
 
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Users\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class IndexMyPrintedDesignsController
 {
     public function __invoke(): AnonymousResourceCollection
     {
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+
         return PrintedDesignResource::collection(
-            PrintedDesign::with('favourites')->paginate(30)
+            PrintedDesign::with('favourites')->whereBelongsTo($user)->paginate(30)
         );
     }
 }

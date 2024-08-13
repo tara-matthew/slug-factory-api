@@ -3,10 +3,8 @@
 namespace Domain\Favourites\Actions;
 
 use App\Exceptions\ItemAlreadyFavouritedException;
-use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class StoreFavouriteAction
 {
@@ -16,7 +14,7 @@ class StoreFavouriteAction
     public function execute(Model $model): Model
     {
         $user = User::find(1);
-        if ($model->isFavourited()) {
+        if ($model->isFavourite()) {
             throw new ItemAlreadyFavouritedException();
         }
 

@@ -10,9 +10,9 @@ class FavouriteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => 'FavouritePrintedDesign',
+            'type' => 'Favourite',
             'favourited_at' => $this->created_at,
-            'resource' => $this->favouritable->toResource()
+            'resource' => $this->favouritable->toResource(),
         ];
     }
 }
