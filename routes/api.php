@@ -2,7 +2,6 @@
 
 use App\Favourites\Controllers\DeleteFavouriteController;
 use App\Favourites\Controllers\IndexMyFavouritesController;
-use App\Filaments\Brands\Controllers\FilamentBrandController;
 use App\Filaments\Brands\Controllers\IndexFilamentBrandsController;
 use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
