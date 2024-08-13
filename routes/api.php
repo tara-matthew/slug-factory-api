@@ -3,6 +3,9 @@
 use App\Favourites\Controllers\DeleteFavouriteController;
 use App\Favourites\Controllers\IndexMyFavouritesController;
 use App\Filaments\Brands\Controllers\FilamentBrandController;
+use App\Filaments\Brands\Controllers\IndexFilamentBrandsController;
+use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
+use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
 use App\Filaments\Colours\Controllers\FilamentColourController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
@@ -28,7 +31,9 @@ Route::get('/my/prints', IndexMyPrintedDesignsController::class)->name('my.print
 Route::get('/prints/{printedDesign}', ShowPrintedDesignController::class)->name('prints.show');
 Route::post('/prints', StorePrintedDesignController::class)->name('prints.store');
 
-Route::resource('filament-brands', FilamentBrandController::class);
+Route::get('/filament-brands', IndexFilamentBrandsController::class)->name('filament-brands.index');
+Route::get('/filament-brands/{filamentBrand}', ShowFilamentBrandController::class)->name('filament-brands.show');
+Route::post('/filament-brands', StoreFilamentBrandController::class)->name('filament-brands.store');
 
 Route::get('/my/favourites', IndexMyFavouritesController::class)->name('my.favourites.index');
 Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
