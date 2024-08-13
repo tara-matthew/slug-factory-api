@@ -6,7 +6,9 @@ namespace Domain\Users\Models;
 use Database\Factories\UserFactory;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Printers\Models\Printer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -96,5 +98,10 @@ class User extends Authenticatable
     public function favourites(): HasMany
     {
         return $this->hasMany(Favourite::class);
+    }
+
+    public function printers(): BelongsToMany
+    {
+        return $this->belongsToMany(Printer::class);
     }
 }
