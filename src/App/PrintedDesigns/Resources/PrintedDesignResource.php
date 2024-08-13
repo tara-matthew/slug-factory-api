@@ -12,6 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property string $description
  * @property int $filament_brand_id
  * @property int $filament_colour_id
+ * @property int $filament_material_id
  * @property array $images
  */
 class PrintedDesignResource extends JsonResource
