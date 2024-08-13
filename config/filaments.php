@@ -23,4 +23,9 @@ return [
         'Toner Plastics',
         'Atomic Filament',
     ],
+    'materials' => [
+        'PLA',
+        'PETG',
+        'ABS',
+    ],
 ];

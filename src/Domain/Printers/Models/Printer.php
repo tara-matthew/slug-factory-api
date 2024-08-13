@@ -14,7 +14,7 @@ class Printer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function printerBrand(): BelongsTo

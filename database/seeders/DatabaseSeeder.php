@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             FilamentBrandSeeder::class,
             FilamentColourSeeder::class,
+            FilamentMaterialSeeder::class,
             PrintedDesignSeeder::class,
         ]);
     }

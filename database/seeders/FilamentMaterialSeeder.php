@@ -2,15 +2,17 @@
 
 namespace Database\Seeders;
 
+use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Illuminate\Database\Seeder;
 
 class FilamentMaterialSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        foreach (config('filaments.materials') as $brand) {
+            FilamentMaterial::factory()->create([
+                'name' => $brand,
+            ]);
+        }
     }
 }
