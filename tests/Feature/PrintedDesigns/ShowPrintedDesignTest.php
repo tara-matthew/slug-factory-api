@@ -18,7 +18,7 @@ class ShowPrintedDesignTest extends TestCase
          */
         $user = User::factory()->create();
         $this->actingAs($user);
-        // TODO Use 'has' magic method with the factory
+
         $print = PrintedDesign::factory()->for($user)->create();
         $response = $this->getJson(route('prints.show', ['printedDesign' => $print]));
 
