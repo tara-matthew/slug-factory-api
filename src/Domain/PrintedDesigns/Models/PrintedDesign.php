@@ -53,6 +53,7 @@ class PrintedDesign extends Model
     protected $fillable = [
         'title',
         'description',
+        'infill_percentage'
     ];
 
     public function user(): BelongsTo

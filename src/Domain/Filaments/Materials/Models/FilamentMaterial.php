@@ -11,6 +11,10 @@ class FilamentMaterial extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function printedDesigns(): HasMany
     {
         return $this->hasMany(PrintedDesign::class);

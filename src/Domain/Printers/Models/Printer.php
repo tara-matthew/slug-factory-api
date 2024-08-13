@@ -13,6 +13,10 @@ class Printer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function printerBrand(): BelongsTo
     {
         return $this->belongsTo(PrinterBrand::class);
