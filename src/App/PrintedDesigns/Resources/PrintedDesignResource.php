@@ -25,7 +25,7 @@ class PrintedDesignResource extends JsonResource
             'user_id' => $this->user_id,
             'title' => $this->title,
             'description' => $this->description,
-            'images' => ImageResource::collection($this->images), // whenloaded
+            'images' => ImageResource::collection($this->masterImages), // whenloaded
             'filament_brand_id' => $this->filament_brand_id, // use resources?
             'filament_colour_id' => $this->filament_colour_id,
             'filament_material_id' => $this->filament_material_id,

@@ -15,7 +15,7 @@ class IndexMyPrintedDesignsTest extends TestCase
     public function it_returns_a_list_of_prints(): void
     {
         $user = User::factory()->create();
-        $prints = PrintedDesign::factory(2)->hasImages()->for($user)->create();
+        $prints = PrintedDesign::factory(2)->hasMasterImages()->for($user)->create();
 
         // Make a favourite for the first print and the current user
         Favourite::factory()->for(

@@ -48,7 +48,7 @@ class PrintedDesign extends Model
 {
     use HasFactory;
 
-    protected $with = ['images'];
+    protected $with = ['masterImages'];
 
     protected $fillable = [
         'title',
@@ -61,7 +61,7 @@ class PrintedDesign extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function images(): HasMany
+    public function masterImages(): HasMany
     {
         return $this->hasMany(PrintedDesignMasterImage::class);
     }

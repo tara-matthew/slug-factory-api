@@ -24,7 +24,7 @@ class PrintedDesignSeeder extends Seeder
                 ->for($colours->random())
                 ->for($materials->random())
                 ->for($user)
-                ->hasImages()
+                ->hasMasterImages()
                 ->hasFavourites(['user_id' => $user->id])
                 ->create();
         }

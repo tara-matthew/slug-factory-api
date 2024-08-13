@@ -22,7 +22,7 @@ class StorePrintedDesignAction
         $printedDesign->save();
 
         foreach ($printedDesignData->images as $image) {
-            $printedDesign->images()->create([
+            $printedDesign->masterImages()->create([
                 'url' => $image->url,
                 'is_cover_image' => $image->is_cover_image,
             ]);
