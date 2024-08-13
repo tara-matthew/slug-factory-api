@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Domain\Printers\Models\Printer;
+use Domain\Printers\PrinterModels\Models\PrinterModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PrinterFactory extends Factory
@@ -12,7 +13,7 @@ class PrinterFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'printer_model_id' => PrinterModel::factory(),
         ];
     }
 }
