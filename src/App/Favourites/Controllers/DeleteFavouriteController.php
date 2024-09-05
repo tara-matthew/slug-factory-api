@@ -3,9 +3,9 @@
 namespace App\Favourites\Controllers;
 
 use App\Exceptions\ItemNotFavouritedException;
+use Domain\Favourites\Actions\DeleteFavouriteAction;
 use Domain\Shared\Traits\IdentifiesModels;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 class DeleteFavouriteController
 {
@@ -14,15 +14,15 @@ class DeleteFavouriteController
     /**
      * @throws ItemNotFavouritedException
      */
-    public function __invoke(string $type, string $id): Response
+    public function __invoke(string $type, string $id, DeleteFavouriteAction $deleteFavouriteAction): Response
     {
-        $user = Auth::user();
         $model = $this->identifyModel($type, $id);
 
         if (! $model->isFavourite()) {
             throw new ItemNotFavouritedException();
         }
-        $model->favourites()->where('user_id', $user->id)->delete(); // wherebelongsto?
+
+        $deleteFavouriteAction->handle($model);
 
         return response()->noContent();
 

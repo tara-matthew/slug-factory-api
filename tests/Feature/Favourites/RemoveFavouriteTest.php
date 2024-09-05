@@ -28,7 +28,7 @@ it('deletes a favourite', function () {
     $this->assertCount(0, Favourite::all());
 });
 
-it('throws an exception if an attempt is made to unfavourite an item which has not been favourited', function() {
+it('throws an exception if an attempt is made to unfavourite an item which has not been favourited', function () {
     $user = User::factory()->create();
 
     $print = PrintedDesign::factory()
@@ -39,5 +39,5 @@ it('throws an exception if an attempt is made to unfavourite an item which has n
         ->delete(route('favourites.delete', ['type' => 'printed_design', 'id' => $print->id]))
         ->assertUnprocessable()
         ->assertJson(fn (AssertableJson $json) => $json
-            ->where('message', 'Item has not been added to favourites'));;
+            ->where('message', 'Item has not been added to favourites'));
 });

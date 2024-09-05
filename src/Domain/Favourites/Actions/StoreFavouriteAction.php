@@ -15,10 +15,6 @@ class StoreFavouriteAction
     {
         $user = Auth::user();
 
-        if ($model->isFavourite()) {
-            throw new ItemAlreadyFavouritedException();
-        }
-
         $favourite = $model->favourites()->make();
         $favourite->user()->associate($user);
         $favourite->save();
