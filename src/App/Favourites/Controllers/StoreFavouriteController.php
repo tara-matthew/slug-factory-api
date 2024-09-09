@@ -1,11 +1,10 @@
 <?php
 
-namespace App\PrintedDesigns\Controllers;
+namespace App\Favourites\Controllers;
 
 use App\Exceptions\ItemAlreadyFavouritedException;
 use App\Favourites\Resources\FavouriteResource;
 use Domain\Favourites\Actions\StoreFavouriteAction;
-use Domain\Favourites\Models\Favourite;
 use Domain\Shared\Traits\IdentifiesModels;
 
 class StoreFavouriteController // could have toggle favourite controller instead
@@ -18,6 +17,7 @@ class StoreFavouriteController // could have toggle favourite controller instead
     public function __invoke(string $type, int $id, StoreFavouriteAction $storeFavouriteAction): FavouriteResource
     {
         $model = $this->identifyModel($type, $id);
+//        dd($model);
 
         if ($model->isFavourite()) {
             throw new ItemAlreadyFavouritedException();
