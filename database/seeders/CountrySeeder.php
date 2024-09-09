@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Domain\Users\Models\Country;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CountrySeeder extends Seeder
