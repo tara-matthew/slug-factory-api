@@ -21,6 +21,7 @@ return new class extends Migration
     {
         Schema::table('printed_designs', function (Blueprint $table) {
             $table->dropForeign(['filament_colour_id']);
+            $table->dropColumn('filament_colour_id');
         });
     }
 };

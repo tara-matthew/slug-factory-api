@@ -8,6 +8,7 @@ use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -109,5 +110,10 @@ class User extends Authenticatable
     public function userProfile(): HasOne
     {
         return $this->hasOne(UserProfile::class);
+    }
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
     }
 }

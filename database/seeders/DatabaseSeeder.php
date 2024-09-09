@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             FilamentMaterialSeeder::class,
             PrinterBrandSeeder::class,
             PrinterSeeder::class,
+            CountrySeeder::class,
             PrintedDesignSeeder::class,
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Domain\Users\Models\Country;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -19,6 +20,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'country_id' => Country::factory(),
             'email' => fake()->unique()->safeEmail(),
             'username' => fake()->userName(),
             'email_verified_at' => now(),
