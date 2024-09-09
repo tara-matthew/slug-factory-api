@@ -2,8 +2,19 @@
 
 namespace App\Users\Resources;
 
+use App\Http\Resources\UserProfileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
+    public function toArray($request)
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'username' => $this->username,
+            'avatar_url' => $this->avatar_url,
+            'profile' => new UserProfileResource($this->whenLoaded('userProfile')),
+        ];
+    }
 }
