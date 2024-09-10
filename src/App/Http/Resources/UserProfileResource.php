@@ -10,8 +10,8 @@ class UserProfileResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-          'bio' => $this->bio,
-          'set_public_at' => $this->set_public_at
+            'bio' => $this->bio,
+            'set_public_at' => $this->set_public_at,
         ];
     }
 }

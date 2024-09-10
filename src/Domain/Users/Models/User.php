@@ -61,6 +61,11 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
+    protected $with = [
+        'userProfile',
+        'country'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -71,6 +76,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'avatar_url',
     ];
 
     /**
