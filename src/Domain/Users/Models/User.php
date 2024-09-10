@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     protected $with = [
         'userProfile',
-        'country'
+        'country',
     ];
 
     /**
