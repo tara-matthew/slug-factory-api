@@ -2,6 +2,7 @@
 
 namespace App\Users\Resources;
 
+use App\Http\Resources\CountryResource;
 use App\Http\Resources\UserProfileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -11,6 +12,7 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'country' => new CountryResource($this->whenLoaded('country')),
             'name' => $this->name,
             'username' => $this->username,
             'avatar_url' => $this->avatar_url,

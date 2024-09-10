@@ -9,9 +9,8 @@ class ShowUserProfileController
 {
     public function __invoke()
     {
-        $user = User::with('userProfile')->first(); // auth user
+        $user = User::with(['userProfile', 'country'])->first(); // auth user
 
         return new UserResource($user);
-
     }
 }
