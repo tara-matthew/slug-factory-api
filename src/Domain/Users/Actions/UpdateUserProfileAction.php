@@ -4,7 +4,6 @@ namespace Domain\Users\Actions;
 
 use Domain\Users\DataTransferObjects\UserProfileData;
 use Domain\Users\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class UpdateUserProfileAction
@@ -29,6 +28,8 @@ class UpdateUserProfileAction
                 'bio' => $userProfileData->bio,
             ]));
         });
+
+        $user->refresh();
 
         return $user;
 

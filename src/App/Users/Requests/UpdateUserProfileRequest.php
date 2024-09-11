@@ -16,8 +16,9 @@ class UpdateUserProfileRequest extends FormRequest
     public function rules(): array
     {
         $user = User::first(); // TODO change to auth user
+
         return [
-            'email' => ['email', 'unique:users,email,' . $user->id, 'max:255'],
+            'email' => ['email', 'unique:users,email,'.$user->id, 'max:255'],
             'name' => ['string', 'max:255'],
             'bio' => ['nullable', 'string', 'max:500'],
             'avatar_url' => ['nullable', 'string'],
