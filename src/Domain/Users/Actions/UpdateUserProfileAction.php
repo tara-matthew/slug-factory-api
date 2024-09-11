@@ -11,7 +11,7 @@ class UpdateUserProfileAction
 {
     public function handle(UserProfileData $userProfileData): User
     {
-        $user = User::first();
+        $user = User::first(); // TODO change to auth user
 
         DB::transaction(function () use ($userProfileData, $user) {
             $user->update(array_filter([

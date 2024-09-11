@@ -2,6 +2,7 @@
 
 use App\Favourites\Controllers\DeleteFavouriteController;
 use App\Favourites\Controllers\IndexMyFavouritesController;
+use App\Favourites\Controllers\StoreFavouriteController;
 use App\Filaments\Brands\Controllers\IndexFilamentBrandsController;
 use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
@@ -9,9 +10,10 @@ use App\Filaments\Colours\Controllers\IndexFilamentColoursController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
-use App\PrintedDesigns\Controllers\StoreFavouriteController;
 use App\PrintedDesigns\Controllers\StorePrintedDesignController;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
+use App\Users\Controllers\ShowUserProfileController;
+use App\Users\Controllers\UpdateUserProfileController;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +23,7 @@ Route::get('/prints/random', function () {
     return PrintedDesignResource::collection(
         PrintedDesign::query()
             ->inRandomOrder()
-            ->take(10)
+            ->take(5)
             ->get()
     );
 });
@@ -40,6 +42,9 @@ Route::get('/filament-brands/{filamentBrand}', ShowFilamentBrandController::clas
 Route::post('/filament-brands', StoreFilamentBrandController::class)->name('filament-brands.store');
 
 Route::get('/filament-colours', IndexFilamentColoursController::class)->name('filament-colours.index');
+
+Route::get('/me', ShowUserProfileController::class)->name('profile.show');
+Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
 
 // TODO be cruddy by design and create a separate controller for Popular Prints
 

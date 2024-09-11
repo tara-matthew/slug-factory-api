@@ -2,7 +2,9 @@
 
 namespace App\Users\Requests;
 
+use Domain\Users\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateUserProfileRequest extends FormRequest
 {
@@ -13,8 +15,9 @@ class UpdateUserProfileRequest extends FormRequest
 
     public function rules(): array
     {
+        $user = User::first(); // TODO change to auth user
         return [
-            'email' => ['email', 'unique:users,email', 'max:255'],
+            'email' => ['email', 'unique:users,email,' . $user->id, 'max:255'],
             'name' => ['string', 'max:255'],
             'bio' => ['nullable', 'string', 'max:500'],
             'avatar_url' => ['nullable', 'string'],

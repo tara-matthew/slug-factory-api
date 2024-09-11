@@ -15,6 +15,7 @@ class UserResource extends JsonResource
             'country' => new CountryResource($this->whenLoaded('country')),
             'name' => $this->name,
             'username' => $this->username,
+            'email' => $this->email,
             'avatar_url' => $this->avatar_url,
             'profile' => new UserProfileResource($this->whenLoaded('userProfile')),
         ];
