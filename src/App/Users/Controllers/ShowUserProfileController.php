@@ -3,14 +3,12 @@
 namespace App\Users\Controllers;
 
 use App\Users\Resources\UserResource;
-use Domain\Users\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ShowUserProfileController
 {
-    public function __invoke()
+    public function __invoke(): UserResource
     {
-        $user = User::with(['userProfile', 'country'])->first(); // auth user
-
-        return new UserResource($user);
+        return new UserResource(Auth::user());
     }
 }

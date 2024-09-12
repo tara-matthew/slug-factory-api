@@ -18,34 +18,34 @@ use App\Users\Controllers\UpdateUserProfileController;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Route;
 
-//Route::middleware(['auth:sanctum'])->group(function () {
-Route::get('/prints/latest', LatestPrintedDesignsController::class)->name('prints.latest.index');
-Route::get('/prints/random', function () {
-    return PrintedDesignResource::collection(
-        PrintedDesign::query()
-            ->inRandomOrder()
-            ->take(5)
-            ->get()
-    );
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/prints/latest', LatestPrintedDesignsController::class)->name('prints.latest.index');
+    Route::get('/prints/random', function () {
+        return PrintedDesignResource::collection(
+            PrintedDesign::query()
+                ->inRandomOrder()
+                ->take(5)
+                ->get()
+        );
+    });
+
+    Route::get('/my/prints', IndexMyPrintedDesignsController::class)->name('my.prints.index'); // may also need prints index
+    Route::get('/prints/{printedDesign}', ShowPrintedDesignController::class)->name('prints.show');
+    Route::post('/prints', StorePrintedDesignController::class)->name('prints.store');
+
+    Route::get('/my/favourites', IndexMyFavouritesController::class)->name('my.favourites.index');
+    Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
+    Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
+
+    Route::get('/me', ShowUserProfileController::class)->name('profile.show');
+    Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
 });
-
-Route::get('/my/prints', IndexMyPrintedDesignsController::class)->name('my.prints.index'); // may also need prints index
-Route::get('/prints/{printedDesign}', ShowPrintedDesignController::class)->name('prints.show');
-Route::post('/prints', StorePrintedDesignController::class)->name('prints.store');
-
-Route::get('/my/favourites', IndexMyFavouritesController::class)->name('my.favourites.index');
-Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
-Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
-//});
 
 Route::get('/filament-brands', IndexFilamentBrandsController::class)->name('filament-brands.index');
 Route::get('/filament-brands/{filamentBrand}', ShowFilamentBrandController::class)->name('filament-brands.show');
 Route::post('/filament-brands', StoreFilamentBrandController::class)->name('filament-brands.store');
 
 Route::get('/filament-colours', IndexFilamentColoursController::class)->name('filament-colours.index');
-
-Route::get('/me', ShowUserProfileController::class)->name('profile.show');
-Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
 
 // TODO be cruddy by design and create a separate controller for Popular Prints
 
