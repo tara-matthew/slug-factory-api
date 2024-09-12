@@ -26,12 +26,13 @@ class PrintedDesignResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'images' => ImageResource::collection($this->masterImages), // whenloaded
-            'filament_brand_id' => $this->filament_brand_id, // use resources?
-            'filament_colour_id' => $this->filament_colour_id,
-            'filament_material_id' => $this->filament_material_id,
+            'filament_brand' => $this->filamentBrand, // use resources?
+            'filament_colour' => $this->filamentColour,
+            'filament_material' => $this->filamentMaterial,
             'is_favourite' => $this->whenLoaded('favourites', function () {
                 return $this->favourites->contains('user_id', auth()->id());
             }),
+            'infill_percentage' => $this->infill_percentage,
             'created_at' => $this->created_at,
         ];
     }

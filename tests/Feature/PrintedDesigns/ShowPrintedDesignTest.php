@@ -21,8 +21,8 @@ it('returns a specific print', function () {
             ->where('data.user_id', $user->id)
             ->where('data.title', $print->title)
             ->where('data.description', $print->description)
-            ->where('data.filament_brand_id', $print->filament_brand_id)
-            ->where('data.filament_colour_id', $print->filament_colour_id)
-            ->where('data.filament_material_id', $print->filament_material_id)
+            ->where('data.filament_brand.name', $print->filamentBrand->name)
+            ->where('data.filament_colour.name', $print->filamentColour->name)
+            ->where('data.filament_material.name', $print->filamentMaterial->name)
         );
 });
