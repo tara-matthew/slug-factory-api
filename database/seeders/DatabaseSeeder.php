@@ -3,12 +3,17 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Domain\Users\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        User::factory([
+            'username' => 'tara'
+        ])->create();
+
         // TODO use UserSeeder
         $this->call([
             AdminSeeder::class,

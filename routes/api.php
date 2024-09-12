@@ -12,6 +12,7 @@ use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
 use App\PrintedDesigns\Controllers\StorePrintedDesignController;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
+use App\Users\Controllers\LoginController;
 use App\Users\Controllers\ShowUserProfileController;
 use App\Users\Controllers\UpdateUserProfileController;
 use Domain\PrintedDesigns\Models\PrintedDesign;
@@ -48,4 +49,5 @@ Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
 
 // TODO be cruddy by design and create a separate controller for Popular Prints
 
+Route::post('/auth/login', LoginController::class)->name('login');
 //Route::post('/auth/register', RegisterController::class);
