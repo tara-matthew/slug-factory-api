@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             'printed_design' => PrintedDesign::class,
             'filament_brand' => FilamentBrand::class,
-            'user' => User::class
+            'user' => User::class,
         ]);
     }
 }

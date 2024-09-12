@@ -4,30 +4,19 @@ namespace Tests\Unit\FormRequest;
 
 use App\Users\Requests\LoginUserRequest;
 use JMac\Testing\Traits\AdditionalAssertions;
-use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class LoginUserRequestTest extends TestCase
-{
-    use AdditionalAssertions;
+uses(AdditionalAssertions::class);
 
-    private LoginUserRequest $loginUserRequest;
+it('has rules set up correctly', function () {
+    $loginUserRequest = new LoginUserRequest();
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->loginUserRequest = new LoginUserRequest();
-    }
+    $this->assertEquals(
+        [
+            'username' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
+            'device_name' => ['required', 'string', 'max:255'],
+        ],
 
-    #[Test]
-    public function it_has_rules_set_up_as_expected()
-    {
-        $this->assertEquals(
-            [
-                'username' => 'required',
-                'password' => 'required',
-            ],
-            $this->loginUserRequest->rules()
-        );
-    }
-}
+        $loginUserRequest->rules()
+    );
+});
