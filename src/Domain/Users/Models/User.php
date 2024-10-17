@@ -105,7 +105,7 @@ class User extends Authenticatable
 
     public function favourites(): HasMany
     {
-        return $this->hasMany(Favourite::class);
+        return $this->hasMany(Favourite::class); // belongstomany?
     }
 
     public function printers(): BelongsToMany

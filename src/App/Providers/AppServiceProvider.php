@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Printers\Models\Printer;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             'printed_design' => PrintedDesign::class,
             'filament_brand' => FilamentBrand::class,
+            'printer' => Printer::class,
             'user' => User::class,
         ]);
     }

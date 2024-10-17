@@ -2,8 +2,10 @@
 
 namespace Domain\Filaments\Brands\Models;
 
+use App\Filaments\Brands\Resources\FilamentBrandResource;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\Shared\Traits\CanBeFavourited;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class FilamentBrand extends Model
 {
     use HasFactory;
+    use CanBeFavourited;
 
     protected $fillable = [
         'name',
@@ -25,5 +28,10 @@ class FilamentBrand extends Model
     public function favourites(): MorphMany
     {
         return $this->morphMany(Favourite::class, 'favouritable');
+    }
+
+    public function toResource(): FilamentBrandResource
+    {
+        return new FilamentBrandResource($this);
     }
 }

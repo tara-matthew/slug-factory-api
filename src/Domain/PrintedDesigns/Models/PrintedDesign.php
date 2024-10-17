@@ -8,6 +8,7 @@ use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Images\Models\PrintedDesignMasterImage;
+use Domain\Shared\Traits\CanBeFavourited;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Domain\PrintedDesigns\Models\PrintedDesign
@@ -47,6 +47,7 @@ use Illuminate\Support\Facades\Auth;
 class PrintedDesign extends Model
 {
     use HasFactory;
+    use CanBeFavourited;
 
     protected $with = ['masterImages'];
 
@@ -89,18 +90,5 @@ class PrintedDesign extends Model
     public function toResource(): PrintedDesignResource
     {
         return new PrintedDesignResource($this);
-    }
-
-    public function isFavourite(): bool // todo put into a trait
-    {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-        if (! $user) {
-            return false;
-        }
-
-        return $this->favourites()->whereBelongsTo($user)->exists();
     }
 }
