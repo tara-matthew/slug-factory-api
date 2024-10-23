@@ -9,7 +9,7 @@ class IndexFavouritesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => ['required', 'string', 'in:printed_design,filament_brand,printer'],
+            'type' => ['required', 'string', 'in:printed_design,filament_brand,printer,printer_filament'],
         ];
     }
 }

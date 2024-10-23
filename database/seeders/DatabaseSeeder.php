@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             FilamentBrandSeeder::class,
             FilamentColourSeeder::class,
             FilamentMaterialSeeder::class,
+            PrinterFilamentSeeder::class,
             PrinterBrandSeeder::class,
             PrinterSeeder::class,
             CountrySeeder::class,

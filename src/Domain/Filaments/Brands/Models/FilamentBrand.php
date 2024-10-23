@@ -4,6 +4,7 @@ namespace Domain\Filaments\Brands\Models;
 
 use App\Filaments\Brands\Resources\FilamentBrandResource;
 use Domain\Favourites\Models\Favourite;
+use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Shared\Traits\CanBeFavourited;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,11 @@ class FilamentBrand extends Model
     public function printedDesigns(): HasMany
     {
         return $this->hasMany(PrintedDesign::class);
+    }
+
+    public function printerFilaments(): HasMany
+    {
+        return $this->hasMany(PrinterFilament::class);
     }
 
     public function favourites(): MorphMany

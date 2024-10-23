@@ -2,6 +2,7 @@
 
 namespace Domain\Filaments\Materials\Models;
 
+use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,5 +19,10 @@ class FilamentMaterial extends Model
     public function printedDesigns(): HasMany
     {
         return $this->hasMany(PrintedDesign::class);
+    }
+
+    public function printerFilaments(): HasMany
+    {
+        return $this->hasMany(PrinterFilament::class);
     }
 }

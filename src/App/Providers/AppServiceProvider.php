@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Domain\Filaments\Brands\Models\FilamentBrand;
+use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Domain\Users\Models\User;
@@ -42,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
             'printed_design' => PrintedDesign::class,
             'filament_brand' => FilamentBrand::class,
             'printer' => Printer::class,
+            'printer_filament' => PrinterFilament::class,
             'user' => User::class,
         ]);
     }

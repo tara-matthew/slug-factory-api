@@ -82,7 +82,7 @@ class PrintedDesign extends Model
         return $this->belongsTo(FilamentMaterial::class);
     }
 
-    public function favourites(): MorphMany
+    public function favourites(): MorphMany // TODO could move into the trait
     {
         return $this->morphMany(Favourite::class, 'favouritable');
     }
