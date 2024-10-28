@@ -12,7 +12,7 @@ class FavouriteResource extends JsonResource
             'id' => $this->id,
             'type' => 'Favourite',
             'favourited_at' => $this->created_at,
-            'resource' => $this->favouritable->toResource(),
+            'resource' => $this->favouritable->toResource(), // TODO could I put a custom getter on the Favourite model instead?
         ];
     }
 }

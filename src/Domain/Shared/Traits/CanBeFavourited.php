@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 trait CanBeFavourited
 {
-    public function isFavourite(): bool
+    public function isUserFavourite(): bool
     {
         /**
          * @var User $user
