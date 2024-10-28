@@ -2,7 +2,7 @@
 
 namespace App\PrintedDesigns\Resources;
 
-use App\Images\Resources\ImageResource;
+use App\Images\Resources\PrintedDesignImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -25,7 +25,7 @@ class PrintedDesignResource extends JsonResource
             'user_id' => $this->user_id,
             'title' => $this->title,
             'description' => $this->description,
-            'images' => ImageResource::collection($this->masterImages), // whenloaded
+            'images' => PrintedDesignImageResource::collection($this->masterImages), // whenloaded
             'filament_brand' => $this->filamentBrand, // use resources?
             'filament_colour' => $this->filamentColour,
             'filament_material' => $this->filamentMaterial,
