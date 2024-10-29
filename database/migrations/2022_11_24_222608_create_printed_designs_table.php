@@ -17,7 +17,6 @@ return new class() extends Migration
                 ->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
-            $table->unsignedInteger('infill_percentage')->nullable();
             $table->timestamps();
         });
     }

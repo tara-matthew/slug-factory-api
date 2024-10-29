@@ -30,6 +30,7 @@ class PrintedDesignSeeder extends Seeder
                 ->for($user)
                 ->hasMasterImages(5)
                 ->hasFavourites(['user_id' => $user->id])
+                ->hasPrintedDesignSetting()
                 ->create();
         }
     }

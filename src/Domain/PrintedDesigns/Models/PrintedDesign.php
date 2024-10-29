@@ -8,6 +8,7 @@ use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Images\Models\PrintedDesignMasterImage;
+use Domain\PrintedDesignSettings\Models\PrintedDesignSetting;
 use Domain\Shared\Traits\CanBeFavourited;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 
@@ -85,6 +87,11 @@ class PrintedDesign extends Model
     public function favourites(): MorphMany // TODO could move into the trait
     {
         return $this->morphMany(Favourite::class, 'favouritable');
+    }
+
+    public function printedDesignSetting(): HasOne
+    {
+        return $this->hasOne(PrintedDesignSetting::class);
     }
 
     public function toResource(): PrintedDesignResource
