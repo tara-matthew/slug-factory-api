@@ -6,13 +6,17 @@ use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\StorePrintedDesignAction;
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
-use Illuminate\Support\Facades\Storage;
 
 class StorePrintedDesignController
 {
     public function __invoke(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
-        $images = $request->images;
+        $images = collect($request->images)->map(function ($image) {
+            return [
+                'image' => $image['image'],
+                'is_cover_image' => $image['is_cover_image'],
+            ];
+        });
 
         $printedDesignData = PrintedDesignData::from([
             'title' => $request->title,
@@ -20,12 +24,7 @@ class StorePrintedDesignController
             'filament_brand_id' => $request->filament_brand_id,
             'filament_colour_id' => $request->filament_colour_id,
             'filament_material_id' => $request->filament_material_id,
-            'images' => [
-                [
-                    'image' => $images[0]['image'],
-                    'is_cover_image' => $images[0]['is_cover_image']
-                ]
-            ]
+            'images' => $images,
         ]);
         $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
 
