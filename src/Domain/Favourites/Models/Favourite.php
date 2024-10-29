@@ -12,10 +12,6 @@ class Favourite extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'type',
-    ];
-
     public function favouritable(): MorphTo
     {
         return $this->morphTo();

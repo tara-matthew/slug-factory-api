@@ -11,6 +11,15 @@ class PrintedDesignSetting extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'infill_percentage',
+        'print_speed',
+        'nozzle_size',
+        'uses_supports',
+        'uses_raft',
+        'uses_brim',
+    ];
+
     public function printedDesign(): BelongsTo
     {
         return $this->belongsTo(PrintedDesign::class);

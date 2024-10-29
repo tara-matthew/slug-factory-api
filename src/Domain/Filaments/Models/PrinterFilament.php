@@ -19,6 +19,10 @@ class PrinterFilament extends Model
     use CanBeFavourited;
     use HasFactory;
 
+    protected $fillable = [
+        'image_url',
+    ];
+
     public function filamentBrand(): BelongsTo
     {
         return $this->belongsTo(FilamentBrand::class);

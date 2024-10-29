@@ -12,6 +12,7 @@ class UserProfile extends Model
 
     protected $fillable = [
         'bio',
+        'set_public_at',
     ];
 
     public function user(): BelongsTo

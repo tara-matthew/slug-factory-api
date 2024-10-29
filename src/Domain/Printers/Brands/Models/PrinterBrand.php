@@ -11,6 +11,10 @@ class PrinterBrand extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function printerModel(): HasMany
     {
         return $this->hasMany(PrinterModel::class);
