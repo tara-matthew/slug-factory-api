@@ -1,0 +1,22 @@
+<?php
+
+namespace App\PrintedDesignSettings\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class PrintedDesignSettingResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'infill_percentage' => $this->infill_percentage,
+            'print_speed' => $this->print_speed,
+            'nozzle_size' => $this->nozzle_size,
+            'uses_supports' => $this->uses_supports,
+            'uses_raft' => $this->uses_raft,
+            'uses_brim' => $this->uses_brim,
+        ];
+    }
+}

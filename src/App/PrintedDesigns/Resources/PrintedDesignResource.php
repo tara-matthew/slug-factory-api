@@ -3,6 +3,7 @@
 namespace App\PrintedDesigns\Resources;
 
 use App\Images\Resources\PrintedDesignImageResource;
+use App\PrintedDesignSettings\Resources\PrintedDesignSettingResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -32,8 +33,7 @@ class PrintedDesignResource extends JsonResource
             'is_favourite' => $this->whenLoaded('favourites', function () {
                 return $this->favourites->contains('user_id', auth()->id());
             }),
-            //            'infill_percentage' => $this->infill_percentage,
-            'created_at' => $this->created_at,
+            'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),
         ];
     }
 }

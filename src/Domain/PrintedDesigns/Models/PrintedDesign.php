@@ -51,12 +51,11 @@ class PrintedDesign extends Model
     use CanBeFavourited;
     use HasFactory;
 
-    protected $with = ['masterImages'];
+    protected $with = ['masterImages', 'printedDesignSetting'];
 
     protected $fillable = [
         'title',
         'description',
-        'infill_percentage',
     ];
 
     public function user(): BelongsTo
