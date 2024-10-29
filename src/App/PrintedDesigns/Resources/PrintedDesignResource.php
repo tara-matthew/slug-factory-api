@@ -2,6 +2,9 @@
 
 namespace App\PrintedDesigns\Resources;
 
+use App\Filaments\Brands\Resources\FilamentBrandResource;
+use App\Filaments\Colours\Resources\FilamentColourResource;
+use App\Filaments\Materials\Resources\FilamentMaterialResource;
 use App\Images\Resources\PrintedDesignImageResource;
 use App\PrintedDesignSettings\Resources\PrintedDesignSettingResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -27,10 +30,9 @@ class PrintedDesignResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'images' => PrintedDesignImageResource::collection($this->masterImages), // whenloaded
-            'filament_brand' => $this->filamentBrand, // use resources?
-            'filament_colour' => $this->filamentColour,
-            'filament_material' => $this->filamentMaterial,
-            'is_favourite' => $this->whenLoaded('favourites', function () {
+            'filament_brand' => new FilamentBrandResource($this->whenLoaded('filamentBrand')),
+            'filament_colour' => new FilamentColourResource($this->whenLoaded('filamentColour')),
+            'filament_material' => new FilamentMaterialResource($this->whenLoaded('filamentMaterial')),            'is_favourite' => $this->whenLoaded('favourites', function () {
                 return $this->favourites->contains('user_id', auth()->id());
             }),
             'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),

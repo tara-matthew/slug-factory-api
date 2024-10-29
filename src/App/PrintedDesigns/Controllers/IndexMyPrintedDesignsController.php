@@ -18,7 +18,15 @@ class IndexMyPrintedDesignsController
         $user = Auth::user();
 
         return PrintedDesignResource::collection(
-            PrintedDesign::with('favourites')->whereBelongsTo($user)->paginate(30)
+            PrintedDesign::with(
+                [
+                    'favourites',
+                    'filamentBrand',
+                    'filamentColour',
+                    'filamentMaterial',
+                ]
+            )
+                ->whereBelongsTo($user)->paginate(30)
         );
     }
 }

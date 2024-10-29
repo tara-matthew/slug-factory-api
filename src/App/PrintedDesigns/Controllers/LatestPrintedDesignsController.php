@@ -11,7 +11,7 @@ class LatestPrintedDesignsController
     public function __invoke(): AnonymousResourceCollection
     {
         return PrintedDesignResource::collection(
-            PrintedDesign::with('favourites')
+            PrintedDesign::with(['favourites', 'filamentBrand', 'filamentColour', 'filamentMaterial'])
                 ->latest()
                 ->take(10) // TODO put into a const or config & environment variable
                 ->get()

@@ -28,6 +28,8 @@ class StorePrintedDesignAction
             ]);
         }
 
+        $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
+
         return $printedDesign;
     }
 }

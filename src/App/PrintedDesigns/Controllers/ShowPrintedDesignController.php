@@ -9,6 +9,12 @@ class ShowPrintedDesignController
 {
     public function __invoke(PrintedDesign $printedDesign): PrintedDesignResource
     {
-        return new PrintedDesignResource($printedDesign);
+        return new PrintedDesignResource($printedDesign->loadMissing(
+            [
+                'filamentBrand',
+                'filamentColour',
+                'filamentMaterial',
+            ]
+        ));
     }
 }
