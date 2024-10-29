@@ -24,4 +24,6 @@ class PrintedDesignFactory extends Factory
             'description' => $this->faker->text(600),
         ];
     }
+
+    // TODO stop the overflow error on colours during tests by creating a factory state
 }
