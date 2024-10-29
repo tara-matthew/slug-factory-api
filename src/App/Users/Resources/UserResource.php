@@ -16,7 +16,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'username' => $this->username,
             'email' => $this->email,
-            'avatar_url' => $this->avatar_url,
+            'avatar_url' => $this->avatar_url, // TODO this can go in the user profile
             'profile' => new UserProfileResource($this->whenLoaded('userProfile')),
         ];
     }

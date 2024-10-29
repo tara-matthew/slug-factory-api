@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
 
         $country = Country::findOrFail($request->country_id);
