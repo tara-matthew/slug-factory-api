@@ -13,6 +13,7 @@ use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
 use App\PrintedDesigns\Controllers\StorePrintedDesignController;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use App\Users\Controllers\LoginController;
+use App\Users\Controllers\RegisterController;
 use App\Users\Controllers\ShowUserProfileController;
 use App\Users\Controllers\UpdateUserProfileController;
 use Domain\PrintedDesigns\Models\PrintedDesign;
@@ -50,4 +51,4 @@ Route::get('/filament-colours', IndexFilamentColoursController::class)->name('fi
 // TODO be cruddy by design and create a separate controller for Popular Prints
 
 Route::post('/auth/login', LoginController::class)->name('login');
-//Route::post('/auth/register', RegisterController::class);
+Route::post('/auth/register', RegisterController::class)->name('register');
