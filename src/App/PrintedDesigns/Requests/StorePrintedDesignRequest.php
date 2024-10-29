@@ -22,7 +22,7 @@ class StorePrintedDesignRequest extends FormRequest
             'filament_brand_id' => 'required:exists:filament_brands,id',
             'filament_colour_id' => 'required:exists:filament_colours,id',
             'filament_material_id' => 'required:exists:filament_materials,id',
-            'images.*.url' => 'required',
+            'images.*.image' => ['required', 'max:4096'],
             'images.*.is_cover_image' => 'required|bool',
 
         ];

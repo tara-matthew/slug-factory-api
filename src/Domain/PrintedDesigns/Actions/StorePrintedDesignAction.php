@@ -5,6 +5,7 @@ namespace Domain\PrintedDesigns\Actions;
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class StorePrintedDesignAction
 {
@@ -19,13 +20,14 @@ class StorePrintedDesignAction
         $printedDesign->filamentBrand()->associate($printedDesignData->filament_brand_id);
         $printedDesign->filamentColour()->associate($printedDesignData->filament_colour_id);
         $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
-        $printedDesign->save();
+        $printedDesign->save(); // TODO what happens if the next part fails? Could be worth using a transaction
 
         // TODO move into separate method/action
 
+
         foreach ($printedDesignData->images as $image) {
             $printedDesign->masterImages()->create([
-                'url' => $image->url,
+                'url' => $image->image->store('printedDesigns'),
                 'is_cover_image' => $image->is_cover_image,
             ]);
         }
