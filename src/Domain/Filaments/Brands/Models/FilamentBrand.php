@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class FilamentBrand extends Model
 {
-    use HasFactory;
     use CanBeFavourited;
+    use HasFactory;
 
     protected $fillable = [
         'name',

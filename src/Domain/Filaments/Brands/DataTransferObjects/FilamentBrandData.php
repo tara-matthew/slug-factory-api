@@ -8,6 +8,5 @@ class FilamentBrandData extends Data
 {
     public function __construct(
         public string $name,
-    ) {
-    }
+    ) {}
 }

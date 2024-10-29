@@ -10,6 +10,5 @@ class FavouritePrintedDesignData extends Data
     public function __construct(
         //        public PrintedDesign $printedDesign,
         public int $user_id,
-    ) {
-    }
+    ) {}
 }

@@ -21,8 +21,7 @@ class PrintedDesignData extends Data
         #[DataCollectionOf(ImageData::class)]
         public ?DataCollection $images,
         public bool $is_favourite = false
-    ) {
-    }
+    ) {}
 
     /**
      * @throws PaginatedCollectionIsAlwaysWrapped

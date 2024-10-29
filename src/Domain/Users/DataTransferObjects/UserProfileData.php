@@ -13,6 +13,5 @@ class UserProfileData extends Data
         public ?string $avatar_url,
         public ?string $bio,
         public ?int $country_id,
-    ) {
-    }
+    ) {}
 }

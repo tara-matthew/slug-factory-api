@@ -8,7 +8,7 @@ use Tests\TestCase;
 uses(RefreshDatabase::class, TestCase::class);
 
 it('has rules set up correctly', function () {
-    $updateUserProfileRequest = new UpdateUserProfileRequest();
+    $updateUserProfileRequest = new UpdateUserProfileRequest;
 
     $user = User::factory()->create();
 

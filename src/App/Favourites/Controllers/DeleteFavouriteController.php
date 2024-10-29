@@ -19,7 +19,7 @@ class DeleteFavouriteController
         $model = $this->identifyModel($type, $id);
 
         if (! $model->isUserFavourite()) {
-            throw new ItemNotFavouritedException();
+            throw new ItemNotFavouritedException;
         }
 
         $deleteFavouriteAction->handle($model);

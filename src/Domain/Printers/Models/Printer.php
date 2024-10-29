@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Printer extends Model
 {
-    use HasFactory;
     use CanBeFavourited;
+    use HasFactory;
 
     protected $fillable = [
         'name',

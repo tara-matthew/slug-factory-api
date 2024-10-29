@@ -17,7 +17,7 @@ class RegisterUserRequestTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->registerUserRequest = new RegisterUserRequest();
+        $this->registerUserRequest = new RegisterUserRequest;
     }
 
     #[Test]

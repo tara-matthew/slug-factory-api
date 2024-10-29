@@ -48,8 +48,8 @@ use Illuminate\Support\Carbon;
  */
 class PrintedDesign extends Model
 {
-    use HasFactory;
     use CanBeFavourited;
+    use HasFactory;
 
     protected $with = ['masterImages'];
 

@@ -27,7 +27,7 @@ class PrintedDesignPolicyTest extends TestCase
     {
         parent::setUp();
 
-        $this->policy = new PrintedDesignPolicy();
+        $this->policy = new PrintedDesignPolicy;
         $this->user = User::factory()->create();
         $this->printBelongingToUser = PrintedDesign::factory()->for($this->user)->create();
         $this->printNotBelongingToUser = PrintedDesign::factory()->create();

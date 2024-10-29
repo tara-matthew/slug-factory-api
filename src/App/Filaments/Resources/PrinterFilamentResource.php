@@ -12,7 +12,7 @@ class PrinterFilamentResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'image_url' => $this->image_url
+            'image_url' => $this->image_url,
 
         ];
     }

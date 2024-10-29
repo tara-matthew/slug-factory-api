@@ -19,7 +19,7 @@ class PrintedDesignSettingFactory extends Factory
             'nozzle_size' => fake()->randomNumber(2),
             'uses_supports' => fake()->boolean(),
             'uses_raft' => fake()->boolean,
-            'uses_brim' => fake()->boolean
+            'uses_brim' => fake()->boolean,
         ];
     }
 }

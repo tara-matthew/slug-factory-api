@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 it('has rules set up correctly', function () {
-    $storePrintedDesignRequest = new StorePrintedDesignRequest();
+    $storePrintedDesignRequest = new StorePrintedDesignRequest;
 
     $this->assertEquals(
         [

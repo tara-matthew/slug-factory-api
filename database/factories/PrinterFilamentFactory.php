@@ -18,7 +18,7 @@ class PrinterFilamentFactory extends Factory
             'filament_brand_id' => FilamentBrand::factory(),
             'filament_material_id' => FilamentMaterial::factory(),
             'filament_colour_id' => FilamentColour::factory(),
-            'image_url' => $this->faker->imageUrl
+            'image_url' => $this->faker->imageUrl,
         ];
     }
 }

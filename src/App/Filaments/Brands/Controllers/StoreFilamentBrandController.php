@@ -12,7 +12,7 @@ class StoreFilamentBrandController
     public function __invoke(StoreFilamentBrandRequest $request): FilamentBrandResource
     {
         $filamentBrandData = FilamentBrandData::from($request->validated());
-        $filamentBrand = (new StoreFilamentBrandAction())->execute($filamentBrandData);
+        $filamentBrand = (new StoreFilamentBrandAction)->execute($filamentBrandData);
 
         return new FilamentBrandResource($filamentBrand);
     }

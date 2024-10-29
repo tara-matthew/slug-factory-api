@@ -8,16 +8,16 @@ use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Shared\Traits\CanBeFavourited;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class PrinterFilament extends Model
 {
-    use HasFactory;
     use CanBeFavourited;
+    use HasFactory;
 
     public function filamentBrand(): BelongsTo
     {

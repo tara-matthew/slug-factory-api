@@ -9,7 +9,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property string $set_public_at
  * @property string $bio
  */
-
 class UserProfileResource extends JsonResource
 {
     public function toArray(Request $request): array

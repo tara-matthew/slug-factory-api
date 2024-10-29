@@ -19,7 +19,7 @@ class StoreFavouriteController // could have toggle favourite controller instead
         $model = $this->identifyModel($type, $id);
 
         if ($model->isUserFavourite()) {
-            throw new ItemAlreadyFavouritedException();
+            throw new ItemAlreadyFavouritedException;
         }
 
         $favourite = $storeFavouriteAction->execute($model);

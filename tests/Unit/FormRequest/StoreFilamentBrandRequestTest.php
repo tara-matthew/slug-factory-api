@@ -8,7 +8,7 @@ use JMac\Testing\Traits\AdditionalAssertions;
 uses(AdditionalAssertions::class);
 
 it('has rules set up correctly', function () {
-    $storeFilamentBrandRequest = new StoreFilamentBrandRequest();
+    $storeFilamentBrandRequest = new StoreFilamentBrandRequest;
 
     $this->assertEquals(
         [
