@@ -2,9 +2,6 @@
 
 use App\Users\Requests\RegisterUserRequest;
 use Illuminate\Validation\Rules\Password;
-use JMac\Testing\Traits\AdditionalAssertions;
-
-uses(AdditionalAssertions::class);
 
 it('has rules set up as expected', function () {
     $registerUserRequest = new RegisterUserRequest;
