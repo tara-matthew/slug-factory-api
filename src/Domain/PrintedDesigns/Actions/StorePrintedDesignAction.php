@@ -21,6 +21,8 @@ class StorePrintedDesignAction
         $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
         $printedDesign->save();
 
+        // TODO move into separate method/action
+
         foreach ($printedDesignData->images as $image) {
             $printedDesign->masterImages()->create([
                 'url' => $image->url,
