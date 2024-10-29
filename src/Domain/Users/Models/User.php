@@ -98,6 +98,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function booted(): void
+    {
+        static::created(function (User $user) {
+            $userProfile = new UserProfile;
+            $userProfile->user()->associate($user);
+            $userProfile->save();
+        });
+    }
+
     public function printedDesigns(): HasMany
     {
         return $this->hasMany(PrintedDesign::class);

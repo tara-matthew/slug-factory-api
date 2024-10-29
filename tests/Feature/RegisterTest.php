@@ -30,6 +30,24 @@ it('registers a user successfully', function () {
         );
 });
 
+it('creates an empty user profile record upon saving the new user', function () {
+    $country = Country::factory()->create();
+
+    $response = $this->postJson(route('register', [
+        'name' => 'Tara',
+        'email' => 'tara@gmail.com',
+        'username' => 'tara',
+        'country_id' => $country->id,
+        'password' => 'Password123!',
+        'password_confirmation' => 'Password123!',
+    ]));
+
+    $userID = $response->json()['data']['id'];
+
+    $this->assertDatabaseCount('user_profiles', 1);
+    $this->assertDatabaseHas('user_profiles', ['user_id' => $userID]);
+});
+
 it('validates using a form request', function () {
     $this->assertActionUsesFormRequest(
         RegisterController::class,

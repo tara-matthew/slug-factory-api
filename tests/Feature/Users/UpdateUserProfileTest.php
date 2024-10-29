@@ -12,7 +12,7 @@ uses(RefreshDatabase::class);
 it('updates the profile of the authenticated user', function () {
     $userProfile = UserProfile::factory();
     $user = User::factory()
-        ->has($userProfile)->create();
+        ->has($userProfile)->createQuietly();
 
     Sanctum::actingAs($user);
 
@@ -47,7 +47,7 @@ it('does not partially update if part of the request fails', function () {
     $user = User::factory([
         'email' => 'test@test.com',
         'avatar_url' => 'test-avatar-url',
-    ])->has($userProfile)->create();
+    ])->has($userProfile)->createQuietly();
 
     Sanctum::actingAs($user);
     $this->patchJson(route('profile.update'), [

@@ -11,7 +11,7 @@ uses(RefreshDatabase::class);
 it('displays the profile of the authenticated user', function () {
     $userProfile = UserProfile::factory();
     $user = User::factory()
-        ->has($userProfile)->create();
+        ->has($userProfile)->createQuietly();
 
     $user->loadMissing(['country', 'userProfile']);
 

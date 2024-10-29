@@ -7,10 +7,13 @@ use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Filaments\Models\PrinterFilament;
 use Domain\Users\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PrinterFilamentSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
     public function run(): void
     {
         $brands = FilamentBrand::all();

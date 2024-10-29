@@ -8,10 +8,13 @@ use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\Country;
 use Domain\Users\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PrintedDesignSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
     public function run(): void
     {
         $brands = FilamentBrand::all();
