@@ -3,6 +3,7 @@
 use App\Users\Requests\UpdateUserProfileRequest;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 uses(RefreshDatabase::class, TestCase::class);
@@ -12,7 +13,9 @@ it('has rules set up correctly', function () {
 
     $user = User::factory()->create();
 
-    asLoggedInUser()->assertEquals([
+    Sanctum::actingAs($user);
+
+    $this->assertEquals([
         'email' => ['email', 'unique:users,email,'.$user->id, 'max:255'],
         'name' => ['string', 'max:255'],
         'bio' => ['nullable', 'string', 'max:500'],

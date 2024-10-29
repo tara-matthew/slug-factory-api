@@ -11,9 +11,6 @@
 |
 */
 
-use Domain\Users\Models\User;
-use Tests\TestCase;
-
 uses(
     Tests\TestCase::class,
     // Illuminate\Foundation\Testing\RefreshDatabase::class,
@@ -44,10 +41,3 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-
-function asLoggedInUser(): TestCase
-{
-    $user = User::all()->count() > 0 ? User::first() : User::factory()->create();
-
-    return test()->actingAs($user);
-}

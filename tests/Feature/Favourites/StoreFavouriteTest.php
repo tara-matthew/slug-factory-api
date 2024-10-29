@@ -6,13 +6,15 @@ use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
 it('stores a favourite', function () {
     $print = PrintedDesign::factory()->create();
-    asLoggedInUser()
-        ->postJson(route('favourites.store', ['type' => 'printed_design', 'id' => $print->id]))
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->postJson(route('favourites.store', ['type' => 'printed_design', 'id' => $print->id]))
         ->assertCreated();
 
     $this->assertCount(1, Favourite::all());
@@ -24,6 +26,7 @@ it('stores a favourite', function () {
 
 it('throws an exception if an item has already been favourited by the authenticated user, differentiating between different items belonging to the same user', function () {
     $authenticatedUser = User::factory()->create();
+    Sanctum::actingAs($authenticatedUser);
 
     $favouritedPrint = PrintedDesign::factory()
         ->for($authenticatedUser)
@@ -40,7 +43,7 @@ it('throws an exception if an item has already been favourited by the authentica
 
     $this->assertCount(1, Favourite::all());
 
-    asLoggedInUser()
+    $this
         ->postJson(route('favourites.store', ['type' => 'printed_design', 'id' => $favouritedPrint->id]))
         ->assertUnprocessable()
         ->assertJson(fn (AssertableJson $json) => $json

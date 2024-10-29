@@ -2,15 +2,21 @@
 
 use Domain\Users\Models\User;
 use Domain\Users\Models\UserProfile;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
+
+uses(RefreshDatabase::class);
 
 it('displays the profile of the authenticated user', function () {
     $userProfile = UserProfile::factory();
     $user = User::factory()
         ->has($userProfile)->create();
 
-    asLoggedInUser()
-        ->get(route('profile.show'))
+    $user->loadMissing(['country', 'userProfile']);
+
+    Sanctum::actingAs($user);
+    $this->getJson(route('profile.show'))
         ->assertOk()
         ->assertJson(fn (AssertableJson $json) => $json
             ->where('data.id', $user->id)

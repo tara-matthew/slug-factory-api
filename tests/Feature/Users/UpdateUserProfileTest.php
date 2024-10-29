@@ -5,6 +5,7 @@ use Domain\Users\Models\Country;
 use Domain\Users\Models\User;
 use Domain\Users\Models\UserProfile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
@@ -13,9 +14,11 @@ it('updates the profile of the authenticated user', function () {
     $user = User::factory()
         ->has($userProfile)->create();
 
+    Sanctum::actingAs($user);
+
     $newCountry = Country::factory()->create();
 
-    $response = asLoggedInUser()
+    $response = $this
         ->patchJson(route('profile.update'), [
             'email' => 'new-email@example.com',
             'bio' => 'new bio',
@@ -46,12 +49,12 @@ it('does not partially update if part of the request fails', function () {
         'avatar_url' => 'test-avatar-url',
     ])->has($userProfile)->create();
 
-    asLoggedInUser()
-        ->patchJson(route('profile.update'), [
-            'email' => 'invalid-email',
-            'bio' => 'new bio',
-            'avatar_url' => 'new-avatar.com',
-        ])->assertUnprocessable();
+    Sanctum::actingAs($user);
+    $this->patchJson(route('profile.update'), [
+        'email' => 'invalid-email',
+        'bio' => 'new bio',
+        'avatar_url' => 'new-avatar.com',
+    ])->assertUnprocessable();
 
     $user->refresh();
 

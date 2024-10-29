@@ -10,6 +10,7 @@ use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
@@ -20,17 +21,17 @@ it('stores a print', function () {
 
     $user = User::factory()->create();
 
-    asLoggedInUser()
-        ->postJson(route('prints.store', [
-            'title' => 'My title',
-            'description' => 'My description',
-            'filament_brand_id' => $brand->id,
-            'filament_colour_id' => $colour->id,
-            'filament_material_id' => $material->id,
-            'images' => [
-                ['url' => 'test', 'is_cover_image' => true],
-            ],
-        ]))
+    Sanctum::actingAs($user);
+    $this->postJson(route('prints.store', [
+        'title' => 'My title',
+        'description' => 'My description',
+        'filament_brand_id' => $brand->id,
+        'filament_colour_id' => $colour->id,
+        'filament_material_id' => $material->id,
+        'images' => [
+            ['url' => 'test', 'is_cover_image' => true],
+        ],
+    ]))
         ->assertStatus(201)
         ->assertJson(fn (AssertableJson $json) => $json
             ->where('data.user_id', $user->id)

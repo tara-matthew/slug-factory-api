@@ -5,6 +5,7 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
@@ -12,6 +13,8 @@ covers(\App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController::class);
 
 it('returns a list of prints', function () {
     $user = User::factory()->create();
+
+    Sanctum::actingAs($user);
     $prints = PrintedDesign::factory(2)
         ->hasMasterImages()
         ->hasPrintedDesignSetting()
@@ -23,8 +26,7 @@ it('returns a list of prints', function () {
         $prints->first(), 'favouritable'
     )->for($user)->create();
 
-    asLoggedInUser()
-        ->getJson(route('my.prints.index'))
+    $this->getJson(route('my.prints.index'))
         ->assertOk()
         ->assertJson(fn (AssertableJson $json) => $json
             ->where('data.0.id', $prints[0]->id)
@@ -59,8 +61,9 @@ it('returns a list of prints', function () {
 });
 
 it('returns an empty collection of prints when no records exist', function () {
-    asLoggedInUser()
-        ->getJson(route('my.prints.index'))
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->getJson(route('my.prints.index'))
         ->assertOk()
         ->assertJsonCount(0, 'data')
         ->assertJsonStructure([

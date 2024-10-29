@@ -5,6 +5,7 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
@@ -21,8 +22,8 @@ it('deletes a favourite', function () {
 
     $this->assertCount(1, Favourite::all());
 
-    asLoggedInUser()
-        ->delete(route('favourites.delete', ['type' => 'printed_design', 'id' => $favouritedPrint->id]))
+    Sanctum::actingAs($user);
+    $this->deleteJson(route('favourites.delete', ['type' => 'printed_design', 'id' => $favouritedPrint->id]))
         ->assertNoContent();
 
     $this->assertCount(0, Favourite::all());
@@ -35,8 +36,9 @@ it('throws an exception if an attempt is made to unfavourite an item which has n
         ->for($user)
         ->create();
 
-    asLoggedInUser()
-        ->delete(route('favourites.delete', ['type' => 'printed_design', 'id' => $print->id]))
+    Sanctum::actingAs($user);
+
+    $this->deleteJson(route('favourites.delete', ['type' => 'printed_design', 'id' => $print->id]))
         ->assertUnprocessable()
         ->assertJson(fn (AssertableJson $json) => $json
             ->where('message', 'Item has not been added to favourites'));
