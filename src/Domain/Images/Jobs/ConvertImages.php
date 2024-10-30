@@ -7,9 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 use Spatie\Image\Image;
 
-class ConvertImages implements ShouldQueue
+class ConvertImages
 {
     use Queueable;
 
@@ -22,7 +24,11 @@ class ConvertImages implements ShouldQueue
     public function handle(): void
     {
         foreach($this->images as $image) {
-            Image::load(storage_path('app/' . $image->url))->resize(1024,768)->save();
-        }
+            try {
+            Image::load(storage_path('app/public/' . $image->url)) ->fit(fit: Fit::Crop, desiredWidth:  640,  desiredHeight: 480, backgroundColor: '#ff5733')->save();
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+            }
+            }
     }
 }

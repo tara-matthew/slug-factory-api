@@ -22,13 +22,13 @@ class StorePrintedDesignAction
         $printedDesign->filamentBrand()->associate($printedDesignData->filament_brand_id);
         $printedDesign->filamentColour()->associate($printedDesignData->filament_colour_id);
         $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
-        $printedDesign->save(); // TODO what happens if the next part fails? Could be worth using a transaction
+        $printedDesign->save(); // TODO what happens if the next part fails? Could be worth using a transaction - or move save to below the next chunk
 
         // TODO move into separate method/action
 
         foreach ($printedDesignData->images as $image) {
             $printedDesign->masterImages()->create([
-                'url' => Storage::disk('local')->put('prints', $image->image),
+                'url' => Storage::disk('public')->put('prints', $image->image),
                 'is_cover_image' => $image->is_cover_image,
             ]);
         }
