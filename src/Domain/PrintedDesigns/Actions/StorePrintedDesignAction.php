@@ -2,9 +2,12 @@
 
 namespace Domain\PrintedDesigns\Actions;
 
+use Domain\Images\Jobs\ConvertImages;
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Image\Image;
 
 class StorePrintedDesignAction
 {
@@ -25,10 +28,17 @@ class StorePrintedDesignAction
 
         foreach ($printedDesignData->images as $image) {
             $printedDesign->masterImages()->create([
-                'url' => $image->image->store('printedDesigns'),
+                'url' => Storage::disk('local')->put('prints', $image->image),
                 'is_cover_image' => $image->is_cover_image,
             ]);
         }
+
+//        dd(Storage::disk('local')->url('test.png'));
+//        dd(storage_path('app/printedDesigns/' . 'test.png'));
+//        dd(storage_path('app/printedDesigns/' . 'test.png'));
+
+        // dispatch a job to convert the images
+        ConvertImages::dispatch($printedDesign->masterImages);
 
         $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
 

@@ -22,7 +22,7 @@ class PrintedDesignSeeder extends Seeder
         $materials = FilamentMaterial::all();
         $countries = Country::all();
 
-        for ($i = 0; $i < 2000; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $user = User::factory()
                 ->for($countries->random())
                 ->create();
