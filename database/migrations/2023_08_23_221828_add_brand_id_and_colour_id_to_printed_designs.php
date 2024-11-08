@@ -18,10 +18,12 @@ return new class extends Migration
         Schema::table('printed_designs', function (Blueprint $table) {
             $table->foreignIdFor(FilamentBrand::class)
                 ->after('user_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignIdFor(FilamentColour::class)
+                ->nullable()
                 ->after('filament_brand_id')
                 ->constrained()
                 ->cascadeOnUpdate()
