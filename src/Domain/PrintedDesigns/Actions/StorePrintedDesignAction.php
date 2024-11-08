@@ -27,18 +27,20 @@ class StorePrintedDesignAction
         // TODO move into separate method/action
 
         foreach ($printedDesignData->images as $image) {
+//            dd($image->image);
             $printedDesign->masterImages()->create([
                 'url' => Storage::disk('public')->put('prints', $image->image),
-                'is_cover_image' => $image->is_cover_image,
+//                'is_cover_image' => $image->is_cover_image,
             ]);
         }
 
 //        dd(Storage::disk('local')->url('test.png'));
 //        dd(storage_path('app/printedDesigns/' . 'test.png'));
 //        dd(storage_path('app/printedDesigns/' . 'test.png'));
+//        dd('here');
 
         // dispatch a job to convert the images
-        ConvertImages::dispatch($printedDesign->masterImages);
+//        ConvertImages::dispatch($printedDesign->masterImages);
 
         $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
 
