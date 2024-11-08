@@ -16,6 +16,7 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('url');
+            $table->string('blurhash');
             $table->boolean('is_cover_image')->default(false);
             $table->timestamps();
         });

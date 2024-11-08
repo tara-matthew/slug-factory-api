@@ -14,6 +14,7 @@ class PrintedDesignMasterImageFactory extends Factory
     {
         return [
             'url' => $this->faker->imageUrl,
+            'blurhash' => $this->faker->sha256,
             'printed_design_id' => PrintedDesign::factory(),
         ];
     }

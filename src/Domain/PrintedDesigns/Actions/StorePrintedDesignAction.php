@@ -2,10 +2,12 @@
 
 namespace Domain\PrintedDesigns\Actions;
 
+use Bepsvpt\Blurhash\Facades\BlurHash;
 use Domain\Images\Jobs\ConvertImages;
 use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Image\Image;
 
@@ -27,12 +29,21 @@ class StorePrintedDesignAction
         // TODO move into separate method/action
 
         foreach ($printedDesignData->images as $image) {
-//            dd($image->image);
+            $relativePath = Storage::disk('public')->put('prints', $image->image);
+            $path = Storage::disk('public')->path($relativePath);
+            $blurHash = BlurHash::encode($path);
             $printedDesign->masterImages()->create([
-                'url' => Storage::disk('public')->put('prints', $image->image),
+                'url' => $relativePath,
+                'blurhash' => $blurHash,
 //                'is_cover_image' => $image->is_cover_image,
             ]);
+//            $path = Storage::disk('public')->path($image->image);
+
+            Log::info($blurHash);
+//            Log::info(Storage::url($image->image));
         }
+
+//        die();
 
 //        dd(Storage::disk('local')->url('test.png'));
 //        dd(storage_path('app/printedDesigns/' . 'test.png'));

@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class PrintedDesignMasterImage extends Model
 {
-    protected $fillable = ['url', 'is_cover_image'];
+    protected $fillable = ['url', 'is_cover_image', 'blurhash'];
 
     // TODO make a resource
     use HasFactory;
