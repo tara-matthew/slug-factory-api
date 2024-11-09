@@ -7,6 +7,7 @@ use App\Filaments\Brands\Controllers\IndexFilamentBrandsController;
 use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
 use App\Filaments\Colours\Controllers\IndexFilamentColoursController;
+use App\Images\Controllers\TestImageUploadController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
@@ -24,6 +25,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/prints/random', function () {
         return PrintedDesignResource::collection(
             PrintedDesign::query()
+                ->with('filamentBrand',
+                    'filamentColour',
+                    'filamentMaterial')
                 ->inRandomOrder()
                 ->take(5)
                 ->get()
@@ -52,3 +56,5 @@ Route::get('/filament-colours', IndexFilamentColoursController::class)->name('fi
 
 Route::post('/auth/login', LoginController::class)->name('login');
 Route::post('/auth/register', RegisterController::class)->name('register');
+
+Route::post('/upload', TestImageUploadController::class)->name('image');

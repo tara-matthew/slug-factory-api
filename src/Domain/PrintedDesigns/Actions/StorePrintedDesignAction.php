@@ -37,13 +37,7 @@ class StorePrintedDesignAction
                 'blurhash' => $blurHash,
 //                'is_cover_image' => $image->is_cover_image,
             ]);
-//            $path = Storage::disk('public')->path($image->image);
-
-            Log::info($blurHash);
-//            Log::info(Storage::url($image->image));
         }
-
-//        die();
 
 //        dd(Storage::disk('local')->url('test.png'));
 //        dd(storage_path('app/printedDesigns/' . 'test.png'));
