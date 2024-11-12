@@ -15,6 +15,7 @@ class StorePrintedDesignAction
 {
     public function execute(PrintedDesignData $printedDesignData): PrintedDesign
     {
+        Log::info(json_encode($printedDesignData));
         $printedDesign = PrintedDesign::make([
             'title' => $printedDesignData->title,
             'description' => $printedDesignData->description,
@@ -24,7 +25,7 @@ class StorePrintedDesignAction
         $printedDesign->filamentBrand()->associate($printedDesignData->filament_brand_id);
         $printedDesign->filamentColour()->associate($printedDesignData->filament_colour_id);
         $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
-        $printedDesign->save(); // TODO what happens if the next part fails? Could be worth using a transaction - or move save to below the next chunk
+        $printedDesign->save(); // TODO what happens if the next part fails? Could be worth using a transaction - also make sure to delete any files from storage in the case of an exception. Can't just move this becasuse master images need a printed design ID
 
         // TODO move into separate method/action
 

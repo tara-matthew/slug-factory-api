@@ -58,6 +58,10 @@ class PrintedDesign extends Model
         'description',
     ];
 
+    protected $withCount = [
+        'favourites',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -95,6 +99,7 @@ class PrintedDesign extends Model
 
     public function toResource(): PrintedDesignResource
     {
+        $this->loadMissing(['filamentMaterial', 'favourites']);
         return new PrintedDesignResource($this);
     }
 }

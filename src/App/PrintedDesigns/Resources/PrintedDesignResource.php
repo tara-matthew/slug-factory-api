@@ -7,6 +7,8 @@ use App\Filaments\Colours\Resources\FilamentColourResource;
 use App\Filaments\Materials\Resources\FilamentMaterialResource;
 use App\Images\Resources\PrintedDesignImageResource;
 use App\PrintedDesignSettings\Resources\PrintedDesignSettingResource;
+use App\Users\Resources\UserResource;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -27,14 +29,17 @@ class PrintedDesignResource extends JsonResource
             'id' => $this->id,
             'type' => 'PrintedDesign',
             'user_id' => $this->user_id,
+            'user' => new UserResource($this->user), // TODO change to a reduced user resource which hides private fields, or use conditional attributes. whenLoaded
             'title' => $this->title,
             'description' => $this->description,
             'images' => PrintedDesignImageResource::collection($this->masterImages), // whenloaded
             'filament_brand' => new FilamentBrandResource($this->whenLoaded('filamentBrand')),
             'filament_colour' => new FilamentColourResource($this->whenLoaded('filamentColour')),
-            'filament_material' => new FilamentMaterialResource($this->whenLoaded('filamentMaterial')),            'is_favourite' => $this->whenLoaded('favourites', function () {
+            'filament_material' => new FilamentMaterialResource($this->whenLoaded('filamentMaterial')),
+            'is_favourite' => $this->whenLoaded('favourites', function () {
                 return $this->favourites->contains('user_id', auth()->id());
             }),
+            'favourited_count' => $this->favourites->count(), // TODO $this->whenCounted('favourites'),
             'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),
         ];
     }

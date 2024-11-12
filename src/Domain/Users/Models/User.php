@@ -66,6 +66,11 @@ class User extends Authenticatable
         'country',
     ];
 
+    protected $withCount = [
+        'favourites',
+        'printedDesigns',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *

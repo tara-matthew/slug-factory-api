@@ -8,6 +8,8 @@ use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
+// TODO Make sure favourites_count and prints_count are included in tests
+
 it('displays the profile of the authenticated user', function () {
     $userProfile = UserProfile::factory();
     $user = User::factory()
