@@ -12,6 +12,7 @@ uses(RefreshDatabase::class);
 covers(\App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController::class);
 
 // TODO make sure is_favourite and favourite_count are included in tests
+// TODO include created_at
 
 it('returns a list of prints', function () {
     $user = User::factory()->create();

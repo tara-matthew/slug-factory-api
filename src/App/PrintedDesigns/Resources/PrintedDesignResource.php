@@ -41,6 +41,7 @@ class PrintedDesignResource extends JsonResource
             }),
             'favourited_count' => $this->favourites->count(), // TODO $this->whenCounted('favourites'),
             'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),
+            'created_at' => $this->created_at
         ];
     }
 }
