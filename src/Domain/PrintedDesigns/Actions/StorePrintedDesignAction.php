@@ -40,6 +40,10 @@ class StorePrintedDesignAction
             ]);
         }
 
+        $printedDesign->printedDesignSetting()->create([
+           'uses_supports' => $printedDesignData->uses_supports,
+        ]);
+
 //        dd(Storage::disk('local')->url('test.png'));
 //        dd(storage_path('app/printedDesigns/' . 'test.png'));
 //        dd(storage_path('app/printedDesigns/' . 'test.png'));

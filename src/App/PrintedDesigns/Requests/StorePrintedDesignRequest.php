@@ -25,8 +25,15 @@ class StorePrintedDesignRequest extends FormRequest
             'images' => 'required|array',
             'images.*.image' => ['required', 'max:4096'],
 //            'images.*.is_cover_image' => 'required|bool',
-
+            'uses_supports' => 'sometimes|bool',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'uses_supports' => filter_var($this->input('uses_supports'), FILTER_VALIDATE_BOOLEAN),
+        ]);
     }
 
     //    protected function dataClass(): string

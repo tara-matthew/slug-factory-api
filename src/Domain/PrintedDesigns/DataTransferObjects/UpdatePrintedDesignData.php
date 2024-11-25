@@ -20,6 +20,7 @@ final class UpdatePrintedDesignData extends Data
         public ?int $filament_material_id,
         #[DataCollectionOf(ImageData::class)]
         public ?DataCollection $images,
+        public ?bool $uses_supports, // TODO use PrintedDesignSettingData
         public bool $is_favourite = false
     ) {}
 }

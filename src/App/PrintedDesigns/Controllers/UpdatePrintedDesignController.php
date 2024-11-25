@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class UpdatePrintedDesignController
 {
-    public function __invoke(Request $request, PrintedDesign $printedDesign, UpdatePrintedDesignAction $updatePrintedDesignAction)
+    public function __invoke(UpdatePrintedDesignRequest $request, PrintedDesign $printedDesign, UpdatePrintedDesignAction $updatePrintedDesignAction)
     {
         if ($request->file('images') !== null) {
             $images = collect($request->file('images'))->map(function ($image) {
@@ -22,6 +22,7 @@ class UpdatePrintedDesignController
                 ];
             });
         }
+
 
         Log::info(data_get($request, 'filament_brand_id'));
 
@@ -36,6 +37,7 @@ class UpdatePrintedDesignController
             'filament_colour_id' => data_get($request, 'filament_colour_id'),
             'filament_material_id' => data_get($request, 'filament_material_id'),
             'images' => $images ?? null,
+            'uses_supports' => $request->has('uses_supports') ? $request->uses_supports : false
         ]);
 
         $updatePrintedDesignAction->execute($printedDesign, $printedDesignData);

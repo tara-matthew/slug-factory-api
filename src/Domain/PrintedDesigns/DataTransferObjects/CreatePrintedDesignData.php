@@ -4,6 +4,7 @@ namespace Domain\PrintedDesigns\DataTransferObjects;
 
 use Domain\Images\DataTransferObjects\ImageData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Domain\PrintedDesignSettings\DataTransferObjects\PrintedDesignSettingData;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
@@ -20,7 +21,8 @@ final class CreatePrintedDesignData extends Data
         public int $filament_material_id,
         #[DataCollectionOf(ImageData::class)]
         public DataCollection $images,
-        public bool $is_favourite = false
+        public ?bool $uses_supports, // TODO use PrintedDesignSettingData
+        public bool $is_favourite = false,
     ) {}
 
     /**

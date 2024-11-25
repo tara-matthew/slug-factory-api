@@ -45,6 +45,8 @@ it('stores a print', function () {
         );
 });
 
+it('creates a setting record when a printed design is create')->todo();
+
 it('validates using a form request', function () {
     $this->assertActionUsesFormRequest(
         StorePrintedDesignController::class,
