@@ -8,16 +8,26 @@ use Domain\PrintedDesigns\Actions\UpdatePrintedDesignAction;
 use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\DataTransferObjects\UpdatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UpdatePrintedDesignController
 {
-    public function __invoke(UpdatePrintedDesignRequest $request, PrintedDesign $printedDesign, UpdatePrintedDesignAction $updatePrintedDesignAction)
+    public function __invoke(Request $request, PrintedDesign $printedDesign, UpdatePrintedDesignAction $updatePrintedDesignAction)
     {
-        $images = collect($request->file('images'))->map(function ($image) {
-            return [
-                'image' => $image,
-            ];
-        });
+        if ($request->file('images') !== null) {
+            $images = collect($request->file('images'))->map(function ($image) {
+                return [
+                    'image' => $image,
+                ];
+            });
+        }
+
+        Log::info(data_get($request, 'filament_brand_id'));
+
+//        Log::info($images);
+//        Log::info(json_encode($images));
+//        Log::info(json_encode($printedDesign->masterImages));
 
         $printedDesignData = UpdatePrintedDesignData::from([
             'title' => data_get($request, 'title'),
@@ -25,7 +35,7 @@ class UpdatePrintedDesignController
             'filament_brand_id' => data_get($request, 'filament_brand_id'),
             'filament_colour_id' => data_get($request, 'filament_colour_id'),
             'filament_material_id' => data_get($request, 'filament_material_id'),
-            'images' => $images,
+            'images' => $images ?? null,
         ]);
 
         $updatePrintedDesignAction->execute($printedDesign, $printedDesignData);
