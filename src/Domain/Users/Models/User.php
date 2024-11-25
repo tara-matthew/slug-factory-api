@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
+use Faker\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -82,6 +83,7 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar_url',
+        'profile.profile_set_public_at'
     ];
 
     /**
@@ -106,6 +108,9 @@ class User extends Authenticatable
     protected static function booted(): void
     {
         static::created(function (User $user) {
+            $faker = app(Generator::class);
+            $user->avatar_url = $faker->imageUrl;
+            $user->save();
             $userProfile = new UserProfile;
             $userProfile->user()->associate($user);
             $userProfile->save();
