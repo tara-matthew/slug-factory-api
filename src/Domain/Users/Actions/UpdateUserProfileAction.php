@@ -2,15 +2,21 @@
 
 namespace Domain\Users\Actions;
 
+use Carbon\Carbon;
 use Domain\Users\DataTransferObjects\UserProfileData;
 use Domain\Users\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UpdateUserProfileAction
 {
     public function handle(UserProfileData $userProfileData): User
     {
-        $user = User::first(); // TODO change to auth user
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
 
         DB::transaction(function () use ($userProfileData, $user) {
             $user->update(array_filter([
@@ -26,6 +32,7 @@ class UpdateUserProfileAction
 
             $user->userProfile()->update(array_filter([
                 'bio' => $userProfileData->bio,
+                'set_public_at' => Carbon::parse($userProfileData->profile_set_public_at),
             ]));
         });
 
