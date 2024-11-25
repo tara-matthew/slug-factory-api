@@ -6,25 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePrintedDesignRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            //
+            'title' => 'sometimes|max:255',
+            'description' => 'sometimes',
+            'filament_colour_id' => 'sometimes:exists:filament_colours,id',
+            'filament_material_id' => 'sometimes:exists:filament_materials,id',
+            'images' => 'sometimes|array',
+            'images.*.image' => ['sometimes', 'max:4096'],
         ];
     }
 }

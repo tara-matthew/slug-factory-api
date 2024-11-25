@@ -9,7 +9,7 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 use Spatie\LaravelData\Exceptions\PaginatedCollectionIsAlwaysWrapped;
 
-class PrintedDesignData extends Data
+final class CreatePrintedDesignData extends Data
 {
     public function __construct(
         public ?int $id,
@@ -19,7 +19,7 @@ class PrintedDesignData extends Data
         public ?int $filament_colour_id,
         public int $filament_material_id,
         #[DataCollectionOf(ImageData::class)]
-        public ?DataCollection $images,
+        public DataCollection $images,
         public bool $is_favourite = false
     ) {}
 

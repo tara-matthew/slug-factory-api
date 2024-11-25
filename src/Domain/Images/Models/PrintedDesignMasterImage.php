@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Domain\Images\Models\Image
@@ -39,6 +40,13 @@ class PrintedDesignMasterImage extends Model
 
     // TODO make a resource
     use HasFactory;
+
+    public static function booted(): void
+    {
+        self::deleted(function (self $model) {
+            Storage::disk('public')->delete($model->url);
+        });
+    }
 
     public function printedDesign(): BelongsTo
     {

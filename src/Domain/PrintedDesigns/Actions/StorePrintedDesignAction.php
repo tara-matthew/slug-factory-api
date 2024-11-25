@@ -4,7 +4,7 @@ namespace Domain\PrintedDesigns\Actions;
 
 use Bepsvpt\Blurhash\Facades\BlurHash;
 use Domain\Images\Jobs\ConvertImages;
-use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
+use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -13,7 +13,7 @@ use Spatie\Image\Image;
 
 class StorePrintedDesignAction
 {
-    public function execute(PrintedDesignData $printedDesignData): PrintedDesign
+    public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
         Log::info(json_encode($printedDesignData));
         $printedDesign = PrintedDesign::make([

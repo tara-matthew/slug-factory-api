@@ -2,7 +2,7 @@
 
 namespace App\PrintedDesigns\Requests;
 
-use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
+use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\LaravelData\WithData;
 

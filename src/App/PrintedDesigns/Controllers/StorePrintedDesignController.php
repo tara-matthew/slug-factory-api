@@ -5,7 +5,7 @@ namespace App\PrintedDesigns\Controllers;
 use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\StorePrintedDesignAction;
-use Domain\PrintedDesigns\DataTransferObjects\PrintedDesignData;
+use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -13,7 +13,7 @@ class StorePrintedDesignController
 {
     public function __invoke(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
-        Log::info(collect($request->file('images')));
+//        Log::info(collect($request->file('images')));
 //        die();
         $images = collect($request->file('images'))->map(function ($image) {
             return [
@@ -21,11 +21,12 @@ class StorePrintedDesignController
 //                'is_cover_image' => $image['is_cover_image'],
             ];
         });
+//        dd($images);
 
         Log::info($images);
 //        die();
-
-        $printedDesignData = PrintedDesignData::from([
+        // TODO could use data_get
+        $printedDesignData = CreatePrintedDesignData::from([
             'title' => $request->title,
             'description' => $request->description,
             'filament_brand_id' => $request->filament_brand_id,
@@ -33,7 +34,7 @@ class StorePrintedDesignController
             'filament_material_id' => $request->filament_material_id,
             'images' => $images,
         ]);
-        Log::info(json_encode($printedDesignData));
+        Log::info(json_encode($printedDesignData->images));
         $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
 
         return new PrintedDesignResource($printedDesign);
