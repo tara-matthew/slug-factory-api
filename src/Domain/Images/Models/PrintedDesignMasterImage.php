@@ -44,7 +44,9 @@ class PrintedDesignMasterImage extends Model
     public static function booted(): void
     {
         self::deleted(function (self $model) {
-            Storage::disk('public')->delete($model->url);
+            if (Storage::disk('public')->exists($model->url)) {
+                Storage::disk('public')->delete($model->url);
+            }
         });
     }
 

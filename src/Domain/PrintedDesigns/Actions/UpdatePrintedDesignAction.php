@@ -15,6 +15,7 @@ class UpdatePrintedDesignAction {
         $printedDesign->update($data);
 
         // TODO split out and use a transaction
+        // TODO Use exception handling
 
         if (isset($printedDesignData->images)) {
             $newImages = [];
@@ -28,10 +29,12 @@ class UpdatePrintedDesignAction {
                     'blurhash' => $blurHash,
                 ];
             }
+
             $existingImages = $printedDesign->masterImages()->get();
-            foreach ($existingImages as $image) {
-                $image->delete();
-            }
+            $existingImages->each(function ($item) {
+                $item->delete();
+            });
+
             $printedDesign->masterImages()->createMany($newImages);
         }
 
