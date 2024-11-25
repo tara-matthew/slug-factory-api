@@ -15,7 +15,8 @@ class ShowPrintedDesignController
                 'filamentColour',
                 'filamentMaterial',
                 'favourites',
-                'user'
+                'user',
+                'printedDesignSetting'
             ]
         ));
     }
