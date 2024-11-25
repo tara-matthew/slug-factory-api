@@ -20,6 +20,10 @@ class PrintedDesignSetting extends Model
         'uses_brim',
     ];
 
+    protected $casts = [
+        'uses_supports' => 'boolean'
+    ];
+
     public function printedDesign(): BelongsTo
     {
         return $this->belongsTo(PrintedDesign::class);
