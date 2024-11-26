@@ -22,6 +22,7 @@ final class CreatePrintedDesignData extends Data
         #[DataCollectionOf(ImageData::class)]
         public DataCollection $images,
         public ?bool $uses_supports, // TODO use PrintedDesignSettingData
+        public string $adhesion_type,
         public bool $is_favourite = false,
     ) {}
 

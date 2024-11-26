@@ -42,6 +42,7 @@ class StorePrintedDesignAction
 
         $printedDesign->printedDesignSetting()->create([
            'uses_supports' => $printedDesignData->uses_supports,
+            'adhesion_type' => $printedDesignData->adhesion_type,
         ]);
 
 //        dd(Storage::disk('local')->url('test.png'));

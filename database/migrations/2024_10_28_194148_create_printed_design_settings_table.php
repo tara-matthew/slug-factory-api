@@ -16,8 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('print_speed')->nullable();
             $table->unsignedInteger('nozzle_size')->nullable();
             $table->boolean('uses_supports')->default(false);
-            $table->boolean('uses_raft')->default(false);
-            $table->boolean('uses_brim')->default(false);
+            $table->enum('adhesion_type', ['skirt', 'brim', 'raft']);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Domain\PrintedDesigns\Enums\AdhesionOption;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\PrintedDesignSettings\Models\PrintedDesignSetting;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -17,9 +18,7 @@ class PrintedDesignSettingFactory extends Factory
             'infill_percentage' => fake()->randomNumber(3),
             'print_speed' => fake()->randomNumber(3),
             'nozzle_size' => fake()->randomNumber(2),
-            'uses_supports' => fake()->boolean(),
-            'uses_raft' => fake()->boolean,
-            'uses_brim' => fake()->boolean,
+            'adhesion_type' => fake()->randomElement(AdhesionOption::cases())
         ];
     }
 }

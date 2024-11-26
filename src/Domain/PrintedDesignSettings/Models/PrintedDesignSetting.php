@@ -16,8 +16,7 @@ class PrintedDesignSetting extends Model
         'print_speed',
         'nozzle_size',
         'uses_supports',
-        'uses_raft',
-        'uses_brim',
+        'adhesion_type'
     ];
 
     protected $casts = [
