@@ -3,7 +3,6 @@
 namespace Domain\PrintedDesigns\Actions;
 
 use Bepsvpt\Blurhash\Facades\BlurHash;
-use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\DataTransferObjects\UpdatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Storage;

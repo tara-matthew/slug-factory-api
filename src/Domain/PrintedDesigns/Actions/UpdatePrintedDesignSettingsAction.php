@@ -2,7 +2,6 @@
 
 namespace Domain\PrintedDesigns\Actions;
 
-use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\DataTransferObjects\UpdatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 

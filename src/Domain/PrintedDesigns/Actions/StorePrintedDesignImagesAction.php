@@ -11,6 +11,7 @@ class StorePrintedDesignImagesAction
 {
     public function execute(PrintedDesign $printedDesign, CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
+        // TODO Use exception handling
         foreach ($printedDesignData->images as $image) {
             $relativePath = Storage::disk('public')->put('prints', $image->image);
             $path = Storage::disk('public')->path($relativePath);
