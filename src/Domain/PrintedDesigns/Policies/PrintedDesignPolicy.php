@@ -27,6 +27,7 @@ class PrintedDesignPolicy
 
     public function update(User $user, PrintedDesign $printedDesign): bool
     {
+        // TODO get this working
         return $user->id === $printedDesign->user_id;
     }
 

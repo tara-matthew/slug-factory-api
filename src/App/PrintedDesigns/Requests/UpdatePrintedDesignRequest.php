@@ -20,7 +20,7 @@ class UpdatePrintedDesignRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
             'uses_supports' => filter_var($this->input('uses_supports'), FILTER_VALIDATE_BOOLEAN),

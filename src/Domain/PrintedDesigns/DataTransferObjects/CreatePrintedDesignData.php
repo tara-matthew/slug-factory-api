@@ -25,28 +25,4 @@ final class CreatePrintedDesignData extends Data
         public string $adhesion_type,
         public bool $is_favourite = false,
     ) {}
-
-    /**
-     * @throws PaginatedCollectionIsAlwaysWrapped
-     */
-    public static function fromModel(PrintedDesign $printedDesign): self
-    {
-        return new self(
-            $printedDesign->id,
-            $printedDesign->title,
-            $printedDesign->description,
-            $printedDesign->user_id,
-            $printedDesign->filament_brand_id,
-            $printedDesign->filament_colour_id,
-            ImageData::collection($printedDesign->images)->withoutWrapping(),
-            (bool) $printedDesign->favourites->filter(function ($favourite) {
-                return $favourite->user_id === auth()->id();
-            })->first(),
-        );
-    }
-
-    public static function fromRequest(array $request)
-    {
-        //        dd('here', $request['title']);
-    }
 }
