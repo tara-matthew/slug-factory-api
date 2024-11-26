@@ -15,6 +15,10 @@ class UserProfile extends Model
         'set_public_at',
     ];
 
+    protected $casts = [
+//        'set_public_at' => 'datetime',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

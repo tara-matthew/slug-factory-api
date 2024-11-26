@@ -23,6 +23,7 @@ class UpdateUserProfileRequest extends FormRequest
             'bio' => ['nullable', 'string', 'max:500'],
             'avatar_url' => ['nullable', 'string'],
             'country_id' => ['integer', 'exists:countries,id'],
+            'profile_set_public_at' => ['nullable', 'date'] // TODO make required
         ];
     }
 }
