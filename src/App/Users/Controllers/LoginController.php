@@ -13,6 +13,7 @@ class LoginController
 {
     public function __invoke(LoginUserRequest $request): JsonResponse|AccessTokenResource
     {
+        // TODO move into an action
         $credentials = [
             'username' => $request->username,
             'password' => $request->password,
