@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class StorePrintedDesignAction
 {
+    public function __construct(
+        private readonly StorePrintedDesignImagesAction $storePrintedDesignImagesAction,
+        private readonly StorePrintedDesignSettingsAction $storePrintedDesignSettingsAction)
+    {}
+
     public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
         $printedDesign = PrintedDesign::make([
@@ -23,22 +28,8 @@ class StorePrintedDesignAction
         $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
         $printedDesign->save(); // TODO what happens if the next part fails? Could be worth using a transaction - also make sure to delete any files from storage in the case of an exception. Can't just move this becasuse master images need a printed design ID
 
-        // TODO move into separate method/action
-
-        foreach ($printedDesignData->images as $image) {
-            $relativePath = Storage::disk('public')->put('prints', $image->image);
-            $path = Storage::disk('public')->path($relativePath);
-            $blurHash = BlurHash::encode($path);
-            $printedDesign->masterImages()->create([
-                'url' => $relativePath,
-                'blurhash' => $blurHash,
-            ]);
-        }
-
-        $printedDesign->printedDesignSetting()->create([
-            'uses_supports' => $printedDesignData->uses_supports,
-            'adhesion_type' => $printedDesignData->adhesion_type,
-        ]);
+        $this->storePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
+        $this->storePrintedDesignSettingsAction->execute($printedDesign, $printedDesignData);
 
         $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
 
