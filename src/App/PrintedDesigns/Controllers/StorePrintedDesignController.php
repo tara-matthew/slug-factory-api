@@ -13,6 +13,8 @@ class StorePrintedDesignController
 {
     public function __invoke(StorePrintedDesignRequest $request, StorePrintedDesignAction $storePrintedDesignAction): PrintedDesignResource
     {
+//        dd($request->uses_supports);
+        Log::info(data_get($request, 'title'));
 //        Log::info(collect($request->file('images')));
 //        die();
         $images = collect($request->file('images'))->map(function ($image) {
@@ -33,6 +35,8 @@ class StorePrintedDesignController
             'filament_colour_id' => $request->filament_colour_id,
             'filament_material_id' => $request->filament_material_id,
             'images' => $images,
+            'adhesion_type' => $request->adhesion_type,
+            'uses_supports' => $request->has('uses_supports') ? $request->uses_supports : false
         ]);
         Log::info(json_encode($printedDesignData->images));
         $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
