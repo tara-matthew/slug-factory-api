@@ -37,6 +37,7 @@ class UpdatePrintedDesignController
             'filament_colour_id' => data_get($request, 'filament_colour_id'),
             'filament_material_id' => data_get($request, 'filament_material_id'),
             'images' => $images ?? null,
+            'adhesion_type' => data_get($request, 'adhesion_type'),
             'uses_supports' => $request->has('uses_supports') ? $request->uses_supports : false
         ]);
 

@@ -16,6 +16,7 @@ class UpdatePrintedDesignRequest extends FormRequest
             'images' => 'sometimes|array',
             'images.*.image' => ['sometimes', 'max:4096'],
             'uses_supports' => 'sometimes|bool',
+            'adhesion_type' => 'sometimes|string',
         ];
     }
 

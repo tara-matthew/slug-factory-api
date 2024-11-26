@@ -34,6 +34,7 @@ class UpdatePrintedDesignAction {
         if (isset ($printedDesignData->uses_supports)) {
             $printedDesign->printedDesignSetting()->update([
                 'uses_supports' => $printedDesignData->uses_supports,
+                'adhesion_type' => $printedDesignData->adhesion_type,
             ]);
         }
 
