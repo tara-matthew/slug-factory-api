@@ -21,8 +21,6 @@ use App\Users\Controllers\UpdateUserProfileController;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/prints/random', function () {
         return PrintedDesignResource::collection(
@@ -36,7 +34,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         );
     });
     Route::get('/prints/latest', LatestPrintedDesignsController::class)->name('prints.latest.index');
-
 
     Route::get('/my/prints', IndexMyPrintedDesignsController::class)->name('my.prints.index'); // may also need prints index
     Route::get('/prints/{printedDesign}', ShowPrintedDesignController::class)->name('prints.show');

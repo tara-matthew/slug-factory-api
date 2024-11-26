@@ -19,8 +19,8 @@ class UserResource extends JsonResource
             'avatar_url' => $this->avatar_url, // TODO this can go in the user profile
             'favourites_count' => $this->whenCounted('favourites'),
             'prints_count' => $this->whenCounted('printedDesigns'), // TODO change to upload_count
-//            'bio' => $this->userProfile->bio,
-//            'set_public_at' => $this->userProfile->set_public_at,
+            //            'bio' => $this->userProfile->bio,
+            //            'set_public_at' => $this->userProfile->set_public_at,
             'profile' => new UserProfileResource($this->whenLoaded('userProfile')),
         ];
     }

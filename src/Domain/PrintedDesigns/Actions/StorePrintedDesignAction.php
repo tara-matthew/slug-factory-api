@@ -36,22 +36,22 @@ class StorePrintedDesignAction
             $printedDesign->masterImages()->create([
                 'url' => $relativePath,
                 'blurhash' => $blurHash,
-//                'is_cover_image' => $image->is_cover_image,
+                //                'is_cover_image' => $image->is_cover_image,
             ]);
         }
 
         $printedDesign->printedDesignSetting()->create([
-           'uses_supports' => $printedDesignData->uses_supports,
+            'uses_supports' => $printedDesignData->uses_supports,
             'adhesion_type' => $printedDesignData->adhesion_type,
         ]);
 
-//        dd(Storage::disk('local')->url('test.png'));
-//        dd(storage_path('app/printedDesigns/' . 'test.png'));
-//        dd(storage_path('app/printedDesigns/' . 'test.png'));
-//        dd('here');
+        //        dd(Storage::disk('local')->url('test.png'));
+        //        dd(storage_path('app/printedDesigns/' . 'test.png'));
+        //        dd(storage_path('app/printedDesigns/' . 'test.png'));
+        //        dd('here');
 
         // dispatch a job to convert the images
-//        ConvertImages::dispatch($printedDesign->masterImages);
+        //        ConvertImages::dispatch($printedDesign->masterImages);
 
         $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
 

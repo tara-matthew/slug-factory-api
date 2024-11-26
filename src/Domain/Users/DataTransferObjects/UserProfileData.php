@@ -2,9 +2,6 @@
 
 namespace Domain\Users\DataTransferObjects;
 
-use Carbon\Carbon;
-use Spatie\LaravelData\Attributes\WithCast;
-use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 
 class UserProfileData extends Data

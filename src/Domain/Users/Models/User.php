@@ -83,7 +83,7 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar_url',
-        'profile.profile_set_public_at'
+        'profile.profile_set_public_at',
     ];
 
     /**

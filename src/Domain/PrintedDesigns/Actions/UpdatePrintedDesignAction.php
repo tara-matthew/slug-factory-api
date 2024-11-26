@@ -8,7 +8,8 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class UpdatePrintedDesignAction {
+class UpdatePrintedDesignAction
+{
     public function execute(PrintedDesign $printedDesign, UpdatePrintedDesignData $printedDesignData)
     {
         $data = array_filter($printedDesignData->toArray(), fn ($i) => ! is_null($i));
@@ -22,7 +23,7 @@ class UpdatePrintedDesignAction {
         ];
 
         foreach ($associations as $relation => $id) {
-            if (!is_null($id)) {
+            if (! is_null($id)) {
                 $printedDesign->$relation()->associate($id);
             }
         }
@@ -31,7 +32,7 @@ class UpdatePrintedDesignAction {
 
         // TODO improve to use separate settings part of DTO
 
-        if (isset ($printedDesignData->uses_supports)) {
+        if (isset($printedDesignData->uses_supports)) {
             $printedDesign->printedDesignSetting()->update([
                 'uses_supports' => $printedDesignData->uses_supports,
                 'adhesion_type' => $printedDesignData->adhesion_type,
@@ -64,7 +65,6 @@ class UpdatePrintedDesignAction {
 
         $printedDesign->refresh();
         Log::info($printedDesign);
-
 
         return $printedDesign;
 

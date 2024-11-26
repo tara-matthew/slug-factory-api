@@ -8,7 +8,6 @@ use App\Filaments\Materials\Resources\FilamentMaterialResource;
 use App\Images\Resources\PrintedDesignImageResource;
 use App\PrintedDesignSettings\Resources\PrintedDesignSettingResource;
 use App\Users\Resources\UserResource;
-use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -41,7 +40,7 @@ class PrintedDesignResource extends JsonResource
             }),
             'favourited_count' => $this->favourites->count(), // TODO $this->whenCounted('favourites'),
             'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at,
         ];
     }
 }

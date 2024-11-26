@@ -2,7 +2,6 @@
 
 namespace App\PrintedDesigns\Requests;
 
-use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\LaravelData\WithData;
 
@@ -24,7 +23,7 @@ class StorePrintedDesignRequest extends FormRequest
             'filament_material_id' => 'required:exists:filament_materials,id',
             'images' => 'required|array',
             'images.*.image' => ['required', 'max:4096'],
-//            'images.*.is_cover_image' => 'required|bool',
+            //            'images.*.is_cover_image' => 'required|bool',
             'uses_supports' => 'sometimes|bool',
             'adhesion_type' => 'sometimes|string',
         ];

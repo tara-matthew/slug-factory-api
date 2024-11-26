@@ -8,6 +8,5 @@ final class PrintedDesignSettingData extends Data
 {
     public function __construct(
         public bool $uses_supports
-    )
-    {}
+    ) {}
 }

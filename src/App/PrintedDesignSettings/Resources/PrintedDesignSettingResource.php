@@ -15,7 +15,7 @@ class PrintedDesignSettingResource extends JsonResource
             'print_speed' => $this->print_speed,
             'nozzle_size' => $this->nozzle_size,
             'uses_supports' => $this->uses_supports,
-            'adhesion_type' => $this->adhesion_type
+            'adhesion_type' => $this->adhesion_type,
         ];
     }
 }

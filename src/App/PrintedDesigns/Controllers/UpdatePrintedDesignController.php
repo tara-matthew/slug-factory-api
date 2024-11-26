@@ -5,11 +5,8 @@ namespace App\PrintedDesigns\Controllers;
 use App\PrintedDesigns\Requests\UpdatePrintedDesignRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\UpdatePrintedDesignAction;
-use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\DataTransferObjects\UpdatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class UpdatePrintedDesignController
 {
@@ -31,7 +28,7 @@ class UpdatePrintedDesignController
             'filament_material_id' => data_get($request, 'filament_material_id'),
             'images' => $images ?? null,
             'adhesion_type' => data_get($request, 'adhesion_type'),
-            'uses_supports' => $request->has('uses_supports') ? data_get($request, 'uses_supports') : false
+            'uses_supports' => $request->has('uses_supports') ? data_get($request, 'uses_supports') : false,
         ]);
 
         $updatePrintedDesignAction->execute($printedDesign, $printedDesignData);

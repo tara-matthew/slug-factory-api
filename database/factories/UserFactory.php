@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'country_id' => Country::factory(),
             'email' => fake()->unique()->safeEmail(),
-            'avatar_url' =>$this->faker->imageUrl,
+            'avatar_url' => $this->faker->imageUrl,
             'username' => fake()->userName(),
             'email_verified_at' => now(),
             'password' => '$2y$10$rjqKPbHkax2YsyAGwmg6Lul.e.kkkocGzrWN9A3aIqtDnQoIUJbte', // Password123!

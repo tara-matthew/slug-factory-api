@@ -16,11 +16,11 @@ class PrintedDesignSetting extends Model
         'print_speed',
         'nozzle_size',
         'uses_supports',
-        'adhesion_type'
+        'adhesion_type',
     ];
 
     protected $casts = [
-        'uses_supports' => 'boolean'
+        'uses_supports' => 'boolean',
     ];
 
     public function printedDesign(): BelongsTo

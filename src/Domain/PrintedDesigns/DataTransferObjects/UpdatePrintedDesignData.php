@@ -3,11 +3,9 @@
 namespace Domain\PrintedDesigns\DataTransferObjects;
 
 use Domain\Images\DataTransferObjects\ImageData;
-use Domain\PrintedDesigns\Models\PrintedDesign;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
-use Spatie\LaravelData\Exceptions\PaginatedCollectionIsAlwaysWrapped;
 
 final class UpdatePrintedDesignData extends Data
 {

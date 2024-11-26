@@ -10,7 +10,7 @@ class ImageData extends Data
     public function __construct(
         public ?int $id,
         public UploadedFile $image,
-//        public bool $is_cover_image,
+        //        public bool $is_cover_image,
         public ?int $printed_design_id,
         public ?int $user_id // TODO do I need this?
     ) {}

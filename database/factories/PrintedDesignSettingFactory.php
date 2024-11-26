@@ -18,7 +18,7 @@ class PrintedDesignSettingFactory extends Factory
             'infill_percentage' => fake()->randomNumber(3),
             'print_speed' => fake()->randomNumber(3),
             'nozzle_size' => fake()->randomNumber(2),
-            'adhesion_type' => fake()->randomElement(AdhesionOption::cases())
+            'adhesion_type' => fake()->randomElement(AdhesionOption::cases()),
         ];
     }
 }
