@@ -3,19 +3,15 @@
 namespace Domain\PrintedDesigns\Actions;
 
 use Bepsvpt\Blurhash\Facades\BlurHash;
-use Domain\Images\Jobs\ConvertImages;
 use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Image\Image;
 
 class StorePrintedDesignAction
 {
     public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
-        Log::info(json_encode($printedDesignData));
         $printedDesign = PrintedDesign::make([
             'title' => $printedDesignData->title,
             'description' => $printedDesignData->description,
@@ -36,7 +32,6 @@ class StorePrintedDesignAction
             $printedDesign->masterImages()->create([
                 'url' => $relativePath,
                 'blurhash' => $blurHash,
-                //                'is_cover_image' => $image->is_cover_image,
             ]);
         }
 
@@ -44,14 +39,6 @@ class StorePrintedDesignAction
             'uses_supports' => $printedDesignData->uses_supports,
             'adhesion_type' => $printedDesignData->adhesion_type,
         ]);
-
-        //        dd(Storage::disk('local')->url('test.png'));
-        //        dd(storage_path('app/printedDesigns/' . 'test.png'));
-        //        dd(storage_path('app/printedDesigns/' . 'test.png'));
-        //        dd('here');
-
-        // dispatch a job to convert the images
-        //        ConvertImages::dispatch($printedDesign->masterImages);
 
         $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
 
