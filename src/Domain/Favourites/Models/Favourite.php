@@ -19,7 +19,7 @@ class Favourite extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class); // belongstomany?
+        return $this->belongsTo(User::class);
     }
 
     // TODO set up proper relationship with user
