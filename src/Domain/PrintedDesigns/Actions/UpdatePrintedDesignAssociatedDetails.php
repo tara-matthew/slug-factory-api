@@ -7,7 +7,7 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 
 class UpdatePrintedDesignAssociatedDetails
 {
-    public function execute(PrintedDesign $printedDesign, UpdatePrintedDesignData $printedDesignData)
+    public function execute(PrintedDesign $printedDesign, UpdatePrintedDesignData $printedDesignData): PrintedDesign
     {
         $associations = [
             'filamentBrand' => $printedDesignData->filament_brand_id,
