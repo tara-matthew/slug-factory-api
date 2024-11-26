@@ -12,7 +12,7 @@ it('has rules set up as expected', function () {
             'email' => 'required|email|unique:users|max:255',
             'username' => 'required|unique:users|max:255',
             'country_id' => 'required|exists:countries,id',
-            'password' => [Password::defaults(), 'required', 'confirmed'],
+            'password' => [Password::defaults(), 'required'],
         ],
         $registerUserRequest->rules()
     );
