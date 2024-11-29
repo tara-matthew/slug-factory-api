@@ -1,5 +1,7 @@
 <?php
 
+use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
+use Carbon\Carbon;
 use Domain\Favourites\Models\Favourite;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
@@ -9,13 +11,11 @@ use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
-covers(\App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController::class);
-
-// TODO make sure is_favourite and favourite_count are included in tests
-// TODO include created_at
+covers(IndexMyPrintedDesignsController::class);
 
 it('returns a list of prints', function () {
     $user = User::factory()->create();
+    Carbon::setTestNow(Carbon::parse('2024-10-24 12:00:00'));
 
     Sanctum::actingAs($user);
     $prints = PrintedDesign::factory(2)
@@ -40,12 +40,13 @@ it('returns a list of prints', function () {
             ->where('data.0.filament_colour.name', $prints[0]->filamentColour->name)
             ->where('data.0.filament_material.name', $prints[0]->filamentMaterial->name)
             ->where('data.0.is_favourite', true)
+            ->where('data.0.favourited_count', 1)
+            ->where('data.0.created_at', $prints[0]->created_at->toISOString())
             ->where('data.0.settings.infill_percentage', $prints[0]->printedDesignSetting->infill_percentage)
             ->where('data.0.settings.print_speed', $prints[0]->printedDesignSetting->print_speed)
             ->where('data.0.settings.nozzle_size', $prints[0]->printedDesignSetting->nozzle_size)
             ->where('data.0.settings.uses_supports', $prints[0]->printedDesignSetting->uses_supports)
-            ->where('data.0.settings.uses_raft', $prints[0]->printedDesignSetting->uses_raft)
-            ->where('data.0.settings.uses_brim', $prints[0]->printedDesignSetting->uses_brim)
+            ->where('data.0.settings.adhesion_type', $prints[0]->printedDesignSetting->adhesion_type)
             ->where('data.1.id', $prints[1]->id)
             ->where('data.1.user_id', $user->id)
             ->where('data.1.title', $prints[1]->title)
@@ -54,12 +55,13 @@ it('returns a list of prints', function () {
             ->where('data.1.filament_colour.name', $prints[1]->filamentColour->name)
             ->where('data.1.filament_material.name', $prints[1]->filamentMaterial->name)
             ->where('data.1.is_favourite', false)
+            ->where('data.1.favourited_count', 0)
+            ->where('data.1.created_at', $prints[1]->created_at->toISOString())
             ->where('data.1.settings.infill_percentage', $prints[1]->printedDesignSetting->infill_percentage)
             ->where('data.1.settings.print_speed', $prints[1]->printedDesignSetting->print_speed)
             ->where('data.1.settings.nozzle_size', $prints[1]->printedDesignSetting->nozzle_size)
             ->where('data.1.settings.uses_supports', $prints[1]->printedDesignSetting->uses_supports)
-            ->where('data.1.settings.uses_raft', $prints[1]->printedDesignSetting->uses_raft)
-            ->where('data.1.settings.uses_brim', $prints[1]->printedDesignSetting->uses_brim)
+            ->where('data.1.settings.adhesion_type', $prints[1]->printedDesignSetting->adhesion_type)
             ->etc());
 });
 
