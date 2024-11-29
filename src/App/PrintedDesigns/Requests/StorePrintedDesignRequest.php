@@ -25,7 +25,7 @@ class StorePrintedDesignRequest extends FormRequest
             'images.*.image' => ['required', 'max:4096'],
             //            'images.*.is_cover_image' => 'required|bool',
             'uses_supports' => 'sometimes|bool',
-            'adhesion_type' => 'sometimes|string',
+            'adhesion_type' => 'required|string',
         ];
     }
 
