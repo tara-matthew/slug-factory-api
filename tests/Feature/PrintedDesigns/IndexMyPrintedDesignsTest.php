@@ -35,6 +35,8 @@ it('returns a list of prints', function () {
             ->where('data.0.id', $prints[0]->id)
             ->where('data.0.user_id', $user->id)
             ->where('data.0.title', $prints[0]->title)
+            ->where('data.0.images.0.url', $prints[0]->masterImages[0]->url)
+            ->where('data.0.images.0.blurhash', $prints[0]->masterImages[0]->blurhash)
             ->where('data.0.description', $prints[0]->description)
             ->where('data.0.filament_brand.name', $prints[0]->filamentBrand->name)
             ->where('data.0.filament_colour.name', $prints[0]->filamentColour->name)
@@ -50,6 +52,8 @@ it('returns a list of prints', function () {
             ->where('data.1.id', $prints[1]->id)
             ->where('data.1.user_id', $user->id)
             ->where('data.1.title', $prints[1]->title)
+            ->where('data.1.images.0.url', $prints[1]->masterImages[0]->url)
+            ->where('data.1.images.0.blurhash', $prints[1]->masterImages[0]->blurhash)
             ->where('data.1.description', $prints[1]->description)
             ->where('data.1.filament_brand.name', $prints[1]->filamentBrand->name)
             ->where('data.1.filament_colour.name', $prints[1]->filamentColour->name)
@@ -75,3 +79,5 @@ it('returns an empty collection of prints when no records exist', function () {
             'data' => [],
         ]);
 });
+
+it('only returns prints belonging to the authenticated user')->todo();

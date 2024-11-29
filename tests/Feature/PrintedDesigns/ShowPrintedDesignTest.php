@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\PrintedDesigns;
 
+use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -9,6 +10,7 @@ use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
+covers(ShowPrintedDesignController::class);
 
 it('returns a specific print', function () {
     $user = User::factory()->create();
