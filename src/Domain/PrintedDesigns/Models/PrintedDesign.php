@@ -51,6 +51,7 @@ class PrintedDesign extends Model
     use CanBeFavourited;
     use HasFactory;
 
+    // TODO remove eager load of printedDesignSetting when PrintedDesign template has been sorted on the frontend
     protected $with = ['masterImages', 'printedDesignSetting'];
 
     protected $fillable = [

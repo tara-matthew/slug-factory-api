@@ -30,6 +30,7 @@ class UpdatePrintedDesignAction
             $this->updatePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
         }
 
+        $printedDesign->loadMissing(['filamentMaterial', 'printedDesignSetting']);
         $printedDesign->refresh();
 
         return $printedDesign;

@@ -32,7 +32,7 @@ class StorePrintedDesignAction
         $this->storePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
         $this->storePrintedDesignSettingsAction->execute($printedDesign, $printedDesignData);
 
-        $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial']);
+        $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial', 'printedDesignSetting']);
 
         return $printedDesign;
     }
