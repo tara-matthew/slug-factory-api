@@ -62,11 +62,6 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    protected $with = [
-        'userProfile',
-        'country',
-    ];
-
     protected $withCount = [
         'favourites',
         'printedDesigns',

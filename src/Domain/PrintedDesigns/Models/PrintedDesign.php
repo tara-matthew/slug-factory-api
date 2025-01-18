@@ -100,7 +100,7 @@ class PrintedDesign extends Model
 
     public function toResource(): PrintedDesignResource
     {
-        $this->loadMissing(['filamentMaterial', 'favourites']);
+        $this->loadMissing(['filamentMaterial', 'favourites', 'printedDesignSetting']);
 
         return new PrintedDesignResource($this);
     }

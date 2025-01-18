@@ -26,16 +26,17 @@ class UpdateUserProfileAction
 
             if (isset($userProfileData->country_id)) {
                 $user->country()->associate($userProfileData->country_id)->save();
-                $user->load('country');
             }
 
             $user->userProfile()->update(array_filter([
                 'bio' => $userProfileData->bio,
                 'set_public_at' => Carbon::parse($userProfileData->profile_set_public_at),
             ]));
+
+            $user->loadMissing(['userProfile', 'country']);
         });
 
-        $user->refresh();
+        $user->refresh(); // May not need this
 
         return $user;
 
