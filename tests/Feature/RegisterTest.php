@@ -17,7 +17,6 @@ it('registers a user successfully', function () {
         'name' => 'Tara',
         'email' => 'tara@gmail.com',
         'username' => 'tara',
-        'country_id' => $country->id,
         'password' => 'Password123!',
         'password_confirmation' => 'Password123!',
     ]))
@@ -26,7 +25,6 @@ it('registers a user successfully', function () {
             ->where('data.name', 'Tara')
             ->where('data.email', 'tara@gmail.com')
             ->where('data.username', 'tara')
-            ->where('data.country.id', $country->id)
         );
 });
 

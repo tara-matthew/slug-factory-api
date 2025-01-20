@@ -21,5 +21,6 @@ it('has rules set up correctly', function () {
         'bio' => ['nullable', 'string', 'max:500'],
         'avatar_url' => ['nullable', 'string'],
         'country_id' => ['integer', 'exists:countries,id'],
+        'profile_set_public_at' => ['nullable', 'date'],
     ], $updateUserProfileRequest->rules());
 });

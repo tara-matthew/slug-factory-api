@@ -14,11 +14,13 @@ it('has rules set up correctly', function () {
         [
             'title' => 'required|max:255',
             'description' => 'required',
-            'filament_brand_id' => 'required:exists:filament_brands,id',
-            'filament_colour_id' => 'required:exists:filament_colours,id',
+            'filament_brand_id' => 'sometimes:exists:filament_brands,id',
+            'filament_colour_id' => 'sometimes:exists:filament_colours,id',
             'filament_material_id' => 'required:exists:filament_materials,id',
-            'images.*.url' => 'required',
-            'images.*.is_cover_image' => 'required|bool',
+            'images' => 'required|array',
+            'images.*.image' => ['required', 'max:4096'],
+            'uses_supports' => 'sometimes|bool',
+            'adhesion_type' => 'required|string',
         ],
         $storePrintedDesignRequest->rules()
     );
