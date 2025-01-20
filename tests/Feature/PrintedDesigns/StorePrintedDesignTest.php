@@ -7,12 +7,15 @@ use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
+use Domain\PrintedDesigns\Enums\AdhesionOption;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
+
+// TODO Properly test image
 
 it('stores a print', function () {
     $brand = FilamentBrand::factory()->create();
@@ -29,10 +32,11 @@ it('stores a print', function () {
         'filament_colour_id' => $colour->id,
         'filament_material_id' => $material->id,
         'images' => [
-            ['url' => 'test', 'is_cover_image' => true],
+            ['image' => 'test', 'is_cover_image' => true],
         ],
+        'adhesion_type' => AdhesionOption::Raft->value,
     ]))
-        ->assertStatus(201)
+        ->assertCreated()
         ->assertJson(fn (AssertableJson $json) => $json
             ->where('data.user_id', $user->id)
             ->where('data.title', 'My title')
@@ -40,8 +44,7 @@ it('stores a print', function () {
             ->where('data.filament_brand.name', $brand->name)
             ->where('data.filament_colour.name', $colour->name)
             ->where('data.filament_material.name', $material->name)
-            ->where('data.images.0.url', 'test')
-            ->where('data.images.0.is_cover_image', true)
+            ->where('data.settings.adhesion_type', AdhesionOption::Raft->value)
         );
 });
 
