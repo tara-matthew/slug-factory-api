@@ -9,6 +9,6 @@ class ShowUserProfileController
 {
     public function __invoke(): UserResource
     {
-        return new UserResource(Auth::user());
+        return new UserResource(Auth::user()->load('userProfile'));
     }
 }
