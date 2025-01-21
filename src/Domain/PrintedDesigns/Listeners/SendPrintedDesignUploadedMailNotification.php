@@ -11,9 +11,7 @@ use Domain\Users\Models\User;
 
 class SendPrintedDesignUploadedMailNotification
 {
-    public function __construct(private readonly CreateNotificationAction $createNotificationAction)
-    {
-    }
+    public function __construct(private readonly CreateNotificationAction $createNotificationAction) {}
 
     public function handle(PrintedDesignUploaded $event): void
     {

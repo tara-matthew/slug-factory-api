@@ -11,7 +11,5 @@ class PrintedDesignUploaded
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct(public readonly PrintedDesign $printedDesign)
-    {
-    }
+    public function __construct(public readonly PrintedDesign $printedDesign) {}
 }

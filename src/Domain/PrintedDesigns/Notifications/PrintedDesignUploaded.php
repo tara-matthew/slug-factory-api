@@ -2,10 +2,10 @@
 
 namespace Domain\PrintedDesigns\Notifications;
 
+use Domain\Notifications\Models\Notification as NotificationModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Domain\Notifications\Models\Notification as NotificationModel;
 use Illuminate\Notifications\Notification;
 
 class PrintedDesignUploaded extends Notification implements ShouldQueue
@@ -36,10 +36,10 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject($this->notification->title)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject($this->notification->title)
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**

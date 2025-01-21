@@ -14,6 +14,5 @@ class NotificationData extends Data
         public string $body,
         public string $notification_type,
         public NotificationChannel $channel
-    ) {
-    }
+    ) {}
 }

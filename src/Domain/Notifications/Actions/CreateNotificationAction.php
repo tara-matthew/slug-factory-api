@@ -30,5 +30,4 @@ class CreateNotificationAction
 
         return $notification;
     }
-
 }
