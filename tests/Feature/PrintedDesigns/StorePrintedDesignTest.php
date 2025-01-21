@@ -8,8 +8,10 @@ use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\PrintedDesigns\Enums\AdhesionOption;
+use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 
@@ -18,6 +20,8 @@ uses(RefreshDatabase::class);
 // TODO Properly test image
 
 it('stores a print', function () {
+    Event::fake();
+
     $brand = FilamentBrand::factory()->create();
     $colour = FilamentColour::factory()->create();
     $material = FilamentMaterial::factory()->create();
@@ -46,6 +50,8 @@ it('stores a print', function () {
             ->where('data.filament_material.name', $material->name)
             ->where('data.settings.adhesion_type', AdhesionOption::Raft->value)
         );
+
+    Event::assertDispatched(PrintedDesignUploaded::class);
 });
 
 it('creates a setting record when a printed design is create')->todo();

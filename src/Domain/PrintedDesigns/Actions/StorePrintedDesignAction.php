@@ -3,6 +3,7 @@
 namespace Domain\PrintedDesigns\Actions;
 
 use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
+use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,8 @@ class StorePrintedDesignAction
 
         $this->storePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
         $this->storePrintedDesignSettingsAction->execute($printedDesign, $printedDesignData);
+
+        PrintedDesignUploaded::dispatch($printedDesign);
 
         $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial', 'printedDesignSetting']);
 
