@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('body');
+            $table->enum('channel', ['push', 'mail']);
             $table->dateTime('read_at')->nullable();
             $table->timestamps();
         });

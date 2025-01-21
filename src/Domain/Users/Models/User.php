@@ -5,6 +5,7 @@ namespace Domain\Users\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Domain\Favourites\Models\Favourite;
+use Domain\Notifications\Models\Notification;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Faker\Generator;
@@ -135,5 +136,10 @@ class User extends Authenticatable
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
     }
 }

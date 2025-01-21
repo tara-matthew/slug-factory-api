@@ -4,11 +4,14 @@ namespace App\Providers;
 
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Models\PrinterFilament;
+use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
+use Domain\PrintedDesigns\Listeners\SendPrintedDesignUploadedMailNotification;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -49,5 +52,10 @@ class AppServiceProvider extends ServiceProvider
             'printer_filament' => PrinterFilament::class,
             'user' => User::class,
         ]);
+
+        Event::listen(
+            PrintedDesignUploaded::class,
+            SendPrintedDesignUploadedMailNotification::class,
+        );
     }
 }
