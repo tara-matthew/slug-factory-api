@@ -20,7 +20,7 @@ class SendPrintedDesignUploadedMailNotification
                 $notificationData = NotificationData::from([
                     'user' => $user,
                     'title' => $event->printedDesign->title.' has been uploaded!',
-                    'body' => 'A new print has been uploaded',
+                    'body' => 'A new print has been uploaded.',
                     'notification_type' => PrintedDesignUploadedNotification::class,
                     'channel' => NotificationChannel::MAIL,
                 ]);

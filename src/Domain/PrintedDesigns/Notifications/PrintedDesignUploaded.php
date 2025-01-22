@@ -37,9 +37,8 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject($this->notification->title)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line($this->notification->body)
+            ->line('Have a look in the app now.');
     }
 
     /**
