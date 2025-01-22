@@ -15,7 +15,7 @@ class SendPrintedDesignUploadedMailNotification
 
     public function handle(PrintedDesignUploaded $event): void
     {
-        User::chunkById(50, function ($users) use ($event) {
+        User::chunkById(config('chunking.default_size'), function ($users) use ($event) {
             $users->each(function ($user) use ($event) {
                 $notificationData = NotificationData::from([
                     'user' => $user,
