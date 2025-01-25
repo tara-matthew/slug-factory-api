@@ -17,7 +17,7 @@ class SendPrintedDesignFavouritedMailNotification
         $notificationData = NotificationData::from([
             'user' => $event->user,
             'title' => $event->printedDesign->title.' has been favourited!',
-            'body' => 'Someone favourited your print.',
+            'body' => 'Someone favourited your print, '.$event->printedDesign->title.'.',
             'notification_type' => PrintedDesignFavouritedNotification::class,
             'channel' => NotificationChannel::MAIL,
         ]);

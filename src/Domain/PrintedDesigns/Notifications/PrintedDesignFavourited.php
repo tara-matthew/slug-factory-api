@@ -2,18 +2,20 @@
 
 namespace Domain\PrintedDesigns\Notifications;
 
+use Domain\Notifications\Models\Notification as NotificationModel;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PrintedDesignFavourited extends Notification
+class PrintedDesignFavourited extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(private readonly NotificationModel $notification)
     {
         //
     }
@@ -34,9 +36,9 @@ class PrintedDesignFavourited extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject($this->notification->title)
+            ->line($this->notification->body)
+            ->line('Have a look in the app now.');
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace Domain\Favourites\Actions;
 
 use App\Exceptions\ItemAlreadyFavouritedException;
-use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Eloquent\Model;
