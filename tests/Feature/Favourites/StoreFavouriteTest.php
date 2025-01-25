@@ -1,16 +1,20 @@
 <?php
 
 use Domain\Favourites\Models\Favourite;
+use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
 it('stores a favourite', function () {
+    Event::fake();
+
     $print = PrintedDesign::factory()->create();
     Sanctum::actingAs(User::factory()->create());
 
@@ -51,4 +55,18 @@ it('throws an exception if an item has already been favourited by the authentica
 
     $this->assertCount(1, Favourite::all());
 
+});
+
+it('dispatches an event if a printed design is favourited', function () {
+    Event::fake();
+
+    $print = PrintedDesign::factory()->create();
+    Sanctum::actingAs(User::factory()->create());
+
+    $this->postJson(route('favourites.store', ['type' => 'printed_design', 'id' => $print->id]))
+        ->assertCreated();
+
+    Event::assertDispatched(function (PrintedDesignFavourited $event) use ($print) {
+        return $event->printedDesign->id === $print->id && $event->user->id === $print->user_id;
+    });
 });

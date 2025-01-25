@@ -54,7 +54,7 @@ it('stores a print', function () {
     Event::assertDispatched(PrintedDesignUploaded::class);
 });
 
-it('creates a setting record when a printed design is create')->todo();
+it('creates a setting record when a printed design is created')->todo();
 
 it('validates using a form request', function () {
     $this->assertActionUsesFormRequest(
