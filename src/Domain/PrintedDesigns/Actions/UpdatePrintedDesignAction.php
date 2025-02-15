@@ -4,6 +4,7 @@ namespace Domain\PrintedDesigns\Actions;
 
 use Domain\PrintedDesigns\DataTransferObjects\UpdatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Illuminate\Support\Facades\Log;
 
 class UpdatePrintedDesignAction
 {
@@ -30,7 +31,9 @@ class UpdatePrintedDesignAction
             $this->updatePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
         }
 
+        // TODO May not need this once view print screen is sorted on the frontend
         $printedDesign->loadMissing(['filamentMaterial', 'printedDesignSetting']);
+
         $printedDesign->refresh();
 
         return $printedDesign;
