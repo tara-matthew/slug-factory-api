@@ -2,11 +2,15 @@
 
 namespace Domain\PrintedDesigns\Notifications;
 
+use Domain\Notifications\Enums\NotificationChannel;
 use Domain\Notifications\Models\Notification as NotificationModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Fcm\FcmChannel;
+use NotificationChannels\Fcm\FcmMessage;
+use NotificationChannels\Fcm\Resources\Notification as FcmNotification;
 
 class PrintedDesignUploaded extends Notification implements ShouldQueue
 {
@@ -17,7 +21,6 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
      */
     public function __construct(private readonly NotificationModel $notification)
     {
-        //
     }
 
     /**
@@ -27,7 +30,38 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return $this->notification->channel === NotificationChannel::PUSH ? [FcmChannel::class] : [NotificationChannel::MAIL->value];
+    }
+
+    public function toFcm($notifiable): FcmMessage
+    {
+        return (new FcmMessage(notification: new FcmNotification(
+            title: 'Printed Design uploaded',
+            body: 'A printed design has been uploaded.',
+            image: 'http://example.com/url-to-image-here.png'
+        )))
+            ->data(['data1' => 'value', 'data2' => 'value2'])
+            ->custom([
+                'android' => [
+                    'notification' => [
+                        'color' => '#0A0A0A',
+                        'sound' => 'default',
+                    ],
+                    'fcm_options' => [
+                        'analytics_label' => 'analytics',
+                    ],
+                ],
+                'apns' => [
+                    'payload' => [
+                        'aps' => [
+                            'sound' => 'default'
+                        ],
+                    ],
+                    'fcm_options' => [
+                        'analytics_label' => 'analytics',
+                    ],
+                ],
+            ]);
     }
 
     /**
