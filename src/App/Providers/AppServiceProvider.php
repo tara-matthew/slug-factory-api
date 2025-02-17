@@ -7,7 +7,6 @@ use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\PrintedDesigns\Listeners\SendPrintedDesignFavouritedMailNotification;
-use Domain\PrintedDesigns\Listeners\SendPrintedDesignUploadedMailNotification;
 use Domain\PrintedDesigns\Listeners\SendPrintedDesignUploadedPushNotification;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;

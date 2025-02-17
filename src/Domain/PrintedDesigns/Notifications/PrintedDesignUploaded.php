@@ -19,9 +19,7 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly NotificationModel $notification)
-    {
-    }
+    public function __construct(private readonly NotificationModel $notification) {}
 
     /**
      * Get the notification's delivery channels.
@@ -54,7 +52,7 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
                 'apns' => [
                     'payload' => [
                         'aps' => [
-                            'sound' => 'default'
+                            'sound' => 'default',
                         ],
                     ],
                     'fcm_options' => [

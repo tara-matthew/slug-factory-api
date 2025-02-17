@@ -4,7 +4,6 @@ namespace Domain\PrintedDesigns\Actions;
 
 use Domain\PrintedDesigns\DataTransferObjects\UpdatePrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
-use Illuminate\Support\Facades\Log;
 
 class UpdatePrintedDesignAction
 {

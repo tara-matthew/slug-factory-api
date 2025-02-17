@@ -7,7 +7,6 @@ use App\Users\Resources\UserResource;
 use Domain\Users\Models\Country;
 use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Support\Controllers\Controller;
 
 class RegisterController extends Controller

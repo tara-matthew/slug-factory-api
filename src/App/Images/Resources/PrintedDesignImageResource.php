@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @mixin PrintedDesignImage
+ *
  * @property string $blurhash
  * @property bool $is_cover_image
  */
