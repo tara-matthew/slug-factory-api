@@ -2,13 +2,12 @@
 
 namespace App\Images\Resources;
 
+use Domain\Images\Models\PrintedDesignImage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @property int $id
- * @property int | null $printed_design_id
- * @property int | null $user_id
- * @property string $url
+ * @mixin PrintedDesignImage
+ * @property string $blurhash
  * @property bool $is_cover_image
  */
 class PrintedDesignImageResource extends JsonResource

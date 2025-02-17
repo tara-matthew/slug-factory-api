@@ -2,9 +2,13 @@
 
 namespace App\PrintedDesignSettings\Resources;
 
+use Domain\PrintedDesignSettings\Models\PrintedDesignSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin PrintedDesignSetting
+ */
 class PrintedDesignSettingResource extends JsonResource
 {
     public function toArray(Request $request): array

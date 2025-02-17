@@ -14,7 +14,7 @@ class DeleteFavouriteController
     /**
      * @throws ItemNotFavouritedException
      */
-    public function __invoke(string $type, string $id, DeleteFavouriteAction $deleteFavouriteAction): Response
+    public function __invoke(string $type, int $id, DeleteFavouriteAction $deleteFavouriteAction): Response
     {
         $model = $this->identifyModel($type, $id);
 

@@ -8,17 +8,11 @@ use App\Filaments\Materials\Resources\FilamentMaterialResource;
 use App\Images\Resources\PrintedDesignImageResource;
 use App\PrintedDesignSettings\Resources\PrintedDesignSettingResource;
 use App\Users\Resources\UserResource;
+use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @property int $id
- * @property int $user_id
- * @property string $title
- * @property string $description
- * @property int $filament_brand_id
- * @property int $filament_colour_id
- * @property int $filament_material_id
- * @property array $images
+ * @mixin PrintedDesign
  */
 class PrintedDesignResource extends JsonResource
 {

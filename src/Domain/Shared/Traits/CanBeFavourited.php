@@ -10,7 +10,7 @@ trait CanBeFavourited
     public function isUserFavourite(): bool
     {
         /**
-         * @var User $user
+         * @var User|null $user
          */
         $user = Auth::user();
         if (! $user) {

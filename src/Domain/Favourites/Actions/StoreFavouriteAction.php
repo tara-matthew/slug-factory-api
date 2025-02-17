@@ -3,6 +3,7 @@
 namespace Domain\Favourites\Actions;
 
 use App\Exceptions\ItemAlreadyFavouritedException;
+use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ class StoreFavouriteAction
     /**
      * @throws ItemAlreadyFavouritedException
      */
-    public function execute(Model $model): Model
+    public function execute(PrintedDesign|PrinterFilament $model): Model
     {
         $user = Auth::user();
 

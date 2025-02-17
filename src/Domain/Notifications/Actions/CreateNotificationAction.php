@@ -11,7 +11,7 @@ class CreateNotificationAction
 {
     public function execute(NotificationData $notificationData)
     {
-        $notification = Notification::make([
+        $notification = new Notification([
             'title' => $notificationData->title,
             'body' => $notificationData->body,
             'channel' => $notificationData->channel,

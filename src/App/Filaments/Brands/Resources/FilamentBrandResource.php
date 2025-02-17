@@ -2,8 +2,12 @@
 
 namespace App\Filaments\Brands\Resources;
 
+use Domain\Filaments\Brands\Models\FilamentBrand;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin FilamentBrand
+ */
 class FilamentBrandResource extends JsonResource
 {
     public function toArray($request): array

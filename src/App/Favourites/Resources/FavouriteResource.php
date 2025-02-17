@@ -2,8 +2,12 @@
 
 namespace App\Favourites\Resources;
 
+use Domain\Favourites\Models\Favourite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Favourite
+ */
 class FavouriteResource extends JsonResource
 {
     public function toArray($request): array

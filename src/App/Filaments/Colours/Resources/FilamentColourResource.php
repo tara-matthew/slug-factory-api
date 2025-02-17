@@ -2,8 +2,12 @@
 
 namespace App\Filaments\Colours\Resources;
 
+use Domain\Filaments\Colours\Models\FilamentColour;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin FilamentColour
+ */
 class FilamentColourResource extends JsonResource
 {
     public function toArray($request): array

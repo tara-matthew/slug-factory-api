@@ -4,8 +4,12 @@ namespace App\Users\Resources;
 
 use App\Http\Resources\CountryResource;
 use App\Http\Resources\UserProfileResource;
+use Domain\Users\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin User
+ */
 class UserResource extends JsonResource
 {
     public function toArray($request)

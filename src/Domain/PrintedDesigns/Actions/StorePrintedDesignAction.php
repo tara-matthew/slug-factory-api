@@ -16,7 +16,7 @@ class StorePrintedDesignAction
 
     public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
-        $printedDesign = PrintedDesign::make([
+        $printedDesign = new PrintedDesign([
             'title' => $printedDesignData->title,
             'description' => $printedDesignData->description,
         ]);

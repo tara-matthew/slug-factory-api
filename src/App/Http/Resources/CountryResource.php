@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use Domain\Users\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Country
+ */
 class CountryResource extends JsonResource
 {
     public function toArray(Request $request): array
