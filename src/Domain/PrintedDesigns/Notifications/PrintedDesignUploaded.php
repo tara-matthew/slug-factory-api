@@ -30,7 +30,7 @@ class PrintedDesignUploaded extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return $this->notification->channel === NotificationChannel::PUSH ? [FcmChannel::class] : [NotificationChannel::MAIL->value];
+        return $this->notification->channel === NotificationChannel::PUSH->value ? [FcmChannel::class] : [NotificationChannel::MAIL->value];
     }
 
     public function toFcm($notifiable): FcmMessage
