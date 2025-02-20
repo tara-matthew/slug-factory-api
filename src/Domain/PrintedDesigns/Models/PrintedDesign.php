@@ -2,6 +2,7 @@
 
 namespace Domain\PrintedDesigns\Models;
 
+use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -96,6 +98,11 @@ class PrintedDesign extends Model
     public function printedDesignSetting(): HasOne
     {
         return $this->hasOne(PrintedDesignSetting::class);
+    }
+
+    public function printedDesignLists(): BelongsToMany
+    {
+        return $this->belongsToMany(PrintedDesignList::class);
     }
 
     public function toResource(): PrintedDesignResource

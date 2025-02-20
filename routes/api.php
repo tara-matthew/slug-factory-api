@@ -43,6 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my/favourites', IndexMyFavouritesController::class)->name('my.favourites.index');
     Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
     Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
+    Route::post('/my/printed-design-lists/{printedDesignList}/printed-designs', AddToPrintedDesignListController::class)->name('my.printed-design-lists.printed-designs.store');
 
     Route::get('/me', ShowUserProfileController::class)->name('profile.show');
     Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
