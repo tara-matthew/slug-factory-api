@@ -4,6 +4,7 @@ namespace App\PrintedDesignLists\Controllers;
 
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Requests\AddToPrintedDesignListRequest;
+use App\PrintedDesignLists\Resources\PrintedDesignListResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 
 class AddToPrintedDesignListController
@@ -16,8 +17,6 @@ class AddToPrintedDesignListController
 
         $printedDesignList->printedDesigns()->attach($printedDesign);
 
-        return response()->json([
-            'status' => 'success',
-        ]);
+        return new PrintedDesignListResource($printedDesignList);
     }
 }

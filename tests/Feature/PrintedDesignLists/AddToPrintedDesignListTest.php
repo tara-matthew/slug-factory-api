@@ -9,9 +9,9 @@ it('adds a printed design to a list', function () {
     $printedDesignList = PrintedDesignList::factory()->create();
     $printedDesign = PrintedDesign::factory()->create();
 
-    $this
+    $response = $this
         ->actingAs($user)
-        ->postJson(route('my.printed-design-lists.printed-designs.store', [
+        ->postJson(route('my.print-lists.prints.store', [
             'printedDesignList' => $printedDesignList->id,
             'printed_design_id' => $printedDesign->id,
         ]))->assertOk();
@@ -22,6 +22,9 @@ it('adds a printed design to a list', function () {
             'printed_design_id' => $printedDesign->id,
             'printed_design_list_id' => $printedDesignList->id,
         ]);
+
+    $this->assertJsonResponseContent(\App\PrintedDesignLists\Resources\PrintedDesignListResource::make($printedDesignList), $response);
+
 });
 
 it('does not allow a user to add to a list which is not theirs')->todo();

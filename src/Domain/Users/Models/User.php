@@ -3,6 +3,7 @@
 namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\PrintedDesignLists\Models\PrintedDesignList;
 use Database\Factories\UserFactory;
 use Domain\Favourites\Models\Favourite;
 use Domain\Notifications\Models\Notification;
@@ -141,6 +142,11 @@ class User extends Authenticatable
     public function notifications(): HasMany
     {
         return $this->hasMany(Notification::class);
+    }
+
+    public function printedDesignLists(): HasMany
+    {
+        return $this->hasMany(PrintedDesignList::class);
     }
 
     public function routeNotificationForFcm()
