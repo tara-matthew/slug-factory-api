@@ -2,28 +2,22 @@
 
 namespace App\PrintedDesignLists\Controllers;
 
-use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Requests\StorePrintedDesignListRequest;
 use App\PrintedDesignLists\Resources\PrintedDesignListResource;
-use Illuminate\Support\Facades\Auth;
+use Domain\PrintedDesignLists\Actions\StorePrintedDesignListAction;
+use Domain\PrintedDesignLists\DataTransferObjects\CreatePrintedDesignListData;
 
 class StorePrintedDesignListController
 {
-    public function __invoke(StorePrintedDesignListRequest $request)
+    public function __invoke(StorePrintedDesignListRequest $request, StorePrintedDesignListAction $storePrintedDesignListAction): PrintedDesignListResource
     {
-        $user = Auth::user();
-
-        $validated = $request->validated();
-
-        $printedDesignList = new PrintedDesignList([
-            'name' => $validated['name'],
+        $listData = CreatePrintedDesignListData::from([
+            'name' => data_get($request, 'name'),
         ]);
 
-        $printedDesignList->user()->associate($user);
+        $list = $storePrintedDesignListAction->execute($listData);
 
-        $printedDesignList->save();
-
-        return new PrintedDesignListResource($printedDesignList);
+        return new PrintedDesignListResource($list);
 
     }
 }
