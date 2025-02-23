@@ -5,15 +5,14 @@ namespace App\PrintedDesignLists\Controllers;
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Requests\AddToPrintedDesignListRequest;
 use App\PrintedDesignLists\Resources\PrintedDesignListResource;
+use Domain\PrintedDesignLists\DataTransferObjects\CreatePrintedDesignListPrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 
 class AddToPrintedDesignListController
 {
-    public function __invoke(AddToPrintedDesignListRequest $request, PrintedDesignList $printedDesignList)
+    public function __invoke(AddToPrintedDesignListRequest $request, PrintedDesignList $printedDesignList): PrintedDesignListResource
     {
-        $validated = $request->validated();
-
-        $printedDesign = PrintedDesign::find($validated['printed_design_id']);
+        $printedDesign = PrintedDesign::findOrFail($request->validated('printed_design_id'));
 
         $printedDesignList->printedDesigns()->attach($printedDesign);
 
