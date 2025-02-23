@@ -1,16 +1,19 @@
 <?php
 
+use App\Http\Controllers\IndexMyPrintedDesignListsController;
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use Domain\Users\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
 
-covers(\App\Http\Controllers\IndexMyPrintedDesignListsController::class);
+covers(IndexMyPrintedDesignListsController::class);
 
 it('returns a list of printed design lists', function () {
     $user = User::factory()->create();
 
     $printedDesignLists = PrintedDesignList::factory()->for($user)->count(3)->create();
+    $printedDesignListsNotBelongingToUser = PrintedDesignList::factory()->count(2)->create();
+
     Sanctum::actingAs($user);
 
     $this

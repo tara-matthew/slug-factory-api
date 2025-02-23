@@ -13,6 +13,8 @@ class IndexMyPrintedDesignListsController
     {
         $user = Auth::user();
 
-        return PrintedDesignListResource::collection(PrintedDesignList::whereBelongsTo($user)->paginate(30));
+        return PrintedDesignListResource::collection(
+            PrintedDesignList::whereBelongsTo($user)
+                ->paginate(30));
     }
 }
