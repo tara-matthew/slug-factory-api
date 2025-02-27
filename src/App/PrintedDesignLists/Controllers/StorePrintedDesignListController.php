@@ -12,7 +12,7 @@ class StorePrintedDesignListController
     public function __invoke(StorePrintedDesignListRequest $request, StorePrintedDesignListAction $storePrintedDesignListAction): PrintedDesignListResource
     {
         $listData = CreatePrintedDesignListData::from([
-            'name' => data_get($request, 'name'),
+            'title' => data_get($request, 'title'),
             'image_url' => data_get($request, 'image_url'),
         ]);
 

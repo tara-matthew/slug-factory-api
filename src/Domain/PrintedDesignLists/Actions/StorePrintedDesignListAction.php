@@ -11,7 +11,7 @@ class StorePrintedDesignListAction
     public function execute(CreatePrintedDesignListData $printedDesignListData): PrintedDesignList
     {
         $printedDesignList = new PrintedDesignList([
-            'name' => $printedDesignListData->name,
+            'title' => $printedDesignListData->title,
             'image_url' => $printedDesignListData->image_url,
         ]);
 

@@ -113,7 +113,7 @@ class User extends Authenticatable
             $userProfile->user()->associate($user);
             $userProfile->save();
             $toPrintList = new PrintedDesignList([
-                'name' => 'To Print List',
+                'title' => 'To Print List',
                 'image_url' => $faker->imageUrl,
             ]);
             $toPrintList->user()->associate($user);

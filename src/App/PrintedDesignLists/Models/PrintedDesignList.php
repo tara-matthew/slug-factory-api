@@ -4,7 +4,6 @@ namespace App\PrintedDesignLists\Models;
 
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
-use Faker\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +14,7 @@ class PrintedDesignList extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
         'image_url',
     ];
 

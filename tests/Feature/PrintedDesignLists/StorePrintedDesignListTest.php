@@ -6,21 +6,22 @@ use Domain\Users\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
 
 it('stores a printed design list', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->createQuietly();
 
     $this
         ->actingAs($user)
         ->postJson(route('my.print-lists.store', [
-            'name' => 'New list',
+            'title' => 'New list',
+            'image_url' => 'https://picsum.photos/640/480?random=47375',
         ]))->assertCreated()
         ->assertJson(fn (AssertableJson $json) => $json
-            ->where('data.name', 'New list')
+            ->where('data.title', 'New list')
             ->where('data.user.id', $user->id));
 
     $this->assertDatabaseHas(
         'printed_design_lists',
         [
-            'name' => 'New list',
+            'title' => 'New list',
             'user_id' => $user->id,
         ]);
 

@@ -5,7 +5,6 @@ namespace App\PrintedDesignLists\Controllers;
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Requests\AddToPrintedDesignListRequest;
 use App\PrintedDesignLists\Resources\PrintedDesignListResource;
-use Domain\PrintedDesignLists\DataTransferObjects\CreatePrintedDesignListPrintedDesignData;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 
 class AddToPrintedDesignListController

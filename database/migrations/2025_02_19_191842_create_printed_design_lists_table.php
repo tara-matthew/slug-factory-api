@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('printed_design_lists', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('name');
+            $table->string('title');
             $table->string('image_url');
             $table->timestamps();
         });
