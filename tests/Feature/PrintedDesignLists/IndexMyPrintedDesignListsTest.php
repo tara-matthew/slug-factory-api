@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\IndexMyPrintedDesignListsController;
+use App\PrintedDesignLists\Controllers\IndexMyPrintedDesignListsController;
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use Domain\Users\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;

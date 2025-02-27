@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\PrintedDesignLists\Controllers;
 
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Resources\PrintedDesignListResource;
