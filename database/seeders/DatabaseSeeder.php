@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             PrintedDesignSeeder::class,
             UserProfileSeeder::class,
+            PrintedDesignListSeeder::class,
         ]);
     }
 }

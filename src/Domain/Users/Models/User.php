@@ -102,6 +102,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // TODO Maybe create a listener class
     protected static function booted(): void
     {
         static::created(function (User $user) {
@@ -111,6 +112,12 @@ class User extends Authenticatable
             $userProfile = new UserProfile;
             $userProfile->user()->associate($user);
             $userProfile->save();
+            $toPrintList = new PrintedDesignList([
+                'name' => 'To Print List',
+                'image_url' => $faker->imageUrl,
+            ]);
+            $toPrintList->user()->associate($user);
+            $toPrintList->save();
         });
     }
 

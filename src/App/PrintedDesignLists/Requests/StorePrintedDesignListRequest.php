@@ -15,6 +15,7 @@ class StorePrintedDesignListRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:1', 'max:255'],
+            'image_url' => ['required', 'url'],
         ];
     }
 }

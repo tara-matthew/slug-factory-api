@@ -13,6 +13,7 @@ class StorePrintedDesignListController
     {
         $listData = CreatePrintedDesignListData::from([
             'name' => data_get($request, 'name'),
+            'image_url' => data_get($request, 'image_url'),
         ]);
 
         $list = $storePrintedDesignListAction->execute($listData);

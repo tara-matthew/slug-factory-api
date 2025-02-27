@@ -21,7 +21,8 @@ class PrintedDesignListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->name,
+            'image_url' => $this->image_url,
             'user' => new UserResource($this->whenLoaded('user')),
         ];
     }

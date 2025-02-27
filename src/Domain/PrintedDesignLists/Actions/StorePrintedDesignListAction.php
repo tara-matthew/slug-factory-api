@@ -12,6 +12,7 @@ class StorePrintedDesignListAction
     {
         $printedDesignList = new PrintedDesignList([
             'name' => $printedDesignListData->name,
+            'image_url' => $printedDesignListData->image_url,
         ]);
 
         $printedDesignList->user()->associate(Auth::user());

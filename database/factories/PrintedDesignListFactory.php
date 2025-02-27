@@ -20,6 +20,7 @@ class PrintedDesignListFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => fake()->name,
+            'image_url' => $this->faker->imageUrl
         ];
     }
 }

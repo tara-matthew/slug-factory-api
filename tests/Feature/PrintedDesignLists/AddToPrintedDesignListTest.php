@@ -1,6 +1,7 @@
 <?php
 
 use App\PrintedDesignLists\Models\PrintedDesignList;
+use App\PrintedDesignLists\Resources\PrintedDesignListResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 
@@ -23,7 +24,7 @@ it('adds a printed design to a list', function () {
             'printed_design_list_id' => $printedDesignList->id,
         ]);
 
-    $this->assertJsonResponseContent(\App\PrintedDesignLists\Resources\PrintedDesignListResource::make($printedDesignList), $response);
+    $this->assertJsonResponseContent(PrintedDesignListResource::make($printedDesignList), $response);
 
 });
 
