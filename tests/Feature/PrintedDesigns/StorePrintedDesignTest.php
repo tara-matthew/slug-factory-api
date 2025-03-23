@@ -26,7 +26,6 @@ it('stores a print', function () {
     $brand = FilamentBrand::factory()->create();
     $colour = FilamentColour::factory()->create();
     $material = FilamentMaterial::factory()->create();
-
     $user = User::factory()->create();
 
     Sanctum::actingAs($user);
@@ -56,6 +55,8 @@ it('stores a print', function () {
 });
 
 it('rolls back all changes if any part fails', function () {
+    Event::fake();
+
     $brand = FilamentBrand::factory()->create();
     $colour = FilamentColour::factory()->create();
     $material = FilamentMaterial::factory()->create();
@@ -86,6 +87,8 @@ it('rolls back all changes if any part fails', function () {
     $this->assertDatabaseCount('printed_designs', 0);
     $this->assertDatabaseCount('printed_design_settings', 0);
     $this->assertDatabaseCount('printed_design_master_images', 0);
+
+    Event::assertNotDispatched(PrintedDesignUploaded::class);
 });
 
 it('validates using a form request', function () {

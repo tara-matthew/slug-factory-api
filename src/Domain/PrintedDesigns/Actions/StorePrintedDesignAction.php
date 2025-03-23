@@ -13,13 +13,13 @@ class StorePrintedDesignAction
 {
     public function __construct(
         private readonly StorePrintedDesignImagesAction $storePrintedDesignImagesAction,
-        private readonly StorePrintedDesignSettingsAction $storePrintedDesignSettingsAction
+        private readonly StorePrintedDesignSettingsAction $storePrintedDesignSettingsAction,
     ) {}
 
     public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
         try {
-            return DB::transaction(function () use ($printedDesignData) {
+            $printedDesign = DB::transaction(function () use ($printedDesignData) {
                 $printedDesign = new PrintedDesign([
                     'title' => $printedDesignData->title,
                     'description' => $printedDesignData->description,
@@ -34,16 +34,21 @@ class StorePrintedDesignAction
                 $this->storePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
                 $this->storePrintedDesignSettingsAction->execute($printedDesign, $printedDesignData);
 
-                PrintedDesignUploaded::dispatch($printedDesign);
-
-                return $printedDesign->loadMissing([
-                    'filamentBrand',
-                    'filamentColour',
-                    'filamentMaterial',
-                    'printedDesignSetting',
-                    'masterImages'
-                ]);
+                return $printedDesign;
             });
+
+            $printedDesign->loadMissing([
+                'filamentBrand',
+                'filamentColour',
+                'filamentMaterial',
+                'printedDesignSetting',
+                'masterImages'
+            ]);
+
+            PrintedDesignUploaded::dispatch($printedDesign);
+
+            return $printedDesign;
+
         } catch (Throwable $e) {
             // TODO remove any saved files
             throw $e;
