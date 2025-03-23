@@ -37,17 +37,15 @@ class StorePrintedDesignAction
                 return $printedDesign;
             });
 
-            $printedDesign->loadMissing([
+            PrintedDesignUploaded::dispatch($printedDesign);
+
+            return $printedDesign->loadMissing([
                 'filamentBrand',
                 'filamentColour',
                 'filamentMaterial',
                 'printedDesignSetting',
                 'masterImages'
             ]);
-
-            PrintedDesignUploaded::dispatch($printedDesign);
-
-            return $printedDesign;
 
         } catch (Throwable $e) {
             // TODO remove any saved files

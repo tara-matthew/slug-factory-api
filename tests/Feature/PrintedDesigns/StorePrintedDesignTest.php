@@ -62,7 +62,6 @@ it('rolls back all changes if any part fails', function () {
     $material = FilamentMaterial::factory()->create();
     $user = User::factory()->create();
 
-    // Mock settings action to fail after printed design is created
     $this->mock(StorePrintedDesignSettingsAction::class)
         ->shouldReceive('execute')
         ->andThrow(new RuntimeException('Failed to save settings'));
