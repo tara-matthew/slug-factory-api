@@ -6,37 +6,54 @@ use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class StorePrintedDesignAction
 {
     public function __construct(
         private readonly StorePrintedDesignImagesAction $storePrintedDesignImagesAction,
-        private readonly StorePrintedDesignSettingsAction $storePrintedDesignSettingsAction) {}
+        private readonly StorePrintedDesignSettingsAction $storePrintedDesignSettingsAction
+    ) {}
 
     public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
     {
-        $printedDesign = new PrintedDesign([
-            'title' => $printedDesignData->title,
-            'description' => $printedDesignData->description,
-        ]);
+        try {
+            return DB::transaction(function () use ($printedDesignData) {
+                $printedDesign = new PrintedDesign([
+                    'title' => $printedDesignData->title,
+                    'description' => $printedDesignData->description,
+                ]);
 
-        $printedDesign->user()->associate(Auth::user());
-        // TODO Could shorten this with an associated details method
-        $printedDesign->filamentBrand()->associate($printedDesignData->filament_brand_id);
-        $printedDesign->filamentColour()->associate($printedDesignData->filament_colour_id);
-        $printedDesign->filamentMaterial()->associate($printedDesignData->filament_material_id);
-        $printedDesign->save();
+                // TODO pass in the user rather than relying on Auth
+                $printedDesign->user()->associate(Auth::user());
+                $this->associateFilamentDetails($printedDesign, $printedDesignData);
 
-        // TODO what happens if the next part fails? Could be worth using a transaction - also make sure to delete any files from storage in the case of an exception. Can't just move this becasuse master images need a printed design ID
+                $printedDesign->save();
 
-        $this->storePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
-        $this->storePrintedDesignSettingsAction->execute($printedDesign, $printedDesignData);
+                $this->storePrintedDesignImagesAction->execute($printedDesign, $printedDesignData);
+                $this->storePrintedDesignSettingsAction->execute($printedDesign, $printedDesignData);
 
-        PrintedDesignUploaded::dispatch($printedDesign);
+                PrintedDesignUploaded::dispatch($printedDesign);
 
-        $printedDesign->loadMissing(['filamentBrand', 'filamentColour', 'filamentMaterial', 'printedDesignSetting']);
+                return $printedDesign->loadMissing([
+                    'filamentBrand',
+                    'filamentColour',
+                    'filamentMaterial',
+                    'printedDesignSetting',
+                    'masterImages'
+                ]);
+            });
+        } catch (Throwable $e) {
+            // TODO remove any saved files
+            throw $e;
+        }
+    }
 
-        return $printedDesign;
+    private function associateFilamentDetails(PrintedDesign $printedDesign, CreatePrintedDesignData $data): void
+    {
+        $printedDesign->filamentBrand()->associate($data->filament_brand_id);
+        $printedDesign->filamentColour()->associate($data->filament_colour_id);
+        $printedDesign->filamentMaterial()->associate($data->filament_material_id);
     }
 }
