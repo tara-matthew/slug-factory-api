@@ -7,6 +7,7 @@ use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
+use Domain\PrintedDesigns\Actions\StorePrintedDesignSettingsAction;
 use Domain\PrintedDesigns\Enums\AdhesionOption;
 use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\Users\Models\User;
@@ -14,10 +15,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
+use RuntimeException;
 
 uses(RefreshDatabase::class);
-
-// TODO Properly test image
 
 it('stores a print', function () {
     Event::fake();
@@ -54,7 +54,39 @@ it('stores a print', function () {
     Event::assertDispatched(PrintedDesignUploaded::class);
 });
 
-it('creates a setting record when a printed design is created')->todo();
+it('rolls back all changes if any part fails', function () {
+    $brand = FilamentBrand::factory()->create();
+    $colour = FilamentColour::factory()->create();
+    $material = FilamentMaterial::factory()->create();
+    $user = User::factory()->create();
+
+    // Mock settings action to fail after printed design is created
+    $this->mock(StorePrintedDesignSettingsAction::class)
+        ->shouldReceive('execute')
+        ->andThrow(new RuntimeException('Failed to save settings'));
+
+    Sanctum::actingAs($user);
+
+    $response = $this->postJson(route('prints.store'), [
+        'title' => 'My title',
+        'description' => 'My description',
+        'filament_brand_id' => $brand->id,
+        'filament_colour_id' => $colour->id,
+        'filament_material_id' => $material->id,
+        'images' => [
+            ['image' => 'test', 'is_cover_image' => true],
+        ],
+        'adhesion_type' => AdhesionOption::Raft->value,
+    ]);
+
+    $response
+        ->assertStatus(500);
+
+    // Verify nothing was persisted
+    $this->assertDatabaseCount('printed_designs', 0);
+    $this->assertDatabaseCount('printed_design_settings', 0);
+    $this->assertDatabaseCount('printed_design_master_images', 0);
+});
 
 it('validates using a form request', function () {
     $this->assertActionUsesFormRequest(
