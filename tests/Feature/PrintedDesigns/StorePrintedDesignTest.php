@@ -18,6 +18,7 @@ use Laravel\Sanctum\Sanctum;
 use RuntimeException;
 
 uses(RefreshDatabase::class);
+// TODO use proper images, as may be getting false positives
 
 it('stores a print', function () {
     Event::fake();
@@ -82,10 +83,9 @@ it('rolls back all changes if any part fails', function () {
     $response
         ->assertStatus(500);
 
-    // Verify nothing was persisted
     $this->assertDatabaseCount('printed_designs', 0);
     $this->assertDatabaseCount('printed_design_settings', 0);
-    $this->assertDatabaseCount('printed_design_master_images', 0);
+    $this->assertDatabaseCount('printed_design_images', 0);
 });
 
 it('validates using a form request', function () {
