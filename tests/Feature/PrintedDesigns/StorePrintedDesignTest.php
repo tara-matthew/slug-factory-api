@@ -85,7 +85,7 @@ it('rolls back all changes if any part fails', function () {
 
     $this->assertDatabaseCount('printed_designs', 0);
     $this->assertDatabaseCount('printed_design_settings', 0);
-    $this->assertDatabaseCount('printed_design_images', 0);
+    $this->assertDatabaseCount('printed_design_master_images', 0);
 });
 
 it('validates using a form request', function () {
