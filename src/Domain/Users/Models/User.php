@@ -9,6 +9,7 @@ use Domain\Favourites\Models\Favourite;
 use Domain\Notifications\Models\Notification;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
+use Domain\Users\Events\UserCreated;
 use Faker\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -100,6 +101,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * @var array<string, string>
+     */
+    protected $dispatchesEvents = [
+        'created' => UserCreated::class,
     ];
 
     // TODO Maybe create a listener class
