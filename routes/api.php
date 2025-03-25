@@ -7,7 +7,12 @@ use App\Filaments\Brands\Controllers\IndexFilamentBrandsController;
 use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
 use App\Filaments\Colours\Controllers\IndexFilamentColoursController;
+use App\Http\Controllers\PushNotificationTestController;
 use App\Images\Controllers\TestImageUploadController;
+use App\PrintedDesignLists\Controllers\AddToPrintedDesignListController;
+use App\PrintedDesignLists\Controllers\IndexMyPrintedDesignListsController;
+use App\PrintedDesignLists\Controllers\ShowPrintedDesignListController;
+use App\PrintedDesignLists\Controllers\StorePrintedDesignListController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
@@ -41,9 +46,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::patch('/prints/{printedDesign}', UpdatePrintedDesignController::class)->name('prints.update');
 
     Route::get('/my/favourites', IndexMyFavouritesController::class)->name('my.favourites.index');
-    Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store');
+    Route::post('/favourites/{type}/{id}', StoreFavouriteController::class)->name('favourites.store'); // my?
     Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
-    Route::post('/my/printed-design-lists/{printedDesignList}/printed-designs', AddToPrintedDesignListController::class)->name('my.printed-design-lists.printed-designs.store');
+    Route::get('/my/printed-design-lists', IndexMyPrintedDesignListsController::class)->name('my.print-lists.index');
+    Route::post('/my/printed-design-lists', StorePrintedDesignListController::class)->name('my.print-lists.store');
+    Route::post('/my/printed-design-lists/{printedDesignList}/printed-designs', AddToPrintedDesignListController::class)->name('my.print-lists.prints.store');
+    Route::get('/my/printed-design-lists/{printedDesignList}', ShowPrintedDesignListController::class)->name('my.print-lists.show');
 
     Route::get('/me', ShowUserProfileController::class)->name('profile.show');
     Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
@@ -61,3 +69,5 @@ Route::post('/auth/login', LoginController::class)->name('login');
 Route::post('/auth/register', RegisterController::class)->name('register');
 
 Route::post('/upload', TestImageUploadController::class)->name('image');
+
+Route::get('/push-notification', PushNotificationTestController::class);
