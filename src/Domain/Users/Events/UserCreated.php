@@ -2,6 +2,7 @@
 
 namespace Domain\Users\Events;
 
+use Domain\Users\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -14,10 +15,9 @@ class UserCreated
     /**
      * Create a new event instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public User $user
+    ) {}
 
     /**
      * Get the channels the event should broadcast on.

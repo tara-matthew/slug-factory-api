@@ -2,6 +2,8 @@
 
 namespace Domain\Users\Listeners;
 
+use Domain\Users\Events\UserCreated;
+
 class CreateUserAvatar
 {
     /**
@@ -15,8 +17,5 @@ class CreateUserAvatar
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
-    {
-        //
-    }
+    public function handle(UserCreated $event): void {}
 }

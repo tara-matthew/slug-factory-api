@@ -2,6 +2,8 @@
 
 namespace Domain\Users\Listeners;
 
+use Domain\Users\Events\UserCreated;
+
 class CreateUserProfile
 {
     /**
@@ -15,7 +17,7 @@ class CreateUserProfile
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
+    public function handle(UserCreated $event): void
     {
         //
     }

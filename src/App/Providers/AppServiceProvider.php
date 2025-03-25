@@ -10,6 +10,10 @@ use Domain\PrintedDesigns\Listeners\SendPrintedDesignFavouritedMailNotification;
 use Domain\PrintedDesigns\Listeners\SendPrintedDesignUploadedPushNotification;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
+use Domain\Users\Events\UserCreated;
+use Domain\Users\Listeners\CreateUserAvatar;
+use Domain\Users\Listeners\CreateUserDefaultLists;
+use Domain\Users\Listeners\CreateUserProfile;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -62,6 +66,18 @@ class AppServiceProvider extends ServiceProvider
         Event::listen(
             PrintedDesignFavourited::class,
             SendPrintedDesignFavouritedMailNotification::class,
+        );
+        Event::listen(
+            UserCreated::class,
+            CreateUserAvatar::class,
+        );
+        Event::listen(
+            UserCreated::class,
+            CreateUserProfile::class,
+        );
+        Event::listen(
+            UserCreated::class,
+            CreateUserDefaultLists::class,
         );
     }
 }
