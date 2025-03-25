@@ -16,12 +16,11 @@ class PrintedDesignListSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            PrintedDesignList::factory()->for($user)->create([
-                'title' => 'To Print',
-            ]);
-            PrintedDesignList::factory()->for($user)->create([
-                'title' => 'Printed',
-            ]);
+            foreach (config('default-user-lists') as $listTitle) {
+                PrintedDesignList::factory()->for($user)->create([
+                    'title' => $listTitle,
+                ]);
+            }
         }
     }
 }

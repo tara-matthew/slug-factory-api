@@ -8,12 +8,6 @@ use Faker\Generator;
 
 class CreateUserDefaultLists
 {
-    private const LIST_TITLES = [
-        'To Print',
-        'Printed',
-        'Recently Viewed',
-    ];
-
     /**
      * Create the event listener.
      */
@@ -29,7 +23,7 @@ class CreateUserDefaultLists
     {
         $faker = app(Generator::class);
 
-        foreach (self::LIST_TITLES as $listTitle) {
+        foreach (config('default-user-lists') as $listTitle) {
             $printedDesignList = new PrintedDesignList([
                 'title' => $listTitle,
                 'image_url' => $faker->imageUrl,

@@ -64,8 +64,8 @@ it('creates default lists upon saving the new user', function () {
     $this->assertDatabaseHas('printed_design_lists', ['title' => 'To Print', 'user_id' => $userID]);
     $this->assertDatabaseHas('printed_design_lists', ['title' => 'Printed', 'user_id' => $userID]);
     $this->assertDatabaseHas('printed_design_lists', ['title' => 'Recently Viewed', 'user_id' => $userID]);
-
 });
+
 it('creates a user avatar upon saving the new user', function () {
     $country = Country::factory()->create();
 
