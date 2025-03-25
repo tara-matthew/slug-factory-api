@@ -44,7 +44,7 @@ class StorePrintedDesignAction
                 'filamentColour',
                 'filamentMaterial',
                 'printedDesignSetting',
-                'masterImages'
+                'masterImages',
             ]);
 
         } catch (Throwable $e) {
