@@ -10,7 +10,6 @@ use Domain\Notifications\Models\Notification;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Domain\Users\Events\UserCreated;
-use Faker\Generator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -109,25 +108,6 @@ class User extends Authenticatable
     protected $dispatchesEvents = [
         'created' => UserCreated::class,
     ];
-
-    // TODO Maybe create a listener class
-    protected static function booted(): void
-    {
-        static::created(function (User $user) {
-            $faker = app(Generator::class);
-            $user->avatar_url = $faker->imageUrl;
-            $user->save();
-            $userProfile = new UserProfile;
-            $userProfile->user()->associate($user);
-            $userProfile->save();
-            $toPrintList = new PrintedDesignList([
-                'title' => 'To Print List',
-                'image_url' => $faker->imageUrl,
-            ]);
-            $toPrintList->user()->associate($user);
-            $toPrintList->save();
-        });
-    }
 
     public function printedDesigns(): HasMany
     {

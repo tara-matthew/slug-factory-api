@@ -3,6 +3,7 @@
 namespace Domain\Users\Listeners;
 
 use Domain\Users\Events\UserCreated;
+use Domain\Users\Models\UserProfile;
 
 class CreateUserProfile
 {
@@ -19,6 +20,8 @@ class CreateUserProfile
      */
     public function handle(UserCreated $event): void
     {
-        //
+        $userProfile = new UserProfile;
+        $userProfile->user()->associate($event->user);
+        $userProfile->save();
     }
 }

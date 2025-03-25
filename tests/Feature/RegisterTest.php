@@ -46,8 +46,43 @@ it('creates an empty user profile record upon saving the new user', function () 
     $this->assertDatabaseHas('user_profiles', ['user_id' => $userID]);
 });
 
-it('creates default lists upon saving the new user')->todo();
-it('creates a user avatar upon saving the new user')->todo();
+it('creates default lists upon saving the new user', function () {
+    $country = Country::factory()->create();
+
+    $response = $this->postJson(route('register', [
+        'name' => 'Tara',
+        'email' => 'tara@gmail.com',
+        'username' => 'tara',
+        'country_id' => $country->id,
+        'password' => 'Password123!',
+        'password_confirmation' => 'Password123!',
+    ]));
+
+    $userID = $response->json()['data']['id'];
+
+    $this->assertDatabaseCount('printed_design_lists', 3);
+    $this->assertDatabaseHas('printed_design_lists', ['title' => 'To Print', 'user_id' => $userID]);
+    $this->assertDatabaseHas('printed_design_lists', ['title' => 'Printed', 'user_id' => $userID]);
+    $this->assertDatabaseHas('printed_design_lists', ['title' => 'Recently Viewed', 'user_id' => $userID]);
+
+});
+it('creates a user avatar upon saving the new user', function () {
+    $country = Country::factory()->create();
+
+    $response = $this->postJson(route('register', [
+        'name' => 'Tara',
+        'email' => 'tara@gmail.com',
+        'username' => 'tara',
+        'country_id' => $country->id,
+        'password' => 'Password123!',
+        'password_confirmation' => 'Password123!',
+    ]));
+
+    $userID = $response->json()['data']['id'];
+    $avatarURL = $response->json()['data']['avatar_url'];
+    $this->assertNotNull($avatarURL);
+    $this->assertDatabaseHas('users', ['id' => $userID, 'avatar_url' => $avatarURL]);
+});
 
 it('validates using a form request', function () {
     $this->assertActionUsesFormRequest(

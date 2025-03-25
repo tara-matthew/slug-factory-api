@@ -3,19 +3,19 @@
 namespace Domain\Users\Listeners;
 
 use Domain\Users\Events\UserCreated;
+use Faker\Generator;
 
 class CreateUserAvatar
 {
-    /**
-     * Create the event listener.
-     */
     public function __construct()
     {
         //
     }
 
-    /**
-     * Handle the event.
-     */
-    public function handle(UserCreated $event): void {}
+    public function handle(UserCreated $event): void
+    {
+        $faker = app(Generator::class);
+        $event->user->avatar_url = $faker->imageUrl;
+        $event->user->save();
+    }
 }
