@@ -46,6 +46,9 @@ it('creates an empty user profile record upon saving the new user', function () 
     $this->assertDatabaseHas('user_profiles', ['user_id' => $userID]);
 });
 
+it('creates default lists upon saving the new user')->todo();
+it('creates a user avatar upon saving the new user')->todo();
+
 it('validates using a form request', function () {
     $this->assertActionUsesFormRequest(
         RegisterController::class,
