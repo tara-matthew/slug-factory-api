@@ -12,7 +12,7 @@ it('has rules set up correctly', function () {
 
     $this->assertEquals(
         [
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255'],
         ],
 
         $storeFilamentBrandRequest->rules()
