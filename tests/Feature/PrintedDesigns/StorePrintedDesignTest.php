@@ -81,7 +81,7 @@ it('rolls back all changes if any part fails', function () {
     ]);
 
     $response
-        ->assertStatus(500);
+        ->assertServerError();
 
     $this->assertDatabaseCount('printed_designs', 0);
     $this->assertDatabaseCount('printed_design_settings', 0);
