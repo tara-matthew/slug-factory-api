@@ -48,7 +48,6 @@ class StorePrintedDesignAction
             ]);
 
         } catch (Throwable $e) {
-            // TODO remove any saved files
             throw $e;
         }
     }
