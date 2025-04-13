@@ -50,7 +50,6 @@ use Illuminate\Support\Carbon;
  */
 class PrintedDesign extends Model
 {
-    use CanBeFavourited;
     use HasFactory;
 
     // TODO remove eager load of printedDesignSetting when PrintedDesign template has been sorted on the frontend
@@ -59,10 +58,6 @@ class PrintedDesign extends Model
     protected $fillable = [
         'title',
         'description',
-    ];
-
-    protected $withCount = [
-        'favourites',
     ];
 
     public function user(): BelongsTo
@@ -88,11 +83,6 @@ class PrintedDesign extends Model
     public function filamentMaterial(): BelongsTo
     {
         return $this->belongsTo(FilamentMaterial::class);
-    }
-
-    public function favourites(): MorphMany // TODO could move into the trait
-    {
-        return $this->morphMany(Favourite::class, 'favouritable');
     }
 
     public function printedDesignSetting(): HasOne
