@@ -4,13 +4,11 @@ namespace Domain\PrintedDesigns\Models;
 
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
-use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Images\Models\PrintedDesignMasterImage;
 use Domain\PrintedDesignSettings\Models\PrintedDesignSetting;
-use Domain\Shared\Traits\CanBeFavourited;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +17,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 
 /**

@@ -20,7 +20,6 @@ class IndexMyPrintedDesignsController
         return PrintedDesignResource::collection(
             PrintedDesign::with(
                 [
-                    'favourites',
                     'filamentBrand',
                     'filamentColour',
                     'filamentMaterial',

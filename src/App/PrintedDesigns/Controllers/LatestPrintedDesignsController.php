@@ -12,7 +12,7 @@ class LatestPrintedDesignsController
     public function __invoke(): AnonymousResourceCollection
     {
         return PrintedDesignResource::collection(
-            PrintedDesign::with(['favourites', 'filamentBrand', 'filamentColour', 'filamentMaterial'])
+            PrintedDesign::with(['filamentBrand', 'filamentColour', 'filamentMaterial'])
                 ->latest()
                 ->whereNotIn('user_id', [Auth::user()->id])
                 ->take(10) // TODO put into a const or config & environment variable

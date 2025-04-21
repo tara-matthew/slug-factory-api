@@ -39,7 +39,6 @@ it('returns the latest printed designs with the most recently added first', func
                 ->where('filament_brand.name', $finalPrint->filamentBrand->name)
                 ->where('filament_colour.name', $finalPrint->filamentColour->name)
                 ->where('filament_material.name', $finalPrint->filamentMaterial->name)
-                ->where('is_favourite', false)
                 ->etc()
             )
         );

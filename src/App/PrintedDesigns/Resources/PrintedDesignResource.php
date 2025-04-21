@@ -29,10 +29,10 @@ class PrintedDesignResource extends JsonResource
             'filament_brand' => new FilamentBrandResource($this->whenLoaded('filamentBrand')),
             'filament_colour' => new FilamentColourResource($this->whenLoaded('filamentColour')),
             'filament_material' => new FilamentMaterialResource($this->whenLoaded('filamentMaterial')),
-            'is_favourite' => $this->whenLoaded('favourites', function () {
-                return $this->favourites->contains('user_id', auth()->id());
-            }),
-            'favourited_count' => $this->favourites->count(), // TODO $this->whenCounted('favourites'),
+            //            'is_favourite' => $this->whenLoaded('favourites', function () {
+            //                return $this->favourites->contains('user_id', auth()->id());
+            //            }), // TODO make this work with lists
+            //            'favourited_count' => $this->favourites->count(), // TODO $this->whenCounted('favourites'), but with on lists
             'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),
             'created_at' => $this->created_at,
         ];

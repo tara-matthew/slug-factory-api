@@ -14,7 +14,6 @@ class ShowPrintedDesignController
                 'filamentBrand',
                 'filamentColour',
                 'filamentMaterial',
-                'favourites',
                 'user',
                 'printedDesignSetting',
             ]
