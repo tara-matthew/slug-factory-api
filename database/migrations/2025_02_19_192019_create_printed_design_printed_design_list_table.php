@@ -1,6 +1,5 @@
 <?php
 
-use App\PrintedDesignLists\Models\PrintedDesignList;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,8 +19,10 @@ return new class extends Migration
                 )
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            //            $table->foreignIdFor(PrintedDesignList::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
+
+            $table->unique(['printed_design_id', 'printed_design_list_id'], 'printed_design_printed_design_list_unique');
+
         });
     }
 
