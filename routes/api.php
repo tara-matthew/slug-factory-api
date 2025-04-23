@@ -11,6 +11,7 @@ use App\Http\Controllers\PushNotificationTestController;
 use App\Images\Controllers\TestImageUploadController;
 use App\PrintedDesignLists\Controllers\AddToPrintedDesignListController;
 use App\PrintedDesignLists\Controllers\IndexMyPrintedDesignListsController;
+use App\PrintedDesignLists\Controllers\ShowAvailablePrintedDesignListsController;
 use App\PrintedDesignLists\Controllers\ShowPrintedDesignListController;
 use App\PrintedDesignLists\Controllers\StorePrintedDesignListController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
@@ -52,6 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/my/printed-design-lists', StorePrintedDesignListController::class)->name('my.print-lists.store');
     Route::post('/my/printed-design-lists/{printedDesignList}/printed-designs', AddToPrintedDesignListController::class)->name('my.print-lists.prints.store');
     Route::get('/my/printed-design-lists/{printedDesignList}', ShowPrintedDesignListController::class)->name('my.print-lists.show');
+    Route::get('/my/printed-design-lists/prints/{printedDesign}/available', ShowAvailablePrintedDesignListsController::class)->name('my.print-lists.prints.available.show');
 
     Route::get('/me', ShowUserProfileController::class)->name('profile.show');
     Route::patch('/me', UpdateUserProfileController::class)->name('profile.update');
