@@ -30,3 +30,4 @@ it('adds a printed design to a list', function () {
 
 it('does not allow a user to add to a list which is not theirs')->todo();
 it('does not allow duplicates')->todo();
+it('dispatches an event when a printed design is added to a list')->todo();

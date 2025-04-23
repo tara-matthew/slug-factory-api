@@ -24,11 +24,6 @@ class StoreFavouriteAction
         $favourite->user()->associate($user);
         $favourite->save();
 
-        if ($model instanceof PrintedDesign) {
-            PrintedDesignFavourited::dispatch($model, $model->user);
-
-        }
-
         return $favourite;
     }
 }

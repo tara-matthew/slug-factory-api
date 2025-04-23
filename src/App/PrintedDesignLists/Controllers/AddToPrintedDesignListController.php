@@ -15,6 +15,8 @@ class AddToPrintedDesignListController
 
         $printedDesignList->printedDesigns()->attach($printedDesign);
 
+        // TODO dispatch an event when a printed design is added to a list
+
         return new PrintedDesignListResource($printedDesignList);
     }
 }
