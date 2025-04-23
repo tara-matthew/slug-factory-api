@@ -30,6 +30,8 @@ class UpdatePrintedDesignImagesAction
             $item->delete();
         });
 
+        // TODO remove files
+
         $printedDesign->masterImages()->createMany($newImages);
 
         return $printedDesign;
