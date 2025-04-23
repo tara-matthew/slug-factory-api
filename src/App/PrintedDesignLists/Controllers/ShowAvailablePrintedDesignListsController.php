@@ -12,6 +12,7 @@ class ShowAvailablePrintedDesignListsController
     public function __invoke(PrintedDesign $printedDesign): AnonymousResourceCollection
     {
         $availableLists = Auth::user()->printedDesignLists()
+            ->withCount('printedDesigns')
             ->whereDoesntHave('printedDesigns', function ($query) use ($printedDesign) {
                 $query->where('printed_designs.id', $printedDesign->id);
             })
