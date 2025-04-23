@@ -15,6 +15,7 @@ class IndexMyPrintedDesignListsController
 
         return PrintedDesignListResource::collection(
             PrintedDesignList::whereBelongsTo($user)
+                ->withCount('printedDesigns')
                 ->paginate(30));
     }
 }
