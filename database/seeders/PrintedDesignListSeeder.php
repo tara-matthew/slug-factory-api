@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\PrintedDesignLists\Models\PrintedDesignList;
-use Domain\Filaments\Colours\Models\FilamentColour;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,11 +21,11 @@ class PrintedDesignListSeeder extends Seeder
 
         foreach ($users as $user) {
             foreach (config('default-user-lists') as $listTitle) {
-               $list = PrintedDesignList::factory()->for($user)->create([
+                $list = PrintedDesignList::factory()->for($user)->create([
                     'title' => $listTitle,
                 ]);
 
-               $list->printedDesigns()->attach(
+                $list->printedDesigns()->attach(
                     $prints->random(self::PRINTED_DESIGNS_PER_LIST)->pluck('id')
                 );
             }
