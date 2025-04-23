@@ -8,3 +8,4 @@ uses(TestCase::class);
 
 it('creates a user profile when the event is fired')->todo();
 it('creates user default lists when the event is fired')->todo();
+it('creates a user avatar when the event is fired')->todo();
