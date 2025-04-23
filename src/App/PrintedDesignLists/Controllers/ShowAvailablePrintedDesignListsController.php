@@ -11,10 +11,12 @@ class ShowAvailablePrintedDesignListsController
 {
     public function __invoke(PrintedDesign $printedDesign): AnonymousResourceCollection
     {
-        $userLists = Auth::user()->printedDesignLists;
-        $availableLists = $userLists->filter(function ($list) use ($printedDesign) {
-            return $list->title !== 'Recently Viewed' && ! $list->printedDesigns->contains($printedDesign);
-        });
+        $availableLists = Auth::user()->printedDesignLists()
+            ->whereDoesntHave('printedDesigns', function ($query) use ($printedDesign) {
+                $query->where('printed_designs.id', $printedDesign->id);
+            })
+            ->where('title', '!=', 'Recently Viewed')
+            ->get();
 
         return PrintedDesignListResource::collection($availableLists);
     }
