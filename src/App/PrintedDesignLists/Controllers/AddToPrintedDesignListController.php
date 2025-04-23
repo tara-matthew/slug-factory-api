@@ -5,7 +5,9 @@ namespace App\PrintedDesignLists\Controllers;
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Requests\AddToPrintedDesignListRequest;
 use App\PrintedDesignLists\Resources\PrintedDesignListResource;
+use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Models\PrintedDesign;
+use Illuminate\Support\Facades\Auth;
 
 class AddToPrintedDesignListController
 {
@@ -15,7 +17,7 @@ class AddToPrintedDesignListController
 
         $printedDesignList->printedDesigns()->attach($printedDesign);
 
-        // TODO dispatch an event when a printed design is added to a list
+        PrintedDesignFavourited::dispatch($printedDesign, Auth::user());
 
         return new PrintedDesignListResource($printedDesignList);
     }

@@ -5,7 +5,6 @@ namespace Domain\Favourites\Actions;
 use App\Exceptions\ItemAlreadyFavouritedException;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Models\PrinterFilament;
-use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Illuminate\Database\Eloquent\Model;

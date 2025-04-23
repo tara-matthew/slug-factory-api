@@ -1,10 +1,7 @@
 <?php
 
-
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Models\PrinterFilament;
-use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
-use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
