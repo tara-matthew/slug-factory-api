@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+// TODO unit test or feature test?
+
 uses(RefreshDatabase::class);
 uses(TestCase::class);
 
