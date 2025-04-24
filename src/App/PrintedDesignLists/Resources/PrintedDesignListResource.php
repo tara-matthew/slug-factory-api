@@ -27,6 +27,7 @@ class PrintedDesignListResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'printed_designs' => PrintedDesignResource::collection($this->whenLoaded('printedDesigns')), // TODO May need a reduced resource
             'count' => $this->whenCounted('printedDesigns'),
+            'contains_item' => $this->when($request->routeIs('my.print-lists.prints.available.show'), $this->printedDesigns->isNotEmpty())
         ];
     }
 }

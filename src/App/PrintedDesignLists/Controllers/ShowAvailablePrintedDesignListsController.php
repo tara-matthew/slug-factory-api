@@ -13,9 +13,9 @@ class ShowAvailablePrintedDesignListsController
     {
         $availableLists = Auth::user()->printedDesignLists()
             ->withCount('printedDesigns')
-            ->whereDoesntHave('printedDesigns', function ($query) use ($printedDesign) {
-                $query->where('printed_designs.id', $printedDesign->id);
-            })
+            ->with(['printedDesigns' => function ($query) use ($printedDesign) {
+                $query->where('printed_design_id', $printedDesign->id);
+            }])
             ->where('title', '!=', 'Recently Viewed')
             ->get();
 
