@@ -32,7 +32,7 @@ class PrintedDesignResource extends JsonResource
             //            'is_favourite' => $this->whenLoaded('favourites', function () {
             //                return $this->favourites->contains('user_id', auth()->id());
             //            }), // TODO make this work with lists
-            //            'favourited_count' => $this->favourites->count(), // TODO $this->whenCounted('favourites'), but with on lists
+            'favourited_count' => $this->whenCounted('printed_design_lists'),
             'settings' => new PrintedDesignSettingResource($this->whenLoaded('printedDesignSetting')),
             'created_at' => $this->created_at,
         ];

@@ -17,6 +17,7 @@ class ShowPrintedDesignController
                 'user',
                 'printedDesignSetting',
             ]
-        ));
+        )
+            ->loadCount('printedDesignLists'));
     }
 }
