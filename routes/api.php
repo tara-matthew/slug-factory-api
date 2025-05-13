@@ -52,8 +52,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/favourites/{type}/{id}', DeleteFavouriteController::class)->name('favourites.delete');
     Route::get('/my/printed-design-lists', IndexMyPrintedDesignListsController::class)->name('my.print-lists.index');
     Route::post('/my/printed-design-lists', StorePrintedDesignListController::class)->name('my.print-lists.store');
-    Route::post('/my/printed-design-lists/{printedDesignList}/printed-designs', AddToPrintedDesignListController::class)->name('my.print-lists.prints.store');
-    Route::post('/my/printed-designs/{printedDesign}/printed-design-lists', AddToMultiplePrintedDesignListsController::class)->name('my.prints.print-lists.store');
+    Route::post('/my/printed-design-lists/{printedDesignList}/prints', AddToPrintedDesignListController::class)->name('my.print-lists.prints.store');
+    Route::post('/my/prints/{printedDesign}/printed-design-lists', AddToMultiplePrintedDesignListsController::class)->name('my.prints.print-lists.store');
     Route::get('/my/printed-design-lists/{printedDesignList}', ShowPrintedDesignListController::class)->name('my.print-lists.show');
     Route::get('/my/printed-design-lists/prints/{printedDesign}/available', ShowAvailablePrintedDesignListsController::class)->name('my.print-lists.prints.available.show');
 
