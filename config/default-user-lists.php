@@ -4,5 +4,5 @@
 return [
     'To Print',
     'Printed',
-    'Recently Viewed',
+    'Favourites',
 ];
