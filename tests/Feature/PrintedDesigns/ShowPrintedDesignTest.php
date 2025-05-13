@@ -30,7 +30,7 @@ it('returns a specific print', function () {
             ->where('data.filament_brand.name', $print->filamentBrand->name)
             ->where('data.filament_colour.name', $print->filamentColour->name)
             ->where('data.filament_material.name', $print->filamentMaterial->name)
-            ->where('data.favourited_count', 0)
+            ->where('data.list_count', 0)
             ->where('data.settings.infill_percentage', $print->printedDesignSetting->infill_percentage)
             ->where('data.settings.print_speed', $print->printedDesignSetting->print_speed)
             ->where('data.settings.nozzle_size', $print->printedDesignSetting->nozzle_size)
