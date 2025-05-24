@@ -9,12 +9,12 @@ use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
 use App\Filaments\Colours\Controllers\IndexFilamentColoursController;
 use App\Http\Controllers\PushNotificationTestController;
 use App\Images\Controllers\TestImageUploadController;
-use App\PrintedDesignLists\Controllers\AddToMultiplePrintedDesignListsController;
 use App\PrintedDesignLists\Controllers\AddToPrintedDesignListController;
 use App\PrintedDesignLists\Controllers\IndexMyPrintedDesignListsController;
 use App\PrintedDesignLists\Controllers\ShowAvailablePrintedDesignListsController;
 use App\PrintedDesignLists\Controllers\ShowPrintedDesignListController;
 use App\PrintedDesignLists\Controllers\StorePrintedDesignListController;
+use App\PrintedDesignLists\Controllers\UpdatePrintedDesignPrintedDesignListsController;
 use App\PrintedDesigns\Controllers\IndexMyPrintedDesignsController;
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use App\PrintedDesigns\Controllers\ShowPrintedDesignController;
@@ -53,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my/printed-design-lists', IndexMyPrintedDesignListsController::class)->name('my.print-lists.index');
     Route::post('/my/printed-design-lists', StorePrintedDesignListController::class)->name('my.print-lists.store');
     Route::post('/my/printed-design-lists/{printedDesignList}/prints', AddToPrintedDesignListController::class)->name('my.print-lists.prints.store');
-    Route::post('/my/prints/{printedDesign}/printed-design-lists', AddToMultiplePrintedDesignListsController::class)->name('my.prints.print-lists.store');
+    Route::post('/my/prints/{printedDesign}/printed-design-lists', UpdatePrintedDesignPrintedDesignListsController::class)->name('my.prints.print-lists.update');
     Route::get('/my/printed-design-lists/{printedDesignList}', ShowPrintedDesignListController::class)->name('my.print-lists.show');
     Route::get('/my/printed-design-lists/prints/{printedDesign}/available', ShowAvailablePrintedDesignListsController::class)->name('my.print-lists.prints.available.show');
 

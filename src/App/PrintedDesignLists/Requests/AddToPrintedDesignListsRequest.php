@@ -15,8 +15,10 @@ class AddToPrintedDesignListsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'printed_design_list_ids' => ['required', 'array'],
-            'printed_design_list_ids.*' => ['required', 'integer', 'exists:printed_design_lists,id'],
+            'printed_design_list_add_ids' => ['sometimes', 'array'],
+            'printed_design_list_remove_ids' => ['sometimes', 'array'],
+            'printed_design_list_add_ids.*' => ['sometimes', 'integer', 'exists:printed_design_lists,id'],
+            'printed_design_list_remove_ids.*' => ['sometimes', 'integer', 'exists:printed_design_lists,id'],
         ];
     }
 }
