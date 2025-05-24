@@ -1,6 +1,8 @@
 <?php
 
+use App\PrintedDesignLists\Controllers\UpdatePrintedDesignPrintedDesignListsController;
 use App\PrintedDesignLists\Models\PrintedDesignList;
+use App\PrintedDesignLists\Requests\UpdatePrintedDesignPrintedDesignListsRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
@@ -69,4 +71,12 @@ it('removes a printed design from lists', function () {
 
     $this->assertJsonResponseContent(PrintedDesignResource::make($printedDesign->loadMissing('printedDesignSetting')), $response);
 
+});
+
+it('validates using a form request', function () {
+    $this->assertActionUsesFormRequest(
+        UpdatePrintedDesignPrintedDesignListsController::class,
+        '__invoke',
+        UpdatePrintedDesignPrintedDesignListsRequest::class
+    );
 });
