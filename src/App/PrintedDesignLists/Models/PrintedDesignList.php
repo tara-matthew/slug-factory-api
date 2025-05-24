@@ -27,4 +27,16 @@ class PrintedDesignList extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeWhereContainsPrintedDesign($query, PrintedDesign $printedDesign): BelongsToMany
+    {
+        return $query->whereHas('printedDesigns', function ($query) use ($printedDesign) {
+            $query->where('printed_design_id', $printedDesign->id);
+        });
+    }
+
+    public function containsPrintedDesign(PrintedDesign $printedDesign): bool
+    {
+        return $this->printedDesigns()->where('printed_design_id', $printedDesign->id)->exists();
+    }
 }
