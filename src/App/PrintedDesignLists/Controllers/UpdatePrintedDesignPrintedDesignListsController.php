@@ -3,7 +3,7 @@
 namespace App\PrintedDesignLists\Controllers;
 
 use App\PrintedDesignLists\Models\PrintedDesignList;
-use App\PrintedDesignLists\Requests\AddToPrintedDesignListsRequest;
+use App\PrintedDesignLists\Requests\UpdatePrintedDesignPrintedDesignListsRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 
@@ -11,7 +11,7 @@ class UpdatePrintedDesignPrintedDesignListsController
 {
     // TODO rework to allow to remove
     // TODO use a transaction
-    public function __invoke(AddToPrintedDesignListsRequest $request, PrintedDesign $printedDesign)
+    public function __invoke(UpdatePrintedDesignPrintedDesignListsRequest $request, PrintedDesign $printedDesign)
     {
         $addIds = $request->validated('printed_design_list_add_ids') ?? [];
         $removeIds = $request->validated('printed_design_list_remove_ids') ?? [];

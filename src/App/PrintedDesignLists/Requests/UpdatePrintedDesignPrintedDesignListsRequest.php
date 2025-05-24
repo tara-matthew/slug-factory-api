@@ -5,7 +5,7 @@ namespace App\PrintedDesignLists\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddToPrintedDesignListsRequest extends FormRequest
+class UpdatePrintedDesignPrintedDesignListsRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
