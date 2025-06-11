@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 
 uses(RefreshDatabase::class);
 
-covers(IndexMyPrintedDesignsController::class);
+//covers(IndexMyPrintedDesignsController::class);
 
 it('returns a list of prints', function () {
     $user = User::factory()->create();

@@ -92,10 +92,10 @@ class PrintedDesign extends Model
         return $this->belongsToMany(PrintedDesignList::class);
     }
 
-    public function toResource(): PrintedDesignResource
-    {
-        $this->loadMissing(['filamentMaterial', 'favourites', 'printedDesignSetting']);
-
-        return new PrintedDesignResource($this);
-    }
+    //    public function toResource(): PrintedDesignResource
+    //    {
+    //        $this->loadMissing(['filamentMaterial', 'favourites', 'printedDesignSetting']);
+    //
+    //        return new PrintedDesignResource($this);
+    //    }
 }
