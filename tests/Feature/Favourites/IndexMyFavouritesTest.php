@@ -1,6 +1,7 @@
 <?php
 
 use App\Favourites\Controllers\IndexMyFavouritesController;
+use App\Favourites\Requests\IndexFavouritesRequest;
 use Carbon\Carbon;
 use Domain\Favourites\Models\Favourite;
 use Domain\Filaments\Models\PrinterFilament;
@@ -33,4 +34,12 @@ it('returns a list of the favourites of the authenticated user', function () {
             )
             ->etc()
         );
+});
+
+it('validates using a form request', function () {
+    $this->assertActionUsesFormRequest(
+        IndexMyFavouritesController::class,
+        '__invoke',
+        IndexFavouritesRequest::class
+    );
 });
