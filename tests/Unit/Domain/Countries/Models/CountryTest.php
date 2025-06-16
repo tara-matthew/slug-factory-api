@@ -9,5 +9,5 @@ uses(TestCase::class);
 test('relations', function () {
     $country = Country::factory()->hasUsers(2)->create();
 
-    expect($country->users)->each->toBeInstanceOf(User::class );
+    expect($country->users)->each->toBeInstanceOf(User::class);
 });
