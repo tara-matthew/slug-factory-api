@@ -13,9 +13,6 @@ trait CanBeFavourited
          * @var User|null $user
          */
         $user = Auth::user();
-        if (! $user) {
-            return false;
-        }
 
         return $this->favourites()->whereBelongsTo($user)->exists();
     }

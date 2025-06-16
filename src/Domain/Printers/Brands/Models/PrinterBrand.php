@@ -15,7 +15,7 @@ class PrinterBrand extends Model
         'name',
     ];
 
-    public function printerModel(): HasMany
+    public function printerModels(): HasMany
     {
         return $this->hasMany(PrinterModel::class);
     }
