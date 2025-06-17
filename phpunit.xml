@@ -22,5 +22,10 @@
     <include>
       <directory suffix=".php">./src</directory>
     </include>
+    <exclude>
+        <directory suffix=".php">./src/App/Providers</directory>
+        <directory suffix=".php">./src/App/Shared</directory>
+        <file>./src/App/Exceptions/Handler.php</file>
+    </exclude>
   </source>
 </phpunit>
