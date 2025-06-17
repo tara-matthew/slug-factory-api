@@ -8,7 +8,6 @@ use App\Filaments\Brands\Controllers\ShowFilamentBrandController;
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
 use App\Filaments\Colours\Controllers\IndexFilamentColoursController;
 use App\Http\Controllers\PushNotificationTestController;
-use App\Images\Controllers\TestImageUploadController;
 use App\PrintedDesignLists\Controllers\AddToPrintedDesignListController;
 use App\PrintedDesignLists\Controllers\IndexMyPrintedDesignListsController;
 use App\PrintedDesignLists\Controllers\ShowAvailablePrintedDesignListsController;
@@ -71,7 +70,5 @@ Route::get('/filament-colours', IndexFilamentColoursController::class)->name('fi
 
 Route::post('/auth/login', LoginController::class)->name('login');
 Route::post('/auth/register', RegisterController::class)->name('register');
-
-Route::post('/upload', TestImageUploadController::class)->name('image');
 
 Route::get('/push-notification', PushNotificationTestController::class);
