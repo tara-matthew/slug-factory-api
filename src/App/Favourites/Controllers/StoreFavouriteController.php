@@ -6,6 +6,7 @@ use App\Exceptions\ItemAlreadyFavouritedException;
 use App\Favourites\Resources\FavouriteResource;
 use Domain\Favourites\Actions\StoreFavouriteAction;
 use Domain\Shared\Traits\IdentifiesModels;
+use Illuminate\Support\Facades\Auth;
 
 class StoreFavouriteController // could have toggle favourite controller instead
 {
@@ -22,7 +23,7 @@ class StoreFavouriteController // could have toggle favourite controller instead
             throw new ItemAlreadyFavouritedException;
         }
 
-        $favourite = $storeFavouriteAction->execute($model);
+        $favourite = $storeFavouriteAction->execute($model, Auth::user());
 
         return new FavouriteResource($favourite);
     }
