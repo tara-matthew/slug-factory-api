@@ -5,7 +5,6 @@ namespace Domain\Users\Actions;
 use Carbon\Carbon;
 use Domain\Users\DataTransferObjects\UserProfileData;
 use Domain\Users\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UpdateUserProfileAction

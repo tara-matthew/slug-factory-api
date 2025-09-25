@@ -6,6 +6,7 @@ use App\Users\Requests\UpdateUserProfileRequest;
 use App\Users\Resources\UserResource;
 use Domain\Users\Actions\UpdateUserProfileAction;
 use Domain\Users\DataTransferObjects\UserProfileData;
+use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UpdateUserProfileController
@@ -14,7 +15,12 @@ class UpdateUserProfileController
     {
         $userProfileData = UserProfileData::from($request->validated());
 
-        $user = $updateUserProfileAction->handle($userProfileData, Auth::user());
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+
+        $user = $updateUserProfileAction->handle($userProfileData, $user);
 
         return new UserResource($user);
     }
