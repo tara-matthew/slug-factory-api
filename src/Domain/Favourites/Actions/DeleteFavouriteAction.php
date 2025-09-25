@@ -8,17 +8,11 @@ use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Printers\Models\Printer;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class DeleteFavouriteAction
 {
-    public function handle(PrintedDesign|PrinterFilament|Printer|FilamentBrand $model): void // TODO make a favouritable base model
+    public function handle(PrintedDesign|PrinterFilament|Printer|FilamentBrand $model, User $user): void // TODO make a favouritable base model
     {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
         $model->favourites()->whereBelongsTo($user)->delete();
     }
 }

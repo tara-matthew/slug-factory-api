@@ -6,6 +6,7 @@ use App\Exceptions\ItemNotFavouritedException;
 use Domain\Favourites\Actions\DeleteFavouriteAction;
 use Domain\Shared\Traits\IdentifiesModels;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteFavouriteController
 {
@@ -22,7 +23,7 @@ class DeleteFavouriteController
             throw new ItemNotFavouritedException;
         }
 
-        $deleteFavouriteAction->handle($model);
+        $deleteFavouriteAction->handle($model, Auth::user());
 
         return response()->noContent();
 
