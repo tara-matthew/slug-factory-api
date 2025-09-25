@@ -5,7 +5,7 @@ namespace Domain\PrintedDesigns\Actions;
 use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
 use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\PrintedDesigns\Models\PrintedDesign;
-use Illuminate\Support\Facades\Auth;
+use Domain\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -16,17 +16,16 @@ class StorePrintedDesignAction
         private readonly StorePrintedDesignSettingsAction $storePrintedDesignSettingsAction,
     ) {}
 
-    public function execute(CreatePrintedDesignData $printedDesignData): PrintedDesign
+    public function execute(CreatePrintedDesignData $printedDesignData, User $user): PrintedDesign
     {
         try {
-            $printedDesign = DB::transaction(function () use ($printedDesignData) {
+            $printedDesign = DB::transaction(function () use ($user, $printedDesignData) {
                 $printedDesign = new PrintedDesign([
                     'title' => $printedDesignData->title,
                     'description' => $printedDesignData->description,
                 ]);
 
-                // TODO pass in the user rather than relying on Auth
-                $printedDesign->user()->associate(Auth::user());
+                $printedDesign->user()->associate($user);
                 $this->associateFilamentDetails($printedDesign, $printedDesignData);
 
                 $printedDesign->save();

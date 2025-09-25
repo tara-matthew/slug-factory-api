@@ -6,6 +6,7 @@ use App\PrintedDesigns\Requests\StorePrintedDesignRequest;
 use App\PrintedDesigns\Resources\PrintedDesignResource;
 use Domain\PrintedDesigns\Actions\StorePrintedDesignAction;
 use Domain\PrintedDesigns\DataTransferObjects\CreatePrintedDesignData;
+use Illuminate\Support\Facades\Auth;
 
 class StorePrintedDesignController
 {
@@ -28,7 +29,7 @@ class StorePrintedDesignController
             'uses_supports' => data_get($request, 'uses_supports', false),
         ]);
 
-        $printedDesign = $storePrintedDesignAction->execute($printedDesignData);
+        $printedDesign = $storePrintedDesignAction->execute($printedDesignData, Auth::user());
 
         return new PrintedDesignResource($printedDesign);
     }
