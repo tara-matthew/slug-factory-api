@@ -10,13 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class UpdateUserProfileAction
 {
-    public function handle(UserProfileData $userProfileData): User
+    public function handle(UserProfileData $userProfileData, User $user): User
     {
-        /**
-         * @var User $user
-         */
-        $user = Auth::user();
-
         DB::transaction(function () use ($userProfileData, $user) {
             $user->update(array_filter([
                 'name' => $userProfileData->name,
