@@ -16,8 +16,12 @@ use Domain\Users\Listeners\CreateUserDefaultLists;
 use Domain\Users\Listeners\CreateUserProfile;
 use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -39,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->configureCommands();
+        $this->configureModels();
+        $this->configureUrl();
+
         Factory::guessFactoryNamesUsing(function (string $modelName) {
             return '\Database\Factories\\'.class_basename($modelName).'Factory';
         });
@@ -79,5 +87,34 @@ class AppServiceProvider extends ServiceProvider
             UserCreated::class,
             CreateUserDefaultLists::class,
         );
+    }
+
+
+    /**
+     * Configure the application's commands.
+     */
+    private function configureCommands(): void
+    {
+        DB::prohibitDestructiveCommands(
+            $this->app->isProduction(),
+        );
+    }
+
+    /**
+     * Configure the application's models.
+     */
+    private function configureModels(): void
+    {
+        Model::shouldBeStrict();
+
+//        Model::unguard();
+    }
+
+    /**
+     * Configure the application's URL.
+     */
+    private function configureUrl(): void
+    {
+        URL::forceScheme('https');
     }
 }
