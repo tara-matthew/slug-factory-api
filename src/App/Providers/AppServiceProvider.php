@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\CarbonImmutable;
 use Domain\Filaments\Brands\Models\FilamentBrand;
 use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
@@ -18,6 +19,7 @@ use Domain\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
@@ -45,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureCommands();
         $this->configureModels();
         $this->configureUrl();
+        $this->configureDates();
 
         Factory::guessFactoryNamesUsing(function (string $modelName) {
             return '\Database\Factories\\'.class_basename($modelName).'Factory';
@@ -88,9 +91,6 @@ class AppServiceProvider extends ServiceProvider
         );
     }
 
-    /**
-     * Configure the application's commands.
-     */
     private function configureCommands(): void
     {
         DB::prohibitDestructiveCommands(
@@ -98,9 +98,6 @@ class AppServiceProvider extends ServiceProvider
         );
     }
 
-    /**
-     * Configure the application's models.
-     */
     private function configureModels(): void
     {
         Model::shouldBeStrict();
@@ -108,11 +105,13 @@ class AppServiceProvider extends ServiceProvider
         //        Model::unguard();
     }
 
-    /**
-     * Configure the application's URL.
-     */
     private function configureUrl(): void
     {
         URL::forceScheme('https');
+    }
+
+    private function configureDates(): void
+    {
+        Date::use(CarbonImmutable::class);
     }
 }
