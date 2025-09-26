@@ -33,7 +33,7 @@ it('adds a printed design to lists', function () {
     }
 
     // TODO remove loadMissing when eager loading is sorted on PrintedDesign
-    $this->assertJsonResponseContent(PrintedDesignResource::make($printedDesign->loadMissing('printedDesignSetting')), $response);
+    $this->assertJsonResponseContent(PrintedDesignResource::make($printedDesign->loadMissing(['printedDesignSetting', 'masterImages'])), $response);
 });
 
 it('removes a printed design from lists', function () {
@@ -69,7 +69,7 @@ it('removes a printed design from lists', function () {
             ]);
     }
 
-    $this->assertJsonResponseContent(PrintedDesignResource::make($printedDesign->loadMissing('printedDesignSetting')), $response);
+    $this->assertJsonResponseContent(PrintedDesignResource::make($printedDesign->loadMissing(['printedDesignSetting', 'masterImages'])), $response);
 
 });
 
