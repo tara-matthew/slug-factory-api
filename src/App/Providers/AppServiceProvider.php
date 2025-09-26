@@ -28,6 +28,8 @@ use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
+    // https://github.com/nunomaduro/essentials/tree/main/src/Configurables
+
     /**
      * Register any application services.
      */
