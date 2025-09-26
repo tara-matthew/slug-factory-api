@@ -25,7 +25,7 @@ class PrintedDesignResource extends JsonResource
             'user' => new UserResource($this->user), // TODO change to a reduced user resource which hides private fields, or use conditional attributes. whenLoaded
             'title' => $this->title,
             'description' => $this->description,
-            'images' => PrintedDesignImageResource::collection($this->masterImages), // whenloaded
+            'images' => PrintedDesignImageResource::collection($this->whenLoaded('masterImages')),
             'filament_brand' => new FilamentBrandResource($this->whenLoaded('filamentBrand')),
             'filament_colour' => new FilamentColourResource($this->whenLoaded('filamentColour')),
             'filament_material' => new FilamentMaterialResource($this->whenLoaded('filamentMaterial')),

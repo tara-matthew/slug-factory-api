@@ -16,6 +16,7 @@ class ShowPrintedDesignController
                 'filamentMaterial',
                 'user',
                 'printedDesignSetting',
+                'masterImages',
             ]
         )
             ->loadCount('printedDesignLists'));

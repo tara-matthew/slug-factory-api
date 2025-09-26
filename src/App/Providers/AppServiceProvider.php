@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -89,7 +88,6 @@ class AppServiceProvider extends ServiceProvider
         );
     }
 
-
     /**
      * Configure the application's commands.
      */
@@ -107,7 +105,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::shouldBeStrict();
 
-//        Model::unguard();
+        //        Model::unguard();
     }
 
     /**
