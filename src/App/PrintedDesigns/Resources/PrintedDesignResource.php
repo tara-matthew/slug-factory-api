@@ -22,7 +22,7 @@ class PrintedDesignResource extends JsonResource
             'id' => $this->id,
             'type' => 'PrintedDesign',
             'user_id' => $this->user_id, // TODO do I need this?
-            'user' => new UserResource($this->user), // TODO change to a reduced user resource which hides private fields, or use conditional attributes. whenLoaded
+            'user' => new UserResource($this->whenLoaded('user')), // TODO change to a reduced user resource which hides private fields, or use conditional attributes.
             'title' => $this->title,
             'description' => $this->description,
             'images' => PrintedDesignImageResource::collection($this->whenLoaded('masterImages')),
