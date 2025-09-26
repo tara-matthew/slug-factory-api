@@ -23,6 +23,7 @@ class IndexMyPrintedDesignsController
                     'filamentBrand',
                     'filamentColour',
                     'filamentMaterial',
+                    'masterImages',
                 ]
             )
                 ->whereBelongsTo($user)->paginate(30)
