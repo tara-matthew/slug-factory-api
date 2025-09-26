@@ -49,7 +49,7 @@ class PrintedDesign extends Model
 {
     use HasFactory;
 
-    // TODO remove eager load of printedDesignSetting when PrintedDesign template has been sorted on the frontend
+    // TODO remove eager load of printedDesignSetting and master images when PrintedDesign template has been sorted on the frontend
     protected $with = ['masterImages', 'printedDesignSetting'];
 
     protected $fillable = [
