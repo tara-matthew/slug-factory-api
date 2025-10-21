@@ -103,7 +103,7 @@ class AppServiceProvider extends ServiceProvider
     private function configureModels(): void
     {
         Model::shouldBeStrict();
-
+        Model::automaticallyEagerLoadRelationships();
         //        Model::unguard();
     }
 
