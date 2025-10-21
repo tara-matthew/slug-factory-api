@@ -16,5 +16,5 @@ test('relations', function () {
     expect($printerFilament->filamentBrand)->toBeInstanceOf(FilamentBrand::class)
         ->and($printerFilament->filamentColour)->toBeInstanceOf(FilamentColour::class)
         ->and($printerFilament->filamentMaterial)->toBeInstanceOf(FilamentMaterial::class)
-        ->and($printerFilament->favourites)->each->toBeInstanceOf(\Domain\Favourites\Models\Favourite::class);
+        ->and($printerFilament->favourites)->each->toBeInstanceOf(Domain\Favourites\Models\Favourite::class);
 });
