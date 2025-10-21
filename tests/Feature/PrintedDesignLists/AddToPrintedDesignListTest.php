@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Resources\PrintedDesignListResource;
 use Domain\PrintedDesigns\Models\PrintedDesign;

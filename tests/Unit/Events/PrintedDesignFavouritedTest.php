@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\PrintedDesigns\Events\PrintedDesignFavourited;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\PrintedDesigns\Notifications\PrintedDesignFavourited as PrintedDesignFavouritedNotification;

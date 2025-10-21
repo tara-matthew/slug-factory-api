@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\PrintedDesignLists\Requests\UpdatePrintedDesignPrintedDesignListsRequest;
 use JMac\Testing\Traits\AdditionalAssertions;
 

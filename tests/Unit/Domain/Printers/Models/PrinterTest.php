@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\Favourites\Models\Favourite;
 use Domain\Printers\Models\Printer;
 use Domain\Printers\PrinterModels\Models\PrinterModel;

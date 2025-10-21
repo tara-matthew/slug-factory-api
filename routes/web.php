@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Users\Controllers\LoginController;
 use App\Users\Controllers\LogoutController;
 use App\Users\Controllers\RegisterController;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\PrintedDesigns\Listeners;
 
 use Domain\Notifications\Actions\CreateNotificationAction;

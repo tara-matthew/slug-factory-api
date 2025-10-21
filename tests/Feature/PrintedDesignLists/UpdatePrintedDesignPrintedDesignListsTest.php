@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\PrintedDesignLists\Controllers\UpdatePrintedDesignPrintedDesignListsController;
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use App\PrintedDesignLists\Requests\UpdatePrintedDesignPrintedDesignListsRequest;

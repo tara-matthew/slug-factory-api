@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\Notifications\Actions\CreateNotificationAction;
 use Domain\PrintedDesigns\Events\PrintedDesignUploaded;
 use Domain\PrintedDesigns\Listeners\SendPrintedDesignUploadedMailNotification;

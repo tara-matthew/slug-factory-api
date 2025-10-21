@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Users\Resources;
 
 use App\Http\Resources\CountryResource;

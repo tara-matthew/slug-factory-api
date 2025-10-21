@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\Filaments\Materials\Models\FilamentMaterial;
 use Domain\Filaments\Models\PrinterFilament;
 use Domain\PrintedDesigns\Models\PrintedDesign;

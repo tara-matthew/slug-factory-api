@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Users\Requests\UpdateUserProfileRequest;
 use Domain\Users\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;
 use Illuminate\Database\Migrations\Migration;

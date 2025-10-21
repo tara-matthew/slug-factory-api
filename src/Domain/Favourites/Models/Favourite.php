@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Favourites\Models;
 
 use Domain\Users\Models\User;

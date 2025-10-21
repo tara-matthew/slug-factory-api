@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\PrintedDesigns\Resources;
 
 use App\Filaments\Brands\Resources\FilamentBrandResource;

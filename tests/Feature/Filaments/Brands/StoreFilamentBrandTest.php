@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Filaments\Brands\Controllers\StoreFilamentBrandController;
 use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;

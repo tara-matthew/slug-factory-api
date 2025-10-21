@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Users\Resources\UserResource;
 use Domain\Users\Models\Country;
 use Domain\Users\Models\User;

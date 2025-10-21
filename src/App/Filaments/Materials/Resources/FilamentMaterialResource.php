@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filaments\Materials\Resources;
 
 use Domain\Filaments\Materials\Models\FilamentMaterial;

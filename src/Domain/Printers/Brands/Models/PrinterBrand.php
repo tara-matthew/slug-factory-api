@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Printers\Brands\Models;
 
 use Domain\Printers\PrinterModels\Models\PrinterModel;

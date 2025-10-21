@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\PrintedDesignSettings\Resources;
 
 use Domain\PrintedDesignSettings\Models\PrintedDesignSetting;

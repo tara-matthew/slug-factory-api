@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\PrintedDesignLists\Resources;
 
 use App\PrintedDesignLists\Models\PrintedDesignList;

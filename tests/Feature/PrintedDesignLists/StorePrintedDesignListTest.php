@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\PrintedDesignLists\Controllers\StorePrintedDesignListController;
 use App\PrintedDesignLists\Requests\StorePrintedDesignListRequest;
 use Domain\Users\Models\User;

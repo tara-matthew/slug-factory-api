@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filaments\Colours\Controllers;
 
 use App\Filaments\Colours\Resources\FilamentColourResource;

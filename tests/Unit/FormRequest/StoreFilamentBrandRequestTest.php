@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\FormRequest;
 
 use App\Filaments\Brands\Requests\StoreFilamentBrandRequest;

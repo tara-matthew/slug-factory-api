@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\PrintedDesignLists\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;

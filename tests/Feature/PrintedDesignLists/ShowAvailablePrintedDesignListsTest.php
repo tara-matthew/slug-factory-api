@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\PrintedDesignLists\Models\PrintedDesignList;
 use Domain\PrintedDesigns\Models\PrintedDesign;
 use Domain\Users\Models\User;

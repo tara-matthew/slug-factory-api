@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\PrintedDesigns\Controllers\LatestPrintedDesignsController;
 use Carbon\Carbon;
 use Domain\PrintedDesigns\Models\PrintedDesign;

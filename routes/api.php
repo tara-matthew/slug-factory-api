@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Favourites\Controllers\DeleteFavouriteController;
 use App\Favourites\Controllers\IndexMyFavouritesController;
 use App\Favourites\Controllers\StoreFavouriteController;

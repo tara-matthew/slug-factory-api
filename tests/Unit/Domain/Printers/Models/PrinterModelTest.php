@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\Printers\Brands\Models\PrinterBrand;
 use Domain\Printers\PrinterModels\Models\PrinterModel;
 use Tests\TestCase;

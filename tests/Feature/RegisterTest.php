@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Users\Controllers\RegisterController;
 use App\Users\Requests\RegisterUserRequest;
 use Domain\Users\Models\Country;

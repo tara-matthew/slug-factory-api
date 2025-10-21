@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\PrintedDesigns\Actions;
 
 use Bepsvpt\Blurhash\Facades\BlurHash;

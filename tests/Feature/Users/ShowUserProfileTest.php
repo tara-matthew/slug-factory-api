@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Domain\Users\Models\User;
 use Domain\Users\Models\UserProfile;
 use Illuminate\Foundation\Testing\RefreshDatabase;

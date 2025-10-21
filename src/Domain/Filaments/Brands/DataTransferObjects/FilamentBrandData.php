@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Filaments\Brands\DataTransferObjects;
 
 use Spatie\LaravelData\Data;

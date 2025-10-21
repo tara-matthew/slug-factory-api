@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Users\Requests\RegisterUserRequest;
 use Illuminate\Validation\Rules\Password;
 

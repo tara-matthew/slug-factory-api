@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filaments\Brands\Resources;
 
 use Domain\Filaments\Brands\Models\FilamentBrand;

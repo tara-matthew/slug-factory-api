@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Images\Resources;
 
 use Domain\Images\Models\PrintedDesignImage;

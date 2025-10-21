@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Favourites\Actions;
 
 use Domain\Filaments\Brands\Models\FilamentBrand;
